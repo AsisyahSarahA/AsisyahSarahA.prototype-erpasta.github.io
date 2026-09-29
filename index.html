@@ -220,7 +220,329 @@ button { cursor: pointer; }
 .toast-icon svg { width: 16px; height: 16px; }
 .responsive-note { font-size: 11px; color: var(--muted); padding: 12px 16px; background: #F8FAFC; border: 1px dashed #CBD5E1; border-radius: 10px; line-height: 1.5; }
 
-@media(max-width: 1300px) { .app { grid-template-columns: 240px 1fr; } .kpi-grid { grid-template-columns: repeat(2, 1fr); } .two-col, .three-col { grid-template-columns: 1fr; } .integration { grid-template-columns: repeat(2, 1fr); } }
+/* AI Content Engine Styles */
+.content-preview-card {
+  background: radial-gradient(circle at 82% 28%, rgba(48, 114, 212, 0.38) 0%, rgba(14, 30, 56, 0) 45%), linear-gradient(145deg, #0A1424 0%, #0D1E36 48%, #12284C 100%);
+  border-radius: 16px;
+  padding: 28px 32px;
+  color: #fff;
+  box-shadow: 0 12px 30px rgba(10, 20, 36, 0.18);
+  position: relative;
+  overflow: hidden;
+}
+.preview-tag {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #38BDF8;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.preview-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.35;
+  margin: 0 0 20px 0;
+  letter-spacing: -0.01em;
+}
+.preview-text {
+  color: #CBD5E1;
+  font-size: 12.5px;
+  line-height: 1.65;
+}
+.preview-text p {
+  margin: 0 0 14px 0;
+}
+.preview-text p:last-child {
+  margin-bottom: 0;
+}
+.preview-chips {
+  display: flex;
+  gap: 10px;
+  margin-top: 26px;
+  flex-wrap: wrap;
+}
+.preview-chip {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #E2E8F0;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 6px;
+}
+.ai-score-badge {
+  background: #F0FDF4;
+  border: 1px solid #86EFAC;
+  color: #16A34A;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 6px;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.safeguard-item {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 13px 15px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  transition: .2s;
+}
+.safeguard-item:hover {
+  border-color: #CBD5E1;
+  background: #F8FAFC;
+}
+.safeguard-checkbox {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  background: #F1F5F9;
+  border: 1px solid #CBD5E1;
+  color: #94A3B8;
+  display: grid;
+  place-items: center;
+  flex: none;
+  margin-top: 2px;
+}
+.safeguard-checkbox svg {
+  width: 12px;
+  height: 12px;
+}
+.safeguard-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text);
+  display: block;
+}
+.safeguard-sub {
+  font-size: 10.5px;
+  color: var(--muted);
+  margin-top: 3px;
+  display: block;
+}
+.safeguard-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 18px;
+}
+.safeguard-actions .btn-approve {
+  flex: 1;
+  height: 38px;
+  border-radius: 8px;
+  background: var(--primary);
+  color: #fff;
+  border: 1px solid var(--primary);
+  font-weight: 700;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: .2s;
+}
+.safeguard-actions .btn-approve:hover {
+  background: var(--primary-2);
+}
+.safeguard-actions .btn-outline {
+  height: 38px;
+  padding: 0 14px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-weight: 700;
+  font-size: 12px;
+  transition: .2s;
+}
+.safeguard-actions .btn-outline:hover {
+  background: #F8FAFC;
+  border-color: #B6C5D8;
+}
+.safeguard-actions .btn-reject {
+  height: 38px;
+  padding: 0 14px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #FECACA;
+  color: #DC2626;
+  font-weight: 700;
+  font-size: 12px;
+  transition: .2s;
+}
+.safeguard-actions .btn-reject:hover {
+  background: #FEF2F2;
+}
+.safeguard-note {
+  margin: 16px 0 0 0;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.three-col-equal {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.topic-pill {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: #EFF6FF;
+  border: 1px solid #DBEAFE;
+  color: #2563EB;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.btn-refresh-research {
+  width: 100%;
+  height: 36px;
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 8px;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 12px;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .2s;
+}
+.btn-refresh-research:hover {
+  border-color: #B6C5D8;
+  background: #F8FAFC;
+}
+
+/* Calendar System Styles (Marketing Visual Calendar & PM Schedule) */
+.calendar-box {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.02);
+}
+.calendar-scroll {
+  overflow-x: auto;
+}
+.calendar-inner {
+  min-width: 680px;
+}
+.calendar-days-header {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  background: #F8FAFC;
+  border-bottom: 1px solid var(--border);
+}
+.calendar-day-name {
+  padding: 12px 6px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 800;
+  color: #475569;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.calendar-grid-week {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  min-height: 115px;
+}
+.calendar-cell {
+  padding: 10px 8px 12px 8px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  position: relative;
+  transition: .15s;
+}
+.calendar-cell:last-child {
+  border-right: none;
+}
+.calendar-cell-date {
+  font-size: 11px;
+  font-weight: 700;
+  color: #475569;
+  text-align: right;
+  margin-bottom: 8px;
+  line-height: 1;
+}
+.calendar-cell.today {
+  border: 1.5px solid var(--primary);
+  border-radius: 8px;
+  background: #F0F5FA;
+  box-shadow: inset 0 0 0 1px rgba(48,91,163,0.06);
+  z-index: 2;
+  margin: -1px 0 -1px -1px;
+}
+.calendar-cell.today .calendar-cell-date {
+  color: #162033;
+  font-weight: 800;
+}
+.calendar-event {
+  padding: 5px 8px;
+  border-radius: 6px;
+  font-size: 10.5px;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 6px;
+  display: block;
+  text-align: left;
+}
+.calendar-event:last-child {
+  margin-bottom: 0;
+}
+.calendar-event.blue {
+  background: #EFF6FF;
+  border-left: 3px solid #3B82F6;
+  color: #1E40AF;
+}
+.calendar-event.green {
+  background: #ECFDF5;
+  border-left: 3px solid #10B981;
+  color: #065F46;
+}
+.calendar-event.orange {
+  background: #FFF7ED;
+  border-left: 3px solid #F97316;
+  color: #9A3412;
+}
+
+/* Event Block Card for Project Management Schedule/Deadlines */
+.calendar-deadline-card {
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 6px;
+  display: block;
+}
+.calendar-deadline-card.blue {
+  background: #EFF6FF;
+  border-left: 3px solid #3B82F6;
+  color: #1E40AF;
+}
+.calendar-deadline-card.green {
+  background: #ECFDF5;
+  border-left: 3px solid #10B981;
+  color: #065F46;
+}
+.calendar-deadline-card.orange {
+  background: #FFF7ED;
+  border-left: 3px solid #F97316;
+  color: #9A3412;
+}
+
+@media(max-width: 1300px) { .app { grid-template-columns: 240px 1fr; } .kpi-grid { grid-template-columns: repeat(2, 1fr); } .two-col, .three-col, .three-col-equal { grid-template-columns: 1fr; } .integration { grid-template-columns: repeat(2, 1fr); } }
 @media(max-width: 820px) { .app { grid-template-columns: 1fr; } .sidebar { position: fixed; left: -280px; width: 270px; z-index: 70; transition: .3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 10px 0 30px rgba(0,0,0,0.5); } .sidebar.open { left: 0; } .mobile-menu { display: grid!important; } .topbar { padding: 0 16px; } .content { padding: 20px 16px; } .search { display: none; } .kpi-grid { grid-template-columns: 1fr; } .form-grid { grid-template-columns: 1fr; } .pipeline-board { grid-template-columns: repeat(6, 240px); } .ai-board { grid-template-columns: repeat(5, 230px); } .ai-panel { right: -100%; width: 100%; } .ai-panel.open { transform: translateX(-100%); } }
 .mobile-menu { display: none; }
 </style>
@@ -243,7 +565,7 @@ button { cursor: pointer; }
     <button class="nav-btn" data-page="automation"><svg data-i="bug"></svg>Automation Fix Bug</button>
     <button class="nav-btn" data-page="finance"><svg data-i="wallet"></svg>Finance & AR</button>
     <button class="nav-btn" data-page="marketing"><svg data-i="megaphone"></svg>Marketing Ops</button>
-    <button class="nav-btn" data-page="content"><svg data-i="file"></svg>AI Content Engine</button>
+    <button class="nav-btn" data-page="content"><svg data-i="spark"></svg>AI Content Engine</button>
     <button class="nav-btn" data-page="aikanban"><svg data-i="bot"></svg>Kanban AI (Global)</button>
   </nav>
   
@@ -290,38 +612,245 @@ button { cursor: pointer; }
       </div>
     </div>
     
+    <!-- KPI Row -->
     <div class="grid kpi-grid">
-      <div class="kpi"><div class="kpi-top"><span class="label">Pendapatan Bulan Ini</span><span class="kpi-icon"><svg data-i="wallet"></svg></span></div><div class="value">Rp 145.5M</div><div class="delta up">+12% dari bulan lalu</div></div>
-      <div class="kpi"><div class="kpi-top"><span class="label">Proyek Aktif (PM)</span><span class="kpi-icon"><svg data-i="briefcase"></svg></span></div><div class="value">12</div><div class="delta warn">3 Mendekati Deadline</div></div>
-      <div class="kpi"><div class="kpi-top"><span class="label">Bug Fixed by AI</span><span class="kpi-icon" style="background:#F3E8FF; color:#9333EA;"><svg data-i="bot"></svg></span></div><div class="value">34</div><div class="delta" style="color:#9333EA; font-weight:700;">Menghemat ~68 jam dev</div></div>
-      <div class="kpi"><div class="kpi-top"><span class="label">Konten Menunggu Review</span><span class="kpi-icon"><svg data-i="megaphone"></svg></span></div><div class="value">8</div><div class="delta warn">Dijadwalkan minggu ini</div></div>
+      <div class="kpi">
+        <div class="kpi-top">
+          <span class="label">PENDAPATAN BULAN INI</span>
+          <span class="kpi-icon" style="background:#EFF6FF; color:#305BA3;"><svg data-i="trend"></svg></span>
+        </div>
+        <div class="value">Rp 145.5 M</div>
+        <div class="delta up">+12% dari bulan lalu</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-top">
+          <span class="label">ACTIVE PROJECTS</span>
+          <span class="kpi-icon" style="background:#EFF6FF; color:#305BA3;"><svg data-i="briefcase"></svg></span>
+        </div>
+        <div class="value">12</div>
+        <div class="delta" style="color:#64748B;">3 mendekati deadline</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-top">
+          <span class="label">BUG FIXED BY AI</span>
+          <span class="kpi-icon" style="background:#EFF6FF; color:#305BA3;"><svg data-i="bot"></svg></span>
+        </div>
+        <div class="value">34</div>
+        <div class="delta up">Menghemat ~68 jam dev</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-top">
+          <span class="label">KONTEN MENUNGGU REVIEW</span>
+          <span class="kpi-icon" style="background:#EFF6FF; color:#305BA3;"><svg data-i="file"></svg></span>
+        </div>
+        <div class="value">8</div>
+        <div class="delta warn">Dijadwalkan minggu ini</div>
+      </div>
     </div>
 
-    <!-- Tambahan Priority Follow up, Project Health & Marketing Snapshot -->
-    <div class="grid three-col" style="margin-top:16px">
+    <!-- Middle Row: Revenue & Pipeline Trend + Sales to Cash Pipeline -->
+    <div class="grid two-col" style="margin-top:16px;">
+      <!-- Revenue & Pipeline Trend -->
       <div class="panel">
-        <div class="panel-head"><div><div class="panel-title">Priority Follow-ups</div><div class="panel-sub">Due today & overdue</div></div></div>
-        <div class="panel-body timeline">
-          <div class="timeline-item"><div class="timeline-dot" style="background:var(--danger)"></div><div><h4>Proposal review · PT Sagara Digital</h4><p>Owner: Raka · Value Rp 185 jt</p><div class="time" style="color:var(--danger)">Due 09:30 · Overdue 35 min</div></div></div>
-          <div class="timeline-item"><div class="timeline-dot"></div><div><h4>Call · CV Nusantara Tech</h4><p>Owner: Sinta · Follow-up deal</p><div class="time">Due 11:00</div></div></div>
-          <div class="timeline-item"><div class="timeline-dot"></div><div><h4>Payment reminder · PT Arunika</h4><p>Invoice INV/26/08/0087 · Rp 42 jt</p><div class="time">Due today</div></div></div>
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Revenue & Pipeline Trend</div>
+            <div class="panel-sub">12 Month Projection (Opportunity vs Won)</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:16px;">
+            <span style="display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:700; color:#475569;">
+              <span style="width:7px; height:7px; border-radius:50%; background:#2563EB;"></span> Pipeline
+            </span>
+            <span style="display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:700; color:#475569;">
+              <span style="width:7px; height:7px; border-radius:50%; background:#10B981;"></span> Won
+            </span>
+          </div>
+        </div>
+        <div class="panel-body" style="padding:16px 20px 14px;">
+          <div style="width:100%; position:relative;">
+            <svg viewBox="0 0 700 180" style="width:100%; height:190px; overflow:visible;" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="pipelineGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#2563EB" stop-opacity="0.16"/>
+                  <stop offset="100%" stop-color="#2563EB" stop-opacity="0.01"/>
+                </linearGradient>
+                <linearGradient id="wonGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#10B981" stop-opacity="0.12"/>
+                  <stop offset="100%" stop-color="#10B981" stop-opacity="0.01"/>
+                </linearGradient>
+              </defs>
+              <!-- Grid lines -->
+              <line x1="10" y1="30" x2="690" y2="30" stroke="#F1F5F9" stroke-width="1.2" stroke-dasharray="4 4" />
+              <line x1="10" y1="75" x2="690" y2="75" stroke="#F1F5F9" stroke-width="1.2" stroke-dasharray="4 4" />
+              <line x1="10" y1="120" x2="690" y2="120" stroke="#F1F5F9" stroke-width="1.2" stroke-dasharray="4 4" />
+              <line x1="10" y1="165" x2="690" y2="165" stroke="#E2E8F0" stroke-width="1" />
+
+              <!-- Pipeline Wave Area Fill -->
+              <path d="M 15,145 C 70,145 100,105 150,105 C 200,105 220,130 260,130 C 310,130 330,95 375,95 C 420,95 440,125 480,125 C 520,125 540,65 590,65 C 630,65 650,48 685,62 L 685,165 L 15,165 Z" fill="url(#pipelineGrad)" />
+              <!-- Pipeline Wave Stroke -->
+              <path d="M 15,145 C 70,145 100,105 150,105 C 200,105 220,130 260,130 C 310,130 330,95 375,95 C 420,95 440,125 480,125 C 520,125 540,65 590,65 C 630,65 650,48 685,62" fill="none" stroke="#2563EB" stroke-width="3" stroke-linecap="round" />
+
+              <!-- Won Wave Area Fill -->
+              <path d="M 15,160 C 70,160 100,135 150,135 C 200,135 220,155 260,155 C 310,155 330,125 375,125 C 420,125 440,145 480,145 C 520,145 540,105 590,105 C 630,105 650,92 685,100 L 685,165 L 15,165 Z" fill="url(#wonGrad)" />
+              <!-- Won Wave Stroke -->
+              <path d="M 15,160 C 70,160 100,135 150,135 C 200,135 220,155 260,155 C 310,155 330,125 375,125 C 420,125 440,145 480,145 C 520,145 540,105 590,105 C 630,105 650,92 685,100" fill="none" stroke="#10B981" stroke-width="3" stroke-linecap="round" />
+            </svg>
+            <!-- X Axis Labels -->
+            <div style="display:flex; justify-content:space-between; padding: 8px 10px 0; font-size:11px; color:#64748B; font-weight:600;">
+              <span>Oct</span>
+              <span>Dec</span>
+              <span>Feb</span>
+              <span>Apr</span>
+              <span>Jun</span>
+              <span>Aug</span>
+              <span>Sep</span>
+            </div>
+          </div>
         </div>
       </div>
+
+      <!-- Sales to Cash Pipeline -->
       <div class="panel">
-        <div class="panel-head"><div><div class="panel-title">Project Health</div><div class="panel-sub">Portfolio snapshot</div></div></div>
-        <div class="panel-body">
-          <div class="progress-row"><span>On Track</span><div class="progress"><div style="width:72%"></div></div><b>13</b></div>
-          <div class="progress-row"><span>At Risk</span><div class="progress"><div style="width:17%; background:var(--warning)"></div></div><b>3</b></div>
-          <div class="progress-row"><span>Blocked</span><div class="progress"><div style="width:11%; background:var(--danger)"></div></div><b>2</b></div>
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Sales to Cash Pipeline</div>
+            <div class="panel-sub">Lifecycle conversion</div>
+          </div>
+          <button class="btn ghost" data-page="pipeline" style="font-size:11px; font-weight:700; color:var(--primary); height:auto; padding:4px 8px;">View Pipeline</button>
+        </div>
+        <div class="panel-body" style="padding: 22px 20px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:14px;">
+            <span style="font-size:11.5px; font-weight:600; color:#475569; width:95px; flex:none;">Leads</span>
+            <div style="flex:1; height:9px; background:#F1F5F9; border-radius:999px; overflow:hidden;">
+              <div style="width:94%; height:100%; background:#305BA3; border-radius:999px;"></div>
+            </div>
+            <b style="font-size:11px; font-weight:700; color:#334155; width:30px; text-align:right; flex:none;">382</b>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:14px;">
+            <span style="font-size:11.5px; font-weight:600; color:#475569; width:95px; flex:none;">Prospects</span>
+            <div style="flex:1; height:9px; background:#F1F5F9; border-radius:999px; overflow:hidden;">
+              <div style="width:74%; height:100%; background:#305BA3; border-radius:999px;"></div>
+            </div>
+            <b style="font-size:11px; font-weight:700; color:#334155; width:30px; text-align:right; flex:none;">278</b>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:14px;">
+            <span style="font-size:11.5px; font-weight:600; color:#475569; width:95px; flex:none;">Offering Sent</span>
+            <div style="flex:1; height:9px; background:#F1F5F9; border-radius:999px; overflow:hidden;">
+              <div style="width:48%; height:100%; background:#305BA3; border-radius:999px;"></div>
+            </div>
+            <b style="font-size:11px; font-weight:700; color:#334155; width:30px; text-align:right; flex:none;">184</b>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:14px;">
+            <span style="font-size:11.5px; font-weight:600; color:#475569; width:95px; flex:none;">Proposals</span>
+            <div style="flex:1; height:9px; background:#F1F5F9; border-radius:999px; overflow:hidden;">
+              <div style="width:30%; height:100%; background:#305BA3; border-radius:999px;"></div>
+            </div>
+            <b style="font-size:11px; font-weight:700; color:#334155; width:30px; text-align:right; flex:none;">112</b>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:14px;">
+            <span style="font-size:11.5px; font-weight:600; color:#475569; width:95px; flex:none;">Won (Handoff)</span>
+            <div style="flex:1; height:9px; background:#F1F5F9; border-radius:999px; overflow:hidden;">
+              <div style="width:14%; height:100%; background:#305BA3; border-radius:999px;"></div>
+            </div>
+            <b style="font-size:11px; font-weight:700; color:#334155; width:30px; text-align:right; flex:none;">54</b>
+          </div>
         </div>
       </div>
+    </div>
+
+    <!-- Bottom Row: Priority Follow-ups, Project Health, Marketing Snapshot -->
+    <div class="grid three-col-equal" style="margin-top:16px;">
+      <!-- Priority Follow-ups -->
       <div class="panel">
-        <div class="panel-head"><div><div class="panel-title">Marketing Snapshot</div><div class="panel-sub">Last 7 days</div></div></div>
-        <div class="panel-body stat-list">
-          <div class="stat-line"><div class="left">Published <span class="pill">24</span></div><b style="color:var(--success)">96%</b></div>
-          <div class="stat-line"><div class="left">Avg. Engagement</div><b>5,8%</b></div>
-          <div class="stat-line"><div class="left">Ad Spend</div><b>Rp 14,2 jt</b></div>
-          <div class="stat-line"><div class="left">Top Channel</div><b>Instagram</b></div>
+        <div class="panel-head">
+          <div><div class="panel-title">Priority Follow-ups</div><div class="panel-sub">Due today & overdue</div></div>
+        </div>
+        <div class="panel-body timeline" style="gap:16px;">
+          <div class="timeline-item" style="grid-template-columns: 8px 1fr; gap:12px;">
+            <div style="width:8px; height:8px; border-radius:50%; background:#DC2626; margin-top:5px;"></div>
+            <div>
+              <h4 style="font-size:12px; font-weight:700; color:var(--text); margin:0;">Proposal review · PT Sagara Digital</h4>
+              <p style="font-size:11px; color:var(--muted); margin:3px 0 0;">Owner: Raka · Value Rp 185 jt</p>
+              <div style="font-size:10.5px; color:#DC2626; font-weight:700; margin-top:4px;">Due 09:30 · Overdue 35 min</div>
+            </div>
+          </div>
+          <div class="timeline-item" style="grid-template-columns: 8px 1fr; gap:12px;">
+            <div style="width:8px; height:8px; border-radius:50%; background:#EA580C; margin-top:5px;"></div>
+            <div>
+              <h4 style="font-size:12px; font-weight:700; color:var(--text); margin:0;">Call · CV Nusantara Tech</h4>
+              <p style="font-size:11px; color:var(--muted); margin:3px 0 0;">Owner: Sinta · Follow-up deal</p>
+              <div style="font-size:10.5px; color:#64748B; font-weight:600; margin-top:4px;">Due 11:00</div>
+            </div>
+          </div>
+          <div class="timeline-item" style="grid-template-columns: 8px 1fr; gap:12px;">
+            <div style="width:8px; height:8px; border-radius:50%; background:#3B82F6; margin-top:5px;"></div>
+            <div>
+              <h4 style="font-size:12px; font-weight:700; color:var(--text); margin:0;">Payment reminder · PT Arunika</h4>
+              <p style="font-size:11px; color:var(--muted); margin:3px 0 0;">Invoice INV/26/08/0087 · Rp 42 jt</p>
+              <div style="font-size:10.5px; color:#64748B; font-weight:600; margin-top:4px;">Due today</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Health -->
+      <div class="panel">
+        <div class="panel-head">
+          <div><div class="panel-title">Project Health</div><div class="panel-sub">Portfolio snapshot</div></div>
+        </div>
+        <div class="panel-body" style="display:flex; flex-direction:column; justify-content:center; gap:16px;">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span style="font-size:11.5px; color:#475569; font-weight:600; width:75px;">On Track</span>
+            <div style="flex:1; height:9px; background:#E2E8F0; border-radius:999px; overflow:hidden;">
+              <div style="width:72%; height:100%; background:#305BA3; border-radius:999px;"></div>
+            </div>
+            <b style="font-size:11px; font-weight:800; color:#162033; width:25px; text-align:right;">13</b>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span style="font-size:11.5px; color:#475569; font-weight:600; width:75px;">At Risk</span>
+            <div style="flex:1; height:9px; background:#E2E8F0; border-radius:999px; overflow:hidden;">
+              <div style="width:17%; height:100%; background:#EA580C; border-radius:999px;"></div>
+            </div>
+            <b style="font-size:11px; font-weight:800; color:#162033; width:25px; text-align:right;">3</b>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span style="font-size:11.5px; color:#475569; font-weight:600; width:75px;">Blocked</span>
+            <div style="flex:1; height:9px; background:#E2E8F0; border-radius:999px; overflow:hidden;">
+              <div style="width:11%; height:100%; background:#DC2626; border-radius:999px;"></div>
+            </div>
+            <b style="font-size:11px; font-weight:800; color:#162033; width:25px; text-align:right;">2</b>
+          </div>
+        </div>
+      </div>
+
+      <!-- Marketing Snapshot -->
+      <div class="panel">
+        <div class="panel-head">
+          <div><div class="panel-title">Marketing Snapshot</div><div class="panel-sub">Last 7 days automated</div></div>
+        </div>
+        <div class="panel-body stat-list" style="gap:16px;">
+          <div class="stat-line">
+            <div class="left" style="font-size:11.5px; color:#475569; font-weight:600;">
+              Published <span style="background:#EFF6FF; color:#2563EB; font-size:10px; font-weight:700; border-radius:999px; padding:2px 8px; margin-left:6px;">24</span>
+            </div>
+            <b style="font-size:11px; font-weight:700; color:#162033;">96% On-time</b>
+          </div>
+          <div class="stat-line">
+            <div class="left" style="font-size:11.5px; color:#475569; font-weight:600;">Avg. Engagement</div>
+            <b style="font-size:11px; font-weight:700; color:#162033;">5.8%</b>
+          </div>
+          <div class="stat-line">
+            <div class="left" style="font-size:11.5px; color:#475569; font-weight:600;">Ad Spend</div>
+            <b style="font-size:11px; font-weight:700; color:#162033;">Rp 14.2 Jt</b>
+          </div>
+          <div class="stat-line">
+            <div class="left" style="font-size:11.5px; color:#475569; font-weight:600;">Top Channel</div>
+            <b style="font-size:11px; font-weight:700; color:#162033;">Instagram</b>
+          </div>
         </div>
       </div>
     </div>
@@ -500,7 +1029,74 @@ button { cursor: pointer; }
       <div class="kpi"><span class="label">Client Portal Logins</span><div class="value">12</div><div class="delta">Clients checking status</div></div>
     </div>
     
-    <!-- Fitur Tambahan Menarik PM: Team Workload & AI Agent Allocation -->
+    <!-- Schedule / Deadlines (Meetings, Releases, UAT) -->
+    <div class="panel" style="margin-top:16px;">
+      <div class="panel-head">
+        <div>
+          <div class="panel-title">Schedule / Deadlines</div>
+          <div class="panel-sub">Meetings, Releases, UAT</div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="calendar-box">
+          <div class="calendar-scroll">
+            <div class="calendar-inner">
+              <div class="calendar-days-header">
+                <div class="calendar-day-name">MON</div>
+                <div class="calendar-day-name">TUE</div>
+                <div class="calendar-day-name">WED</div>
+                <div class="calendar-day-name">THU</div>
+                <div class="calendar-day-name">FRI</div>
+                <div class="calendar-day-name">SAT</div>
+                <div class="calendar-day-name">SUN</div>
+              </div>
+              <div class="calendar-grid-week">
+                <div class="calendar-cell">
+                  <div class="calendar-cell-date">28</div>
+                  <div class="calendar-deadline-card blue">
+                    <div>Kickoff</div>
+                    <div>SIMRS</div>
+                  </div>
+                </div>
+                <div class="calendar-cell">
+                  <div class="calendar-cell-date">29</div>
+                  <div class="calendar-deadline-card green">
+                    <div>Arunika</div>
+                    <div>UAT</div>
+                  </div>
+                </div>
+                <div class="calendar-cell">
+                  <div class="calendar-cell-date">30</div>
+                  <div class="calendar-deadline-card orange">
+                    <div>Invoice</div>
+                    <div>Trigger</div>
+                    <div>Due</div>
+                  </div>
+                </div>
+                <div class="calendar-cell">
+                  <div class="calendar-cell-date">1</div>
+                  <div class="calendar-deadline-card blue">
+                    <div>Release</div>
+                    <div>v1.4</div>
+                  </div>
+                </div>
+                <div class="calendar-cell">
+                  <div class="calendar-cell-date">2</div>
+                </div>
+                <div class="calendar-cell">
+                  <div class="calendar-cell-date">3</div>
+                </div>
+                <div class="calendar-cell">
+                  <div class="calendar-cell-date">4</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team Workload & Project Portfolio -->
     <div class="grid two-col" style="margin-top:16px">
       <div class="panel">
         <div class="panel-head"><div><div class="panel-title">Project Portfolio</div><div class="panel-sub">Tracking progress and financial invoice link</div></div></div>
@@ -693,13 +1289,71 @@ button { cursor: pointer; }
     </div>
     
     <div class="grid kpi-grid">
-      <div class="kpi"><span class="label">Published (Month)</span><div class="value">42</div><div class="delta up">94.2% On-Time</div></div>
-      <div class="kpi"><span class="label">Avg Engagement</span><div class="value">5.8%</div><div class="delta up">+1.2 pts across IG/TikTok</div></div>
-      <div class="kpi"><span class="label">Meta Ad Spend</span><div class="value">Rp 14.2 Jt</div><div class="delta">ROAS 3.4x</div></div>
-      <div class="kpi"><span class="label">Awaiting Approval</span><div class="value">12 Items</div><div class="delta warn">Content Engine Queue</div></div>
+      <div class="kpi"><span class="label">PUBLISHED (MONTH)</span><div class="value">42</div><div class="delta up">94.2% On-Time</div></div>
+      <div class="kpi"><span class="label">AVG ENGAGEMENT</span><div class="value">5.8%</div><div class="delta up">+1.2 pts across IG/TikTok</div></div>
+      <div class="kpi"><span class="label">META AD SPEND</span><div class="value">Rp 14.2 Jt</div><div class="delta">ROAS 3.4x</div></div>
+      <div class="kpi"><span class="label">AWAITING APPROVAL</span><div class="value">12 Items</div><div class="delta warn">Content Engine Queue</div></div>
     </div>
     
-    <!-- Marketing Request: Approval Queue & Ad Performance -->
+    <!-- Visual Content Calendar (Placed directly below KPIs as in design) -->
+    <div class="panel" style="margin-top:16px">
+      <div class="panel-head">
+        <div><div class="panel-title">Visual Content Calendar</div><div class="panel-sub">Scheduled distributions. Integrated via Platform API (IG Graph/TikTok).</div></div>
+        <div style="display:flex; gap:6px;">
+          <button class="btn ghost" style="padding:0 14px; font-weight:700;">Week</button>
+          <button class="btn primary" style="padding:0 14px; font-weight:700; border-radius:8px;">Month</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="calendar-box">
+          <div class="calendar-scroll">
+            <div class="calendar-inner">
+              <div class="calendar-days-header">
+                <div class="calendar-day-name">MON</div>
+                <div class="calendar-day-name">TUE</div>
+                <div class="calendar-day-name">WED</div>
+                <div class="calendar-day-name">THU</div>
+                <div class="calendar-day-name">FRI</div>
+                <div class="calendar-day-name">SAT</div>
+                <div class="calendar-day-name">SUN</div>
+              </div>
+              <div class="calendar-grid-week">
+                <div class="calendar-cell">
+                  <div class="calendar-cell-date">28</div>
+                  <div class="calendar-event blue">Laravel Tips (Blog)</div>
+                  <div class="calendar-event green">IG Carousel (Done)</div>
+                </div>
+                <div class="calendar-cell">
+                  <div class="calendar-cell-date">29</div>
+                  <div class="calendar-event blue">Case Study (Draft)</div>
+                </div>
+                <div class="calendar-cell today">
+                  <div class="calendar-cell-date">30 (Today)</div>
+                  <div class="calendar-event orange">Approve Queue: 3</div>
+                  <div class="calendar-event blue">TikTok Auto Publish</div>
+                </div>
+                <div class="calendar-cell">
+                  <div class="calendar-cell-date">1</div>
+                  <div class="calendar-event green">Reels (Scheduled)</div>
+                </div>
+                <div class="calendar-cell">
+                  <div class="calendar-cell-date">2</div>
+                  <div class="calendar-event blue">Founder Note</div>
+                </div>
+                <div class="calendar-cell">
+                  <div class="calendar-cell-date">3</div>
+                </div>
+                <div class="calendar-cell">
+                  <div class="calendar-cell-date">4</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Below Calendar: Approval Queue & Ad Performance -->
     <div class="grid two-col" style="margin-top:16px">
       <div class="panel">
         <div class="panel-head">
@@ -708,7 +1362,7 @@ button { cursor: pointer; }
         </div>
         <div class="table-wrap">
           <table class="table">
-            <thead><tr><th>Content</th><th>Platform</th><th>Owner</th><th>Quality</th><th>Status</th></tr></thead>
+            <thead><tr><th>CONTENT</th><th>PLATFORM</th><th>OWNER</th><th>QUALITY</th><th>STATUS</th></tr></thead>
             <tbody>
               <tr><td class="link">5 Prinsip Laravel untuk Tim Kecil</td><td>Instagram</td><td>Maya</td><td>91/100</td><td><span class="status warning">REVIEW</span></td></tr>
               <tr><td class="link">Case Study · Asta Commerce</td><td>Blog</td><td>Fikri</td><td>88/100</td><td><span class="status warning">REVIEW</span></td></tr>
@@ -728,96 +1382,146 @@ button { cursor: pointer; }
         </div>
       </div>
     </div>
-
-    <div class="panel" style="margin-top:16px">
-      <div class="panel-head">
-        <div><div class="panel-title">Visual Content Calendar</div><div class="panel-sub">Scheduled distributions. Integrated via Platform API (IG Graph/TikTok).</div></div>
-        <div><button class="btn ghost">Week</button> <button class="btn primary">Month</button></div>
-      </div>
-      <div class="panel-body">
-        <div class="calendar-head"><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div></div>
-        <div class="calendar">
-          <div class="cal-cell"><div class="date">28</div><div class="event">Laravel Tips (Blog)</div><div class="event green">IG Carousel (Done)</div></div>
-          <div class="cal-cell"><div class="date">29</div><div class="event">Case Study (Draft)</div></div>
-          <div class="cal-cell" style="background:#e8eff7; border: 2px solid var(--primary);"><div class="date" style="color:var(--primary)">30 (Today)</div><div class="event orange">Approve Queue: 3</div><div class="event">TikTok Auto Publish</div></div>
-          <div class="cal-cell"><div class="date">1</div><div class="event green">Reels (Scheduled)</div></div>
-          <div class="cal-cell"><div class="date">2</div><div class="event">Founder Note</div></div>
-          <div class="cal-cell"><div class="date">3</div></div><div class="cal-cell"><div class="date">4</div></div>
-        </div>
-      </div>
-    </div>
   </section>
 
   <section class="page" id="page-content">
     <div class="page-head">
-      <div><h2>AI Content Engine</h2><p>Topic Scraper → Generate Draft (Text/Visual) → Quality Gate → Approval → Publish.</p></div>
+      <div>
+        <h2>AI Content Engine</h2>
+        <p>Riset topik, generate draft, quality gate, approval, scheduler, publishing, analytics, learning.</p>
+      </div>
       <div class="head-actions">
-        <button class="btn primary" data-action="toast" data-message="Simulating Content Generation..." onclick="setTimeout(()=>toast('Content Draft Generated!'), 1500)"><svg data-i="spark"></svg>Generate Post</button>
+        <button class="btn" data-action="toast" data-message="Brand Kit settings opened">Brand Kit</button>
+        <button class="btn primary" data-action="open-modal" data-modal="content"><svg data-i="spark"></svg>Generate Content</button>
       </div>
     </div>
     
-    <!-- AI Content Request: Research, Brand, Learning -->
-    <div class="grid three-col" style="margin-bottom:16px;">
-      <div class="panel">
-        <div class="panel-head"><div><div class="panel-title">Topic Research</div><div class="panel-sub">Trending + evergreen + keyword bank</div></div></div>
-        <div class="panel-body stat-list">
-          <div class="stat-line"><div class="left">AI Agents for SMEs</div><span class="pill" style="background:#ECFDF3; color:#15803D;">94 relevance</span></div>
-          <div class="stat-line"><div class="left">Laravel Queue Patterns</div><span class="pill" style="background:#ECFDF3; color:#15803D;">89 relevance</span></div>
-          <div class="stat-line"><div class="left">ERP for Software House</div><span class="pill" style="background:#ECFDF3; color:#15803D;">86 relevance</span></div>
-          <button class="btn ghost" style="width:100%; border:1px solid var(--border); margin-top:12px;" data-action="toast" data-message="Topic research refreshed">Refresh Research</button>
-        </div>
-      </div>
-      
-      <div class="panel">
-        <div class="panel-head"><div><div class="panel-title">Brand Kit</div><div class="panel-sub">Single source of visual identity</div></div></div>
-        <div class="panel-body detail-list">
-          <div class="detail-item"><span>Primary</span><strong style="color:#305BA3;">#305BA3</strong></div>
-          <div class="detail-item"><span>Font Heading</span><strong>Inter</strong></div>
-          <div class="detail-item"><span>Logo</span><strong>Astacode Primary</strong></div>
-          <div class="detail-item"><span>Watermark</span><strong style="color:var(--success);">Enabled</strong></div>
-        </div>
-      </div>
-      
-      <div class="panel">
-        <div class="panel-head"><div><div class="panel-title">AI Learning Loop</div><div class="panel-sub">Post-publish insights</div></div></div>
-        <div class="panel-body">
-          <div class="progress-row"><span>Data freshness</span><div class="progress"><div style="width:84%"></div></div><b>84%</b></div>
-          <div class="progress-row"><span>Prediction accuracy</span><div class="progress"><div style="width:62%"></div></div><b>62%</b></div>
-          <div class="progress-row"><span>Audience sentiment</span><div class="progress"><div style="width:78%"></div></div><b>78%</b></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="review-grid">
+    <!-- Top Row: Approval Queue & Action Safeguards -->
+    <div class="grid two-col" style="margin-bottom:16px;">
       <div class="panel">
         <div class="panel-head">
-          <div><div class="panel-title">Content Approval Queue</div><div class="panel-sub">AI-Generated post. Waiting for Brand Manager.</div></div>
-          <span class="status success">AI SCORE: 92/100</span>
+          <div>
+            <div class="panel-title">Content Approval Queue</div>
+            <div class="panel-sub">AI-Generated post. Waiting for Brand Manager.</div>
+          </div>
+          <span class="ai-score-badge">AI SCORE: 92/100</span>
         </div>
         <div class="panel-body">
-          <div class="review-preview">
-            <div class="preview-label">IG Carousel Script</div>
-            <h3>5 Fitur Baru Laravel 11 untuk Performa API</h3>
-            <p>Slide 1 (Hook): Masih pakai cara lama bikin API? Laravel 11 punya rahasia baru...<br><br>Slide 2: Minimalist Routing. Lebih bersih, lebih cepat. (Tampilkan visualisasi kode routing baru vs lama).<br><br>Caption: Mau tau cara bikin API lebih ngebut dengan Laravel 11? Geser carousel di atas! Jangan lupa save buat referensi tim kamu ya! #Laravel11 #WebDev #Astacode</p>
-            <div>
-              <span class="review-chip">Instagram</span><span class="review-chip">Carousel</span><span class="review-chip">Tone: Edukatif</span>
+          <div class="content-preview-card">
+            <div class="preview-tag">IG CAROUSEL SCRIPT</div>
+            <h3 class="preview-title">5 Fitur Baru Laravel 11 untuk Performa API</h3>
+            <div class="preview-text">
+              <p>Slide 1 (Hook): Masih pakai cara lama bikin API? Laravel 11 punya rahasia baru...</p>
+              <p>Slide 2: Minimalist Routing. Lebih bersih, lebih cepat. (Tampilkan visualisasi kode routing baru vs lama).</p>
+              <p>Caption: Mau tau cara bikin API lebih ngebut dengan Laravel 11? Geser carousel di atas! Jangan lupa save buat referensi tim kamu ya! #Laravel11 #WebDev #Astacode</p>
+            </div>
+            <div class="preview-chips">
+              <span class="preview-chip">Instagram</span>
+              <span class="preview-chip">Carousel</span>
+              <span class="preview-chip">Tone: Edukatif</span>
             </div>
           </div>
         </div>
       </div>
       
       <div class="panel">
-        <div class="panel-head"><div><div class="panel-title">Action & Safeguards</div><div class="panel-sub">Content Rules Engine</div></div></div>
-        <div class="panel-body">
-          <div class="check"><input type="checkbox" checked disabled><div><strong>Brand Voice Check</strong><span>Passed: Professional, Edukatif</span></div></div>
-          <div class="check"><input type="checkbox" checked disabled><div><strong>Safety & Restricted Topics</strong><span>Passed: No sensitive keywords</span></div></div>
-          <div class="check"><input type="checkbox" checked disabled><div><strong>SEO & Hashtag Optimization</strong><span>Passed: High tier tags generated</span></div></div>
-          <div style="display:flex;gap:8px;margin-top:24px">
-            <button class="btn primary" style="flex:1; justify-content:center;" data-action="toast" data-message="Approved. Moved to Scheduled Calendar.">Approve & Schedule</button>
-            <button class="btn ghost" data-action="toast" data-message="Regenerating via AI...">Regenerate</button>
-            <button class="btn danger" data-action="toast" data-message="Rejected.">Reject</button>
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Action & Safeguards</div>
+            <div class="panel-sub">Content Rules Engine</div>
           </div>
-          <div class="responsive-note" style="margin-top:16px;">If approved, item is pushed to Content Calendar. Publisher daemon checks every minute to push to IG Graph API.</div>
+        </div>
+        <div class="panel-body">
+          <div class="safeguard-item">
+            <div class="safeguard-checkbox">
+              <svg viewBox="0 0 16 16" fill="currentColor">
+                <path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/>
+              </svg>
+            </div>
+            <div>
+              <strong class="safeguard-title">Brand Voice Check</strong>
+              <span class="safeguard-sub">Passed: Professional, Edukatif</span>
+            </div>
+          </div>
+
+          <div class="safeguard-item">
+            <div class="safeguard-checkbox">
+              <svg viewBox="0 0 16 16" fill="currentColor">
+                <path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/>
+              </svg>
+            </div>
+            <div>
+              <strong class="safeguard-title">Safety & Restricted Topics</strong>
+              <span class="safeguard-sub">Passed: No sensitive keywords</span>
+            </div>
+          </div>
+
+          <div class="safeguard-item">
+            <div class="safeguard-checkbox">
+              <svg viewBox="0 0 16 16" fill="currentColor">
+                <path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/>
+              </svg>
+            </div>
+            <div>
+              <strong class="safeguard-title">SEO & Hashtag Optimization</strong>
+              <span class="safeguard-sub">Passed: High tier tags generated</span>
+            </div>
+          </div>
+
+          <div class="safeguard-actions">
+            <button class="btn-approve" data-action="toast" data-message="Approved. Moved to Scheduled Calendar.">Approve & Schedule</button>
+            <button class="btn-outline" data-action="toast" data-message="Regenerating via AI...">Regenerate</button>
+            <button class="btn-reject" data-action="toast" data-message="Rejected.">Reject</button>
+          </div>
+
+          <p class="safeguard-note">If approved, item is pushed to Content Calendar. Publisher daemon checks every minute to push to IG Graph API.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Row: Topic Research, Brand Kit, AI Learning Loop -->
+    <div class="grid three-col-equal">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Topic Research</div>
+            <div class="panel-sub">Trending + evergreen + keyword bank</div>
+          </div>
+        </div>
+        <div class="panel-body stat-list">
+          <div class="stat-line"><div class="left">AI Agents for SMEs</div><span class="topic-pill">94 relevance</span></div>
+          <div class="stat-line"><div class="left">Laravel Queue Patterns</div><span class="topic-pill">89 relevance</span></div>
+          <div class="stat-line"><div class="left">ERP for Software House</div><span class="topic-pill">86 relevance</span></div>
+          <button class="btn-refresh-research" data-action="toast" data-message="Topic research refreshed">Refresh Research</button>
+        </div>
+      </div>
+      
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Brand Kit</div>
+            <div class="panel-sub">Single source of visual identity</div>
+          </div>
+        </div>
+        <div class="panel-body detail-list" style="margin-top:0;">
+          <div class="detail-item"><span>Primary</span><strong style="color:#305BA3;">#305BA3</strong></div>
+          <div class="detail-item"><span>Font Heading</span><strong>Inter</strong></div>
+          <div class="detail-item"><span>Logo</span><strong>Astacode Primary</strong></div>
+          <div class="detail-item"><span>Watermark</span><strong>Enabled</strong></div>
+        </div>
+      </div>
+      
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">AI Learning Loop</div>
+            <div class="panel-sub">Post-publish insights</div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="progress-row"><span>Data freshness</span><div class="progress"><div style="width:84%"></div></div><b>84%</b></div>
+          <div class="progress-row"><span>Prediction accuracy</span><div class="progress"><div style="width:62%"></div></div><b>62%</b></div>
+          <div class="progress-row"><span>Audience sentiment</span><div class="progress"><div style="width:78%"></div></div><b>78%</b></div>
         </div>
       </div>
     </div>
@@ -1174,6 +1878,15 @@ window.showPage = function(page) {
   
   window.scrollTo({top:0, behavior:'smooth'});
   document.getElementById('sidebar').classList.remove('open');
+};
+
+window.addEventListener('hashchange', () => {
+  const hash = window.location.hash.replace('#', '');
+  if(hash && pageNames[hash]) showPage(hash);
+});
+const initHash = window.location.hash.replace('#', '');
+if(initHash && pageNames[initHash]) {
+  showPage(initHash);
 }
 
 window.toast = function(msg) {
@@ -1210,7 +1923,7 @@ const modalTemplates = {
   project: ['New Project', ['Project Title', 'Client ID', 'Target Launch', 'SDLC Type']],
   bug: ['Manual Bug Report', ['Project', 'Category (Low/Med/Hard)', 'Issue Description', 'Steps to Reproduce']],
   invoice: ['Generate AR Invoice', ['Client', 'Project Milestone', 'Tax (PPN)', 'Amount']],
-  content: ['AI Generate Post', ['Topic / Idea', 'Platform (IG/TikTok)', 'Tone (Educative/Casual)', 'Language']],
+  content: ['Generate Content', ['Topic / Idea', 'Platform (IG/TikTok)', 'Tone (Educative/Casual)', 'Language']],
   aitask: ['Global AI Command', ['Type your command (e.g. "Create invoice for...")']]
 };
 
