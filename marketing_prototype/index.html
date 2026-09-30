@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astacode ERP - Marketing Module</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- SIDEBAR (ERP Dark Theme) -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon"><i class="fa-solid fa-star"></i></div>
+                    <div class="logo-text">
+                        <strong>ASTA MARKETING</strong>
+                        <span>Enterprise Marketing</span>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-group">
+                    <span class="nav-label">WORKSPACE</span>
+                    <a href="#" class="nav-item active" data-target="view-marketing-ops">
+                        <i class="fa-solid fa-chart-line"></i> <span>Marketing Ops</span>
+                    </a>
+                    <a href="#" class="nav-item" data-target="view-ai-engine">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> <span>AI Content Engine</span>
+                    </a>
+                    <a href="#" class="nav-item" data-target="view-kanban">
+                        <i class="fa-solid fa-columns"></i> <span>Kanban AI (Global)</span>
+                    </a>
+                </div>
+
+                <div class="nav-group">
+                    <span class="nav-label">SCHEDULING & DIST</span>
+                    <a href="#" class="nav-item" data-target="view-calendar">
+                        <i class="fa-regular fa-calendar-days"></i> <span>Content Calendar</span>
+                    </a>
+                    <a href="#" class="nav-item" data-target="view-distribution">
+                        <i class="fa-solid fa-share-nodes"></i> <span>Distribution Manager</span>
+                    </a>
+                </div>
+
+                <div class="nav-group">
+                    <span class="nav-label">FULL POWER (PRO)</span>
+                    <a href="#" class="nav-item" data-target="view-asset-library">
+                        <i class="fa-regular fa-folder-open"></i> <span>Brand Asset Library</span>
+                    </a>
+                    <a href="#" class="nav-item" data-target="view-social-listening">
+                        <i class="fa-solid fa-satellite-dish"></i> <span>Social Listening</span>
+                    </a>
+                    <a href="#" class="nav-item" data-target="view-inbox">
+                        <i class="fa-regular fa-comments"></i> <span>Omnichannel Inbox</span>
+                    </a>
+                    <a href="#" class="nav-item" data-target="view-content-history">
+                        <i class="fa-solid fa-clock-rotate-left"></i> <span>Riwayat Konten</span>
+                    </a>
+                </div>
+
+                <div class="nav-group">
+                    <span class="nav-label">CONTROL & CONFIG</span>
+                    <a href="#" class="nav-item" data-target="view-analytics">
+                        <i class="fa-solid fa-chart-simple"></i> <span>Reporting & Analytics</span>
+                    </a>
+                    <a href="#" class="nav-item" data-target="view-settings">
+                        <i class="fa-solid fa-gear"></i> <span>Settings & Rules</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            
+            <!-- TOPBAR -->
+            <header class="topbar">
+                <div class="breadcrumb">
+                    Astacode Marketing / <strong id="current-view-title">Marketing Ops</strong>
+                </div>
+                <div class="topbar-right">
+                    <div class="search-box">
+                        <i class="fa-solid fa-search text-muted"></i>
+                        <input type="text" placeholder="Search Content, Campaigns, Tags...">
+                    </div>
+                    <button class="icon-btn"><i class="fa-regular fa-bell"></i></button>
+                    <button class="icon-btn avatar-btn">A</button>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                
+                <!-- 1. MARKETING OPS (DASHBOARD) -->
+                <section id="view-marketing-ops" class="view-section active">
+                    
+                    <!-- Stats Row -->
+                    <div class="stats-row">
+                        <div class="stat-card" style="cursor:pointer;" data-target="view-distribution">
+                            <div class="stat-value">42</div>
+                            <div class="stat-sub">94.2% Tepat Waktu</div>
+                            <div class="stat-title">Konten Dipublikasi</div>
+                        </div>
+                        <div class="stat-card" style="cursor:pointer;" data-target="view-analytics">
+                            <div class="stat-value">5.8%</div>
+                            <div class="stat-sub">+1.2 pts di IG/TikTok</div>
+                            <div class="stat-title">Rata-rata Interaksi</div>
+                        </div>
+                        <div class="stat-card" style="cursor:pointer;" data-target="view-analytics">
+                            <div class="stat-value">Rp 14.2 Jt</div>
+                            <div class="stat-sub">ROAS 3.4x</div>
+                            <div class="stat-title">Pengeluaran Iklan</div>
+                        </div>
+                        <div class="stat-card" style="cursor:pointer;" data-target="view-ai-engine">
+                            <div class="stat-value">12 Items</div>
+                            <div class="stat-sub neutral">Content Engine Queue</div>
+                            <div class="stat-title">Menunggu Persetujuan</div>
+                        </div>
+                    </div>
+
+                    <!-- Visual Content Calendar -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <div class="card-title">Visual Content Calendar</div>
+                                <div class="card-subtitle">Scheduled distributions. Integrated via Platform API (IG Graph/TikTok).</div>
+                            </div>
+                            <div class="calendar-header-actions">
+                                <button class="btn-toggle">Week</button>
+                                <button class="btn-toggle active">Month</button>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="calendar-grid">
+                                <!-- Headers -->
+                                <div class="cal-head">MON</div><div class="cal-head">TUE</div><div class="cal-head">WED</div><div class="cal-head">THU</div><div class="cal-head">FRI</div><div class="cal-head">SAT</div><div class="cal-head">SUN</div>
+                                
+                                <!-- Row 1 -->
+                                <div class="cal-col">
+                                    <div class="cal-day-num">28</div>
+                                    <div class="cal-events">
+                                        <div class="pill-event pill-blue">Laravel Tips (Blog)</div>
+                                        <div class="pill-event pill-green">IG Carousel (Done)</div>
+                                    </div>
+                                </div>
+                                <div class="cal-col">
+                                    <div class="cal-day-num">29</div>
+                                    <div class="cal-events">
+                                        <div class="pill-event pill-blue">Case Study (Draft)</div>
+                                    </div>
+                                </div>
+                                <div class="cal-col today">
+                                    <div class="cal-day-num">30 (Today)</div>
+                                    <div class="cal-events">
+                                        <div class="pill-event pill-orange">Setujui Queue: 3</div>
+                                        <div class="pill-event pill-blue">TikTok Auto Publish</div>
+                                    </div>
+                                </div>
+                                <div class="cal-col">
+                                    <div class="cal-day-num">1</div>
+                                    <div class="cal-events">
+                                        <div class="pill-event pill-green">Reels (Scheduled)</div>
+                                    </div>
+                                </div>
+                                <div class="cal-col">
+                                    <div class="cal-day-num">2</div>
+                                    <div class="cal-events">
+                                        <div class="pill-event pill-blue">Founder Note</div>
+                                    </div>
+                                </div>
+                                <div class="cal-col"><div class="cal-day-num">3</div></div>
+                                <div class="cal-col"><div class="cal-day-num">4</div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Grid -->
+                    <div class="dash-bottom-grid">
+                        <!-- Antrean Persetujuan -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">Antrean Persetujuan</div>
+                                    <div class="card-subtitle">Manual review, quality gates, feedback</div>
+                                </div>
+                                <button class="btn btn-outline" style="font-size:12px;">Open Queue</button>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Content</th>
+                                            <th>Platform</th>
+                                            <th>Owner</th>
+                                            <th>Quality</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="font-medium text-primary">5 Prinsip Laravel untuk Tim Kecil</td>
+                                            <td>Instagram</td>
+                                            <td>Maya</td>
+                                            <td>91/100</td>
+                                            <td><span class="status-badge badge-review">REVIEW</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-medium text-primary">Case Study - Asta Commerce</td>
+                                            <td>Blog</td>
+                                            <td>Fikri</td>
+                                            <td>88/100</td>
+                                            <td><span class="status-badge badge-review">REVIEW</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-medium text-primary">Trend: AI Agents</td>
+                                            <td>TikTok</td>
+                                            <td>Maya</td>
+                                            <td>84/100</td>
+                                            <td><span class="status-badge badge-draft">DRAFT</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Ad Performance -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">Ad Performance</div>
+                                    <div class="card-subtitle">Meta Ads snapshot</div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <ul class="perf-list">
+                                    <li><span class="perf-label">Spend</span><span class="perf-value">Rp 42,6 jt</span></li>
+                                    <li><span class="perf-label">Impressions</span><span class="perf-value">1,42 M</span></li>
+                                    <li><span class="perf-label">CPC</span><span class="perf-value">Rp 1.240</span></li>
+                                    <li><span class="perf-label">ROAS</span><span class="perf-value green">3,4x</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2. AI CONTENT ENGINE -->
+                <!-- 2. AI CONTENT ENGINE -->
+                <section id="view-ai-engine" class="view-section">
+                    <div style="margin-bottom: 24px;">
+                        <h2 style="font-size: 20px;">AI Content Engine</h2>
+                        <p style="font-size: 13px; color: var(--text-tertiary);">Buat dan pratinjau teks, visual, dan skrip video sebelum dimasukkan ke dalam alur kerja.</p>
+                    </div>
+
+                    <div class="grid-2">
+                        <!-- Generator Form -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">Buat Aset Baru</div>
+                            </div>
+                            <div class="card-body">
+                                <form onsubmit="event.preventDefault(); alert('Generating with AI... (See Preview below)');">
+                                    <div class="form-group">
+                                        <label class="form-label">Jenis Konten</label>
+                                        <select class="form-control">
+                                            <option>Carousel Media Sosial (5-10 slide)</option>
+                                            <option>Skrip Video Pendek (TikTok/Reels)</option>
+                                            <option>Artikel Blog (Optimasi SEO)</option>
+                                            <option>Gambar Tunggal + Teks</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Topik / Prompt</label>
+                                        <textarea class="form-control" rows="4" placeholder="e.g. Why Next.js is better than pure React..."></textarea>
+                                    </div>
+                                    <button class="btn btn-primary w-100"><i class="fa-solid fa-bolt"></i> Buat via Engine</button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Scraped Trends -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">Topik Tren (Scraped)</div>
+                            </div>
+                            <div class="card-body">
+                                <div style="display:flex; flex-direction:column; gap:12px;">
+                                    <div style="border:1px solid var(--border-light); padding:12px; border-radius:var(--radius-md);">
+                                        <strong style="font-size:13px;">Agen AI di Perusahaan</strong>
+                                        <p style="font-size:12px; color:var(--text-tertiary); margin-top:4px;">Sedang ramai di HackerNews. Celah Konten: 90%.</p>
+                                        <button class="btn btn-outline" style="font-size:10px; padding:4px 8px; margin-top:8px;">Gunakan Ide</button>
+                                    </div>
+                                    <div style="border:1px solid var(--border-light); padding:12px; border-radius:var(--radius-md);">
+                                        <strong style="font-size:13px;">Fitur Baru Laravel 11</strong>
+                                        <p style="font-size:12px; color:var(--text-tertiary); margin-top:4px;">Trending di Komunitas Teknologi Twitter.</p>
+                                        <button class="btn btn-outline" style="font-size:10px; padding:4px 8px; margin-top:8px;">Gunakan Ide</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Output Preview Section -->
+                    <div class="card" style="margin-top: 24px;">
+                        <div class="card-header">
+                            <div>
+                                <div class="card-title">Pratinjau Hasil</div>
+                                <div class="card-subtitle">Tinjau and edit the AI-generated visual/text assets before human approval.</div>
+                            </div>
+                            <div style="display:flex; gap:8px;">
+                                <button class="btn btn-outline"><i class="fa-solid fa-pen"></i> Edit</button>
+                                <button class="btn btn-primary"><i class="fa-solid fa-arrow-right"></i> Kirim ke Kanban</button>
+                            </div>
+                        </div>
+                        <div class="card-body" style="background:#f8fafc;">
+                            
+                            <!-- Dummy Preview Canvas -->
+                            <div style="background:white; border:1px solid var(--border-light); border-radius:var(--radius-md); padding:20px; box-shadow:var(--shadow-soft);">
+                                <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
+                                    <strong style="font-size:14px; display:flex; align-items:center; gap:8px;">
+                                        <i class="fa-brands fa-instagram" style="color:#e11d48; font-size:18px;"></i> 
+                                        Instagram Carousel: "Why Next.js?"
+                                    </strong>
+                                    <span class="status-badge badge-review">SIAP DITINJAU</span>
+                                </div>
+                                
+                                <!-- Visual Preview Container (Scrollable horizontally) -->
+                                <div style="display:flex; gap:16px; overflow-x:auto; padding-bottom:16px;">
+                                    
+                                    <!-- Slide 1 (Cover) -->
+                                    <div style="min-width:200px; height:200px; background:linear-gradient(135deg, var(--brand-primary), var(--sidebar-bg)); border-radius:8px; display:flex; flex-direction:column; justify-content:center; align-items:center; color:white; text-align:center; padding:16px; box-shadow:0 4px 6px rgba(0,0,0,0.1);">
+                                        <span style="font-size:10px; opacity:0.8; margin-bottom:8px;">Slide 1 (Cover)</span>
+                                        <strong style="font-size:15px; line-height:1.4;">Kenapa Next.js adalah Masa Depan React.</strong>
+                                    </div>
+
+                                    <!-- Slide 2 -->
+                                    <div style="min-width:200px; height:200px; background:white; border:1px solid var(--border-light); border-radius:8px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:16px;">
+                                        <span style="font-size:10px; color:var(--text-tertiary); margin-bottom:8px;">Slide 2</span>
+                                        <strong style="font-size:13px; margin-bottom:8px;">SSR Bawaan</strong>
+                                        <p style="font-size:11px; color:var(--text-tertiary);">Server-Side Rendering otomatis untuk performa dan SEO yang lebih baik.</p>
+                                    </div>
+
+                                    <!-- Slide 3 -->
+                                    <div style="min-width:200px; height:200px; background:white; border:1px solid var(--border-light); border-radius:8px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:16px;">
+                                        <span style="font-size:10px; color:var(--text-tertiary); margin-bottom:8px;">Slide 3</span>
+                                        <strong style="font-size:13px; margin-bottom:8px;">Routing Berbasis File</strong>
+                                        <p style="font-size:11px; color:var(--text-tertiary);">Tidak perlu konfigurasi react-router-dom lagi.</p>
+                                    </div>
+
+                                    <!-- Add slide button -->
+                                    <div style="min-width:200px; height:200px; background:#f9fafb; border:1px dashed var(--border-light); border-radius:8px; display:flex; flex-direction:column; justify-content:center; align-items:center; cursor:pointer;">
+                                        <i class="fa-solid fa-plus text-muted" style="font-size:24px; margin-bottom:8px;"></i>
+                                        <span style="font-size:12px; color:var(--text-tertiary);">Tambah Slide</span>
+                                    </div>
+                                </div>
+
+                                <!-- Caption Text Preview -->
+                                <div style="margin-top:16px; padding:16px; background:#f9fafb; border:1px solid var(--border-light); border-radius:var(--radius-sm);">
+                                    <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                                        <strong style="font-size:12px;">Teks Buatan AI:</strong>
+                                        <span style="font-size:11px; color:var(--brand-primary); cursor:pointer;"><i class="fa-solid fa-copy"></i> Salin</span>
+                                    </div>
+                                    <p style="font-size:12px; color:var(--text-tertiary); line-height:1.6;">
+                                        Masih pakai React biasa? Saatnya beralih ke Next.js! 🚀 <br><br>
+                                        Geser untuk tau alasannya kenapa framework ini bikin website kamu makin ngebut dan SEO friendly banget! Cocok buat project skala besar maupun kecil.<br><br>
+                                        #NextJS #WebDeveloper #ReactJS #AstaMarketing
+                                    </p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. KANBAN AI -->
+                <section id="view-kanban" class="view-section">
+                    <div style="margin-bottom: 24px;">
+                        <h2 style="font-size: 20px;">Kanban AI (Global Content Workflow)</h2>
+                        <p style="font-size: 13px; color: var(--text-tertiary);">Drag and drop content across stages.</p>
+                    </div>
+                    
+                    <div class="kanban-board">
+                        <div class="kanban-column">
+                            <div class="kanban-col-header">Ideas & Scraped <span class="k-count">2</span></div>
+                            <div class="kanban-card">
+                                <h4>Docker for Beginners</h4>
+                                <p>Requested by SEO Team</p>
+                                <div class="kanban-tags"><span class="k-tag">Blog</span></div>
+                            </div>
+                            <div class="kanban-card">
+                                <h4>Why Next.js?</h4>
+                                <p>Trending keyword detected</p>
+                                <div class="kanban-tags"><span class="k-tag">Carousel</span></div>
+                            </div>
+                        </div>
+                        <div class="kanban-column">
+                            <div class="kanban-col-header">AI Generating <span class="k-count">1</span></div>
+                            <div class="kanban-card" style="border-left: 3px solid var(--brand-primary);">
+                                <h4>React Hooks Guide</h4>
+                                <p>Engine is drafting content...</p>
+                                <div class="kanban-tags"><span class="k-tag">TikTok Script</span></div>
+                            </div>
+                        </div>
+                        <div class="kanban-column">
+                            <div class="kanban-col-header">Tinjau / Quality <span class="k-count">3</span></div>
+                            <div class="kanban-card" style="border-left: 3px solid var(--warning);">
+                                <h4>5 Prinsip Laravel</h4>
+                                <p>Waiting for Maya's approval</p>
+                            </div>
+                        </div>
+                        <div class="kanban-column">
+                            <div class="kanban-col-header">Ready & Scheduled <span class="k-count">5</span></div>
+                            <div class="kanban-card" style="border-left: 3px solid var(--success);">
+                                <h4>Laravel Tips</h4>
+                                <p>Scheduled: Oct 28</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- OTHER VIEWS (Placeholders for SPA routing) -->
+                <!-- 4. CONTENT CALENDAR & SCHEDULER -->
+                <section id="view-calendar" class="view-section">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 24px;">
+                        <div>
+                            <h2 style="font-size:20px;">Content Calendar & Scheduler</h2>
+                            <p style="font-size:13px; color:var(--text-tertiary);">Manage publishing schedules with AI optimal time predictions.</p>
+                        </div>
+                        <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Create Schedule</button>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 3fr 1fr; gap: 24px;">
+                        
+                        <!-- Left: Interactive Calendar View -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">October 2026</div>
+                                    <div class="card-subtitle">Drag and drop posts to reschedule.</div>
+                                </div>
+                                <div class="calendar-header-actions">
+                                    <button class="btn-toggle">Week</button>
+                                    <button class="btn-toggle active">Month</button>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="calendar-grid">
+                                    <div class="cal-head">MON</div><div class="cal-head">TUE</div><div class="cal-head">WED</div><div class="cal-head">THU</div><div class="cal-head">FRI</div><div class="cal-head">SAT</div><div class="cal-head">SUN</div>
+                                    
+                                    <!-- Week 1 -->
+                                    <div class="cal-col"><div class="cal-day-num">28</div></div>
+                                    <div class="cal-col"><div class="cal-day-num">29</div></div>
+                                    <div class="cal-col today">
+                                        <div class="cal-day-num">30 (Today)</div>
+                                        <div class="cal-events">
+                                            <div class="pill-event pill-orange" title="TikTok Video"><i class="fa-brands fa-tiktok"></i> 12:30 Laravel Tips</div>
+                                            <div class="pill-event pill-blue" title="Instagram Carousel"><i class="fa-brands fa-instagram"></i> 18:00 Git Guide</div>
+                                        </div>
+                                    </div>
+                                    <div class="cal-col">
+                                        <div class="cal-day-num">1</div>
+                                        <div class="cal-events">
+                                            <div class="pill-event pill-green" title="Blog Post"><i class="fa-solid fa-blog"></i> 09:00 Tech News</div>
+                                        </div>
+                                    </div>
+                                    <div class="cal-col"><div class="cal-day-num">2</div></div>
+                                    <div class="cal-col">
+                                        <div class="cal-day-num">3</div>
+                                        <div class="cal-events">
+                                            <div class="pill-event pill-blue"><i class="fa-brands fa-instagram"></i> 19:00 Q&A Session</div>
+                                        </div>
+                                    </div>
+                                    <div class="cal-col"><div class="cal-day-num">4</div></div>
+                                    
+                                    <!-- Week 2 (Empty slots for visualization) -->
+                                    <div class="cal-col"><div class="cal-day-num">5</div></div>
+                                    <div class="cal-col">
+                                        <div class="cal-day-num">6</div>
+                                        <div class="cal-events">
+                                            <div class="pill-event pill-orange"><i class="fa-brands fa-tiktok"></i> 12:00 React Hooks</div>
+                                        </div>
+                                    </div>
+                                    <div class="cal-col"><div class="cal-day-num">7</div></div>
+                                    <div class="cal-col"><div class="cal-day-num">8</div></div>
+                                    <div class="cal-col">
+                                        <div class="cal-day-num">9</div>
+                                        <div class="cal-events">
+                                            <div class="pill-event pill-green"><i class="fa-solid fa-blog"></i> 09:00 Case Study</div>
+                                        </div>
+                                    </div>
+                                    <div class="cal-col"><div class="cal-day-num">10</div></div>
+                                    <div class="cal-col"><div class="cal-day-num">11</div></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: AI Time & Queue -->
+                        <div>
+                            <!-- Waktu Optimal AI -->
+                            <div class="card" style="margin-bottom: 24px;">
+                                <div class="card-header">
+                                    <div class="card-title" style="display:flex; align-items:center; gap:8px;">
+                                        <i class="fa-solid fa-robot" style="color:var(--brand-primary);"></i> Waktu Optimal AI
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="perf-list">
+                                        <li>
+                                            <span class="perf-label"><i class="fa-brands fa-instagram"></i> Instagram</span>
+                                            <span class="perf-value" style="color:var(--success);">18:00 - 19:30</span>
+                                        </li>
+                                        <li>
+                                            <span class="perf-label"><i class="fa-brands fa-tiktok"></i> TikTok</span>
+                                            <span class="perf-value" style="color:var(--success);">12:00 - 13:00</span>
+                                        </li>
+                                        <li>
+                                            <span class="perf-label"><i class="fa-solid fa-blog"></i> Blog</span>
+                                            <span class="perf-value" style="color:var(--success);">08:00 - 09:00</span>
+                                        </li>
+                                    </ul>
+                                    <p style="font-size:11px; margin-top:12px; color:var(--text-tertiary); line-height:1.4;">
+                                        <i class="fa-solid fa-circle-info"></i> Berdasarkan analisis engagement followers dalam 30 hari terakhir.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Antrean Jadwal -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <div>
+                                        <div class="card-title">Antrean Jadwal</div>
+                                        <div class="card-subtitle">Ready to publish drafts.</div>
+                                    </div>
+                                </div>
+                                <div class="card-body" style="padding:16px;">
+                                    <div style="border:1px dashed #cbd5e1; padding:12px; border-radius:var(--radius-md); margin-bottom:12px; cursor:grab; background:#f8fafc; transition:0.2s;" onmouseover="this.style.borderColor='var(--brand-primary)'" onmouseout="this.style.borderColor='#cbd5e1'">
+                                        <h4 style="font-size:13px; margin-bottom:6px;">Docker vs Kubernetes</h4>
+                                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                                            <span style="font-size:11px; color:var(--text-tertiary);"><i class="fa-brands fa-instagram"></i> Carousel (10 Slides)</span>
+                                            <span style="font-size:10px; font-weight:600; color:var(--brand-primary); background:var(--info-light); padding:2px 6px; border-radius:4px;">Drag to Slot</span>
+                                        </div>
+                                    </div>
+                                    <div style="border:1px dashed #cbd5e1; padding:12px; border-radius:var(--radius-md); cursor:grab; background:#f8fafc; transition:0.2s;" onmouseover="this.style.borderColor='var(--brand-primary)'" onmouseout="this.style.borderColor='#cbd5e1'">
+                                        <h4 style="font-size:13px; margin-bottom:6px;">Top 5 AI Coding Tools</h4>
+                                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                                            <span style="font-size:11px; color:var(--text-tertiary);"><i class="fa-brands fa-tiktok"></i> Video Script (60s)</span>
+                                            <span style="font-size:10px; font-weight:600; color:var(--brand-primary); background:var(--info-light); padding:2px 6px; border-radius:4px;">Drag to Slot</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- 5. DISTRIBUTION & PUBLISHING -->
+                <section id="view-distribution" class="view-section">
+                    <div style="margin-bottom: 24px;">
+                        <h2 style="font-size: 20px;">Distribution Manager</h2>
+                        <p style="font-size: 13px; color: var(--text-tertiary);">Kelola koneksi platform, pantau log, dan atur A/B testing.</p>
+                    </div>
+
+                    <!-- Platform Manager -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <div class="card-title">Manajer Platform (Integrasi)</div>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+                                <!-- Instagram -->
+                                <div style="border:1px solid var(--border-light); border-radius:var(--radius-md); padding:20px; text-align:center;">
+                                    <i class="fa-brands fa-instagram fa-2x" style="color:#e11d48; margin-bottom:12px;"></i>
+                                    <h4 style="font-size:14px;">Instagram</h4>
+                                    <span class="status-badge badge-done" style="display:inline-block; margin:12px 0;">TERHUBUNG</span>
+                                    <p style="font-size:11px; color:var(--text-tertiary);">@asta.marketing</p>
+                                </div>
+                                <!-- TikTok -->
+                                <div style="border:1px solid var(--border-light); border-radius:var(--radius-md); padding:20px; text-align:center;">
+                                    <i class="fa-brands fa-tiktok fa-2x" style="color:#0f172a; margin-bottom:12px;"></i>
+                                    <h4 style="font-size:14px;">TikTok</h4>
+                                    <span class="status-badge badge-done" style="display:inline-block; margin:12px 0;">TERHUBUNG</span>
+                                    <p style="font-size:11px; color:var(--text-tertiary);">@asta.marketing</p>
+                                </div>
+                                <!-- Blog CMS -->
+                                <div style="border:1px dashed var(--border-light); border-radius:var(--radius-md); padding:20px; text-align:center; background:#f9fafb;">
+                                    <i class="fa-brands fa-wordpress fa-2x" style="color:#6b7280; margin-bottom:12px;"></i>
+                                    <h4 style="font-size:14px; color:var(--text-tertiary);">Blog CMS</h4>
+                                    <span class="status-badge badge-draft" style="display:inline-block; margin:12px 0;">NOT TERHUBUNG</span>
+                                    <button class="btn btn-primary w-100" style="font-size:11px; padding:6px;">Hubungkan Webhook</button>
+                                </div>
+                                <!-- Meta Ads -->
+                                <div style="border:1px solid var(--border-light); border-radius:var(--radius-md); padding:20px; text-align:center;">
+                                    <i class="fa-brands fa-meta fa-2x" style="color:#3b82f6; margin-bottom:12px;"></i>
+                                    <h4 style="font-size:14px;">Meta Ads</h4>
+                                    <span class="status-badge badge-done" style="display:inline-block; margin:12px 0;">TERHUBUNG</span>
+                                    <p style="font-size:11px; color:var(--text-tertiary);">Asta Business Manager</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Grid -->
+                    <div class="dash-bottom-grid">
+                        
+                        <!-- Log Publikasi -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">Log Publikasi</div>
+                                    <div class="card-subtitle">Riwayat publikasi otomatis dan pelacakan error</div>
+                                </div>
+                                <button class="btn btn-outline" style="font-size:12px;"><i class="fa-solid fa-rotate-right"></i> Segarkan</button>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Judul Konten</th>
+                                            <th>Platform</th>
+                                            <th>Waktu</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="font-medium">Laravel Architecture</td>
+                                            <td>Instagram</td>
+                                            <td>Today, 10:00</td>
+                                            <td><span style="color:var(--success); font-size:12px; font-weight:500;"><i class="fa-solid fa-check-circle"></i> Sukses</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-medium">React Crash Course</td>
+                                            <td>TikTok</td>
+                                            <td>Yesterday, 15:30</td>
+                                            <td>
+                                                <span style="color:var(--danger); font-size:12px; font-weight:500;"><i class="fa-solid fa-circle-xmark"></i> Error API</span> 
+                                                <a href="#" style="font-size:11px; color:var(--brand-primary); text-decoration:none; font-weight:600; margin-left:6px;">Ulangi</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-medium">WebDev Tools 2026</td>
+                                            <td>TikTok</td>
+                                            <td>Oct 28, 09:00</td>
+                                            <td><span style="color:var(--success); font-size:12px; font-weight:500;"><i class="fa-solid fa-check-circle"></i> Sukses</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- A/B Testing -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">A/B Testing</div>
+                                    <div class="card-subtitle">Eksperimen aktif</div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div style="border:1px solid var(--border-light); border-radius:var(--radius-md); padding:16px; margin-bottom:16px; box-shadow:var(--shadow-soft);">
+                                    <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                                        <strong style="font-size:13px;">Promo Akhir Tahun</strong>
+                                        <span class="status-badge badge-review">BERJALAN</span>
+                                    </div>
+                                    <p style="font-size:12px; color:var(--text-tertiary); margin-bottom:12px;">Menguji Teks: Santai vs Formal</p>
+                                    <div style="display:flex; justify-content:space-between; font-size:11px; margin-bottom:6px;">
+                                        <span>Variant A (Casual): <strong style="color:var(--brand-primary);">68% CTR</strong></span>
+                                        <span>Variant B (Formal): <strong>32% CTR</strong></span>
+                                    </div>
+                                    <div style="width:100%; background:#e2e8f0; height:6px; border-radius:3px; overflow:hidden; display:flex;">
+                                        <div style="width:68%; background:var(--brand-primary);"></div>
+                                        <div style="width:32%; background:#94a3b8;"></div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary w-100"><i class="fa-solid fa-flask"></i> Buat Tes Baru</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+                <!-- 6. REPORTING & ANALYTICS -->
+                <section id="view-analytics" class="view-section">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 24px;">
+                        <div>
+                            <h2 style="font-size:20px;">Reporting & Analytics</h2>
+                            <p style="font-size:13px; color:var(--text-tertiary);">Analisis mendalam performa konten dan wawasan AI.</p>
+                        </div>
+                        <button class="btn btn-primary"><i class="fa-solid fa-file-pdf"></i> Ekspor Laporan</button>
+                    </div>
+
+                    <!-- Pelacak Performa -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <div>
+                                <div class="card-title">Pelacak Performa</div>
+                                <div class="card-subtitle">Interaksi & Jangkauan di semua platform.</div>
+                            </div>
+                            <select class="form-control" style="width:150px; padding:6px; font-size:12px;">
+                                <option>30 Hari Terakhir</option>
+                                <option>Bulan Ini</option>
+                                <option>Kuartal Lalu</option>
+                            </select>
+                        </div>
+                        <div class="card-body" style="height: 350px; position:relative; padding-top: 10px;">
+                            <canvas id="performanceChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <!-- Wawasan Pembelajaran AI -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title"><i class="fa-solid fa-brain" style="color:var(--brand-primary); margin-right:6px;"></i> Wawasan Pembelajaran AI</div>
+                            </div>
+                            <div class="card-body">
+                                <ul class="perf-list">
+                                    <li style="display:block; padding-bottom:16px;">
+                                        <div style="font-weight:600; font-size:13px; margin-bottom:4px;">Preferensi Format</div>
+                                        <div style="font-size:12px; color:var(--text-tertiary); line-height:1.5;">Postingan Carousel 8 slide memiliki performa <strong style="color:var(--success);">45% lebih baik</strong> daripada gambar tunggal.</div>
+                                    </li>
+                                    <li style="display:block; padding:16px 0;">
+                                        <div style="font-weight:600; font-size:13px; margin-bottom:4px;">Waktu Terbaik</div>
+                                        <div style="font-size:12px; color:var(--text-tertiary); line-height:1.5;">Posting hari Selasa jam 18:00 menghasilkan rata-rata interaksi tertinggi (6.2%).</div>
+                                    </li>
+                                    <li style="display:block; padding-top:16px; border-bottom:none;">
+                                        <div style="font-weight:600; font-size:13px; margin-bottom:4px;">Topik Tren Konten</div>
+                                        <div style="font-size:12px; color:var(--text-tertiary); line-height:1.5;">Tutorial tentang Docker dan Next.js memiliki rasio simpan/bagikan tertinggi bulan ini.</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Custom Reports Automation -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">Laporan Kustom (Otomatis)</div>
+                            </div>
+                            <div class="card-body">
+                                <p style="font-size:12px; color:var(--text-tertiary); margin-bottom:16px;">Atur pengiriman laporan otomatis ke tim.</p>
+                                
+                                <div style="border:1px solid var(--border-light); border-radius:var(--radius-md); padding:16px; margin-bottom:12px; box-shadow:var(--shadow-soft);">
+                                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                                        <strong style="font-size:13px;">Ringkasan Eksekutif Mingguan</strong>
+                                        <span class="status-badge badge-done">AKTIF</span>
+                                    </div>
+                                    <p style="font-size:12px; color:var(--text-tertiary);">Dikirim setiap Senin jam 08:00 pagi via Email.</p>
+                                </div>
+
+                                <div style="border:1px solid var(--border-light); border-radius:var(--radius-md); padding:16px; box-shadow:var(--shadow-soft);">
+                                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                                        <strong style="font-size:13px;">Laporan Bulanan Mendalam</strong>
+                                        <span class="status-badge badge-draft">DIJEDA</span>
+                                    </div>
+                                    <p style="font-size:12px; color:var(--text-tertiary);">Rincian metrik komprehensif. (Belum dijadwalkan).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- 7. SETTINGS & RULES -->
+                <section id="view-settings" class="view-section">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 24px;">
+                        <div>
+                            <h2 style="font-size:20px;">Settings & Rules</h2>
+                            <p style="font-size:13px; color:var(--text-tertiary);">Atur perilaku AI, identitas brand, dan alur kerja otomatis.</p>
+                        </div>
+                        <button class="btn btn-primary" onclick="alert('Settings saved successfully!')"><i class="fa-solid fa-floppy-disk"></i> Simpan Perubahan</button>
+                    </div>
+
+                    <div class="grid-2">
+                        <!-- Brand & Identity -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">Kustomisasi Brand & Nada Suara</div>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label class="form-label">Nada Suara AI Bawaan</label>
+                                    <select class="form-control">
+                                        <option>Profesional & Informatif</option>
+                                        <option>Santai & Ramah</option>
+                                        <option>Humoris & Cerdas</option>
+                                        <option>Sangat Akademis</option>
+                                    </select>
+                                    <p style="font-size:11px; color:var(--text-tertiary); margin-top:4px;">Nada ini akan digunakan untuk semua konten otomatis.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Bahasa Output</label>
+                                    <select class="form-control">
+                                        <option>Indonesia (ID)</option>
+                                        <option>Inggris (US)</option>
+                                        <option>Dwi-bahasa (ID/EN)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Kata Kunci Wajib</label>
+                                    <input type="text" class="form-control" value="#TechPro, #AstaCommerce, Developer Life">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Automation Rules -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">Aturan Otomatisasi (Cron)</div>
+                            </div>
+                            <div class="card-body">
+                                <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:12px; border-bottom:1px solid var(--border-light); margin-bottom:12px;">
+                                    <div>
+                                        <strong style="font-size:13px;">Auto-Setujui Content</strong>
+                                        <p style="font-size:11px; color:var(--text-tertiary); margin-top:2px;">Publikasikan konten hasil AI secara langsung tanpa ditinjau manual.</p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+
+                                <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:12px; border-bottom:1px solid var(--border-light); margin-bottom:12px;">
+                                    <div>
+                                        <strong style="font-size:13px;">Pencari Tren Harian</strong>
+                                        <p style="font-size:11px; color:var(--text-tertiary); margin-top:2px;">Jalankan pencari tren jam 02:00 pagi setiap hari.</p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+
+                                <div style="display:flex; justify-content:space-between; align-items:center;">
+                                    <div>
+                                        <strong style="font-size:13px;">Mode A/B Testing</strong>
+                                        <p style="font-size:11px; color:var(--text-tertiary); margin-top:2px;">Buat 2 variasi otomatis untuk setiap caption.</p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- 8. BRAND ASSET LIBRARY -->
+                <section id="view-asset-library" class="view-section">
+                    <!-- Title and Description -->
+                    <div style="margin-bottom: 24px;">
+                        <h2 style="font-size:20px; font-weight:600;">Brand Asset Library</h2>
+                        <p style="font-size:13px; color:var(--text-tertiary); margin-top:4px;">Pusat media dan identitas brand. AI akan menggunakan aset ini agar desain selalu konsisten.</p>
+                    </div>
+
+                    <!-- Header with Breadcrumbs & Actions -->
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; background:#fff; padding:16px 24px; border-radius:8px; border:1px solid var(--border-light); box-shadow:0 2px 8px rgba(0,0,0,0.02);">
+                        <div style="display:flex; align-items:center; gap:12px; font-size:14px; font-weight:600; color:var(--text-secondary);">
+                            <i class="fa-solid fa-cloud" style="color:var(--brand-primary); font-size:18px;"></i>
+                            <span style="color:var(--text-tertiary);"><i class="fa-solid fa-angle-right"></i></span>
+                            <span style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)'" onmouseout="this.style.color='var(--text-secondary)'">Semua File</span>
+                            <span style="color:var(--text-tertiary);"><i class="fa-solid fa-angle-right"></i></span>
+                            <span style="color:var(--text-primary);">Aset Software House</span>
+                        </div>
+                        <div style="display:flex; gap:16px; align-items:center;">
+                            <select class="form-control" style="height:32px; font-size:12px; border:none; background:transparent; font-weight:500;"><option>Sort by: type</option><option>Sort by: date</option></select>
+                            <div style="display:flex; gap:12px; color:var(--text-tertiary); border-right:1px solid var(--border-light); padding-right:16px;">
+                                <i class="fa-solid fa-table-cells" style="cursor:pointer; color:var(--brand-primary);"></i>
+                                <i class="fa-solid fa-list" style="cursor:pointer;"></i>
+                            </div>
+                            <button class="btn btn-outline" style="font-size:12px; height:32px; padding:0 12px;"><i class="fa-solid fa-folder-plus"></i> Folder Baru</button>
+                            <button class="btn btn-primary" style="font-size:12px; height:32px; padding:0 12px;"><i class="fa-solid fa-upload"></i> Upload</button>
+                        </div>
+                    </div>
+
+                    <!-- Main Content Area -->
+                    <div style="display:flex; gap:24px; height:calc(100vh - 220px);">
+                        
+                        <!-- Grid View -->
+                        <div class="card" style="flex:1; overflow-y:auto; padding:32px; box-shadow:0 4px 12px rgba(0,0,0,0.05); border:1px solid var(--border-light); border-radius:8px; background:#fff;">
+                            <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(140px, 1fr)); gap:40px 24px;">
+                                
+                <!-- Folder Item -->
+                <div style="text-align:center; cursor:pointer;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                    <i class="fa-solid fa-folder" style="font-size:64px; color:#3b82f6; margin-bottom:12px;"></i>
+                    <div style="font-weight:600; font-size:13px; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Backgrounds</div>
+                    <div style="font-size:11px; color:var(--text-tertiary);">09/28/2026, 10:44 am</div>
+                </div>
+                <!-- Folder Item -->
+                <div style="text-align:center; cursor:pointer;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                    <i class="fa-solid fa-folder" style="font-size:64px; color:#3b82f6; margin-bottom:12px;"></i>
+                    <div style="font-weight:600; font-size:13px; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Logo & Watermark</div>
+                    <div style="font-size:11px; color:var(--text-tertiary);">09/28/2026, 10:44 am</div>
+                </div>
+                <!-- Folder Item -->
+                <div style="text-align:center; cursor:pointer;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                    <i class="fa-solid fa-folder" style="font-size:64px; color:#3b82f6; margin-bottom:12px;"></i>
+                    <div style="font-weight:600; font-size:13px; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Fonts & Typography</div>
+                    <div style="font-size:11px; color:var(--text-tertiary);">09/28/2026, 10:44 am</div>
+                </div>
+                <!-- Folder Item -->
+                <div style="text-align:center; cursor:pointer;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                    <i class="fa-solid fa-folder" style="font-size:64px; color:#3b82f6; margin-bottom:12px;"></i>
+                    <div style="font-weight:600; font-size:13px; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Icons & Illustrations</div>
+                    <div style="font-size:11px; color:var(--text-tertiary);">09/28/2026, 10:44 am</div>
+                </div>
+                <!-- Folder Item -->
+                <div style="text-align:center; cursor:pointer;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                    <i class="fa-solid fa-folder" style="font-size:64px; color:#3b82f6; margin-bottom:12px;"></i>
+                    <div style="font-weight:600; font-size:13px; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Product Mockups</div>
+                    <div style="font-size:11px; color:var(--text-tertiary);">09/28/2026, 10:44 am</div>
+                </div>
+                <!-- Folder Item -->
+                <div style="text-align:center; cursor:pointer;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                    <i class="fa-solid fa-folder" style="font-size:64px; color:#3b82f6; margin-bottom:12px;"></i>
+                    <div style="font-weight:600; font-size:13px; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Social Media Templates</div>
+                    <div style="font-size:11px; color:var(--text-tertiary);">09/28/2026, 10:44 am</div>
+                </div>
+                <!-- Folder Item -->
+                <div style="text-align:center; cursor:pointer;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                    <i class="fa-solid fa-folder" style="font-size:64px; color:#3b82f6; margin-bottom:12px;"></i>
+                    <div style="font-weight:600; font-size:13px; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Office Photos</div>
+                    <div style="font-size:11px; color:var(--text-tertiary);">09/28/2026, 10:44 am</div>
+                </div>
+                <!-- Folder Item -->
+                <div style="text-align:center; cursor:pointer;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                    <i class="fa-solid fa-folder" style="font-size:64px; color:#3b82f6; margin-bottom:12px;"></i>
+                    <div style="font-weight:600; font-size:13px; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Team Portraits</div>
+                    <div style="font-size:11px; color:var(--text-tertiary);">09/28/2026, 10:44 am</div>
+                </div>
+                <!-- Folder Item -->
+                <div style="text-align:center; cursor:pointer;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                    <i class="fa-solid fa-folder" style="font-size:64px; color:#3b82f6; margin-bottom:12px;"></i>
+                    <div style="font-weight:600; font-size:13px; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">UI Components</div>
+                    <div style="font-size:11px; color:var(--text-tertiary);">09/28/2026, 10:44 am</div>
+                </div>
+                <!-- File Image (Selected) -->
+                <div style="text-align:center; cursor:pointer; background:#eff6ff; padding:12px; border-radius:8px; border:1px solid #93c5fd; box-shadow:0 4px 12px rgba(59,130,246,0.15);">
+                    <div style="width:100%; aspect-ratio:4/3; background:linear-gradient(135deg, #cbd5e1, #94a3b8); border-radius:4px; margin-bottom:12px; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+                        <i class="fa-solid fa-image" style="font-size:32px; color:#fff;"></i>
+                    </div>
+                    <div style="font-weight:600; font-size:13px; color:var(--brand-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">office_lobby_bg</div>
+                    <div style="font-size:11px; color:var(--brand-primary);">28.09.2026, 13:44</div>
+                </div>
+                <!-- File PDF -->
+                <div style="text-align:center; cursor:pointer;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                    <div style="width:72px; height:72px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; margin:0 auto 12px auto; display:flex; align-items:center; justify-content:center;">
+                        <span style="font-size:11px; font-weight:bold; color:#cbd5e1; border:1px solid #cbd5e1; padding:2px 4px; border-radius:2px;">pdf</span>
+                    </div>
+                    <div style="font-weight:600; font-size:13px; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">brand_guidelines_1</div>
+                    <div style="font-size:11px; color:var(--text-tertiary);">09/28/2026, 10:44 am</div>
+                </div>
+                <!-- File PDF -->
+                <div style="text-align:center; cursor:pointer;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                    <div style="width:72px; height:72px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; margin:0 auto 12px auto; display:flex; align-items:center; justify-content:center;">
+                        <span style="font-size:11px; font-weight:bold; color:#cbd5e1; border:1px solid #cbd5e1; padding:2px 4px; border-radius:2px;">pdf</span>
+                    </div>
+                    <div style="font-weight:600; font-size:13px; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">brand_guidelines_2</div>
+                    <div style="font-size:11px; color:var(--text-tertiary);">09/28/2026, 10:44 am</div>
+                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sidebar Detail -->
+                        <div class="card" style="width:300px; flex-shrink:0; padding:24px; box-shadow:0 4px 12px rgba(0,0,0,0.05); border:1px solid var(--border-light); border-radius:8px; background:#fff; overflow-y:auto;">
+                            <!-- Actions -->
+                            <div style="display:flex; justify-content:flex-end; gap:16px; color:var(--text-tertiary); margin-bottom:24px; font-size:14px;">
+                                <i class="fa-solid fa-bookmark" style="cursor:pointer;" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-tertiary)'"></i>
+                                <i class="fa-solid fa-pen" style="cursor:pointer;" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-tertiary)'"></i>
+                                <div style="background:#eff6ff; padding:4px 8px; border-radius:4px; margin-top:-4px;"><i class="fa-solid fa-trash" style="cursor:pointer; color:#3b82f6;"></i></div>
+                                <i class="fa-regular fa-envelope" style="cursor:pointer;" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-tertiary)'"></i>
+                                <i class="fa-solid fa-print" style="cursor:pointer;" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-tertiary)'"></i>
+                            </div>
+                            
+                            <!-- Title -->
+                            <h3 style="font-size:16px; font-weight:700; margin-bottom:4px; color:var(--brand-primary);">office_lobby_bg</h3>
+                            <p style="font-size:12px; color:var(--text-tertiary); margin-bottom:20px;">PNG-image - 4.1 MB</p>
+                            
+                            <!-- Preview -->
+                            <div style="width:100%; aspect-ratio:4/3; background:linear-gradient(135deg, #cbd5e1, #94a3b8); border-radius:8px; margin-bottom:24px; display:flex; align-items:center; justify-content:center;">
+                                <i class="fa-solid fa-image" style="font-size:48px; color:#fff;"></i>
+                            </div>
+                            
+                            <!-- Information List -->
+                            <h4 style="font-size:13px; font-weight:600; color:var(--text-primary); margin-bottom:16px;">Information</h4>
+                            
+                            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:12px;">
+                                <span style="color:var(--text-tertiary);">Created</span>
+                                <span style="color:var(--text-primary); font-weight:500;">09/01/2026, 10:44 am</span>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:12px;">
+                                <span style="color:var(--text-tertiary);">Last updated</span>
+                                <span style="color:var(--text-primary); font-weight:500;">09/12/2026, 5:12 pm</span>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:12px;">
+                                <span style="color:var(--text-tertiary);">Last opened</span>
+                                <span style="color:var(--text-primary); font-weight:500;">09/15/2026, 6:56 pm</span>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:12px;">
+                                <span style="color:var(--text-tertiary);">Image size</span>
+                                <span style="color:var(--text-primary); font-weight:500;">3840x2160</span>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:12px;">
+                                <span style="color:var(--text-tertiary);">Resolution</span>
+                                <span style="color:var(--text-primary); font-weight:500;">300x300</span>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:12px;">
+                                <span style="color:var(--text-tertiary);">Color space</span>
+                                <span style="color:var(--text-primary); font-weight:500;">RGB</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- 9. SOCIAL LISTENING -->
+                <section id="view-social-listening" class="view-section">
+                    <div style="margin-bottom: 24px; display:flex; justify-content:space-between; align-items:flex-end;">
+                        <div>
+                            <h2 style="font-size:20px; font-weight:600;">Social Listening & Competitors</h2>
+                            <p style="font-size:13px; color:var(--text-tertiary); margin-top:4px;">Pantau kompetitor secara real-time dan biarkan AI mencari peluang konten.</p>
+                        </div>
+                        <button class="btn btn-primary" style="font-size:13px; padding:8px 16px;"><i class="fa-solid fa-plus"></i> Tambah Kompetitor</button>
+                    </div>
+
+                    <div class="card" style="box-shadow:0 4px 12px rgba(0,0,0,0.05); border:1px solid var(--border-light); border-radius:8px; overflow:hidden;">
+                        <!-- Filter Bar -->
+                        <div style="padding:16px 24px; border-bottom:1px solid var(--border-light); display:flex; justify-content:space-between; align-items:center; background:#fff;">
+                            <div style="display:flex; gap:12px;">
+                                <select class="form-control" style="width:130px; font-size:12px; height:32px; padding:0 12px;"><option>Semua Platform</option><option>Instagram</option><option>TikTok</option></select>
+                                <select class="form-control" style="width:120px; font-size:12px; height:32px; padding:0 12px;"><option>Status Trend</option><option>Viral (Naik)</option><option>Turun</option></select>
+                                <button class="btn btn-outline" style="height:32px; font-size:12px; padding:0 12px; color:var(--text-secondary);"><i class="fa-solid fa-sliders"></i> Semua Filter</button>
+                            </div>
+                            <div style="display:flex; gap:8px;">
+                                <button class="btn btn-outline" style="height:32px; width:32px; padding:0; display:flex; align-items:center; justify-content:center; color:var(--text-secondary);"><i class="fa-solid fa-pen"></i></button>
+                                <button class="btn btn-outline" style="height:32px; width:32px; padding:0; display:flex; align-items:center; justify-content:center; color:var(--status-danger);"><i class="fa-regular fa-trash-can"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive" style="background:#fff;">
+                            <table class="table" style="width:100%; border-collapse:collapse; text-align:left; font-size:13px;">
+                                <thead style="background:#f8fafc; color:var(--text-tertiary); font-size:11px; text-transform:uppercase; letter-spacing:0.5px;">
+                                    <tr>
+                                        <th style="padding:12px 24px; border-bottom:1px solid var(--border-light); width:40px;"><input type="checkbox"></th>
+                                        <th style="padding:12px 16px; border-bottom:1px solid var(--border-light); font-weight:600;">KOMPETITOR</th>
+                                        <th style="padding:12px 16px; border-bottom:1px solid var(--border-light); font-weight:600;">TOPIK VIRAL TERBARU</th>
+                                        <th style="padding:12px 16px; border-bottom:1px solid var(--border-light); font-weight:600;">VIEWS/ENGAGEMENT</th>
+                                        <th style="padding:12px 16px; border-bottom:1px solid var(--border-light); font-weight:600;">REKOMENDASI AI</th>
+                                        <th style="padding:12px 24px; border-bottom:1px solid var(--border-light); font-weight:600; text-align:right;">AKSI</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="border-bottom:1px solid var(--border-light); background:#fefce8;">
+                                        <td style="padding:12px 24px;"><input type="checkbox"></td>
+                                        <td style="padding:12px 16px; display:flex; align-items:center; gap:12px;">
+                                            <div style="width:32px; height:32px; background:#e11d48; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:bold; font-size:14px;">K</div>
+                                            <div>
+                                                <strong style="color:var(--text-primary); font-weight:600; display:block;">@AgencyWebJkt</strong>
+                                                <span style="color:var(--text-tertiary); font-size:11px;">Instagram</span>
+                                            </div>
+                                        </td>
+                                        <td style="padding:12px 16px; color:var(--text-secondary);">"Berapa Modal Bikin Website E-Commerce di 2026?"</td>
+                                        <td style="padding:12px 16px; color:var(--status-danger); font-weight:600;">1.2M <i class="fa-solid fa-arrow-trend-up" style="font-size:10px;"></i></td>
+                                        <td style="padding:12px 16px;"><span class="status-badge badge-warning" style="background:#fef9c3; color:#a16207;">⚡ BUAT TANDINGAN</span></td>
+                                        <td style="padding:12px 24px; text-align:right;">
+                                            <button class="btn btn-primary" style="font-size:11px; padding:4px 12px; height:auto;">Eksekusi AI</button>
+                                        </td>
+                                    </tr>
+                                    <tr style="border-bottom:1px solid var(--border-light);">
+                                        <td style="padding:12px 24px;"><input type="checkbox"></td>
+                                        <td style="padding:12px 16px; display:flex; align-items:center; gap:12px;">
+                                            <div style="width:32px; height:32px; background:#000; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:bold; font-size:14px;">T</div>
+                                            <div>
+                                                <strong style="color:var(--text-primary); font-weight:600; display:block;">@TechStartupIndo</strong>
+                                                <span style="color:var(--text-tertiary); font-size:11px;">TikTok</span>
+                                            </div>
+                                        </td>
+                                        <td style="padding:12px 16px; color:var(--text-secondary);">"Kenapa Perusahaan Mulai Meninggalkan React?"</td>
+                                        <td style="padding:12px 16px; color:var(--text-primary); font-weight:500;">450K <i class="fa-solid fa-minus" style="font-size:10px; color:var(--text-tertiary);"></i></td>
+                                        <td style="padding:12px 16px;"><span class="status-badge" style="background:#f1f5f9; color:var(--text-secondary);">Pantau Dulu</span></td>
+                                        <td style="padding:12px 24px; text-align:right;">
+                                            <button class="btn btn-outline" style="font-size:11px; padding:4px 12px; height:auto;">Lihat Data</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 10. OMNICHANNEL INBOX -->
+                <section id="view-inbox" class="view-section">
+                    <div style="margin-bottom: 24px; display:flex; justify-content:space-between; align-items:flex-end;">
+                        <div>
+                            <h2 style="font-size:20px; font-weight:600;">Omnichannel Inbox (Auto-Reply AI)</h2>
+                            <p style="font-size:13px; color:var(--text-tertiary); margin-top:4px;">AI otomatis membalas DM & komentar berdasarkan Knowledge Base (Data Produk).</p>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            <span style="font-size:12px; font-weight:600; color:var(--text-secondary);">AI Auto-Reply Master:</span>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="card" style="box-shadow:0 4px 12px rgba(0,0,0,0.05); border:1px solid var(--border-light); border-radius:8px; overflow:hidden;">
+                        <!-- Filter Bar -->
+                        <div style="padding:16px 24px; border-bottom:1px solid var(--border-light); display:flex; justify-content:space-between; align-items:center; background:#fff;">
+                            <div style="display:flex; gap:12px;">
+                                <select class="form-control" style="width:130px; font-size:12px; height:32px; padding:0 12px;"><option>Platform</option><option>IG DM</option><option>TikTok Chat</option></select>
+                                <select class="form-control" style="width:120px; font-size:12px; height:32px; padding:0 12px;"><option>Status AI</option><option>Terbalas Otomatis</option><option>Butuh Manusia</option></select>
+                                <button class="btn btn-outline" style="height:32px; font-size:12px; padding:0 12px; color:var(--text-secondary);"><i class="fa-solid fa-sliders"></i> Semua Filter</button>
+                            </div>
+                            <div style="display:flex; gap:8px;">
+                                <button class="btn btn-outline" style="height:32px; width:32px; padding:0; display:flex; align-items:center; justify-content:center; color:var(--text-secondary);"><i class="fa-solid fa-check-double"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive" style="background:#fff;">
+                            <table class="table" style="width:100%; border-collapse:collapse; text-align:left; font-size:13px;">
+                                <thead style="background:#f8fafc; color:var(--text-tertiary); font-size:11px; text-transform:uppercase; letter-spacing:0.5px;">
+                                    <tr>
+                                        <th style="padding:12px 24px; border-bottom:1px solid var(--border-light); width:40px;"><input type="checkbox"></th>
+                                        <th style="padding:12px 16px; border-bottom:1px solid var(--border-light); font-weight:600;">PELANGGAN</th>
+                                        <th style="padding:12px 16px; border-bottom:1px solid var(--border-light); font-weight:600;">PESAN TERAKHIR</th>
+                                        <th style="padding:12px 16px; border-bottom:1px solid var(--border-light); font-weight:600;">TINDAKAN AI</th>
+                                        <th style="padding:12px 16px; border-bottom:1px solid var(--border-light); font-weight:600;">WAKTU</th>
+                                        <th style="padding:12px 24px; border-bottom:1px solid var(--border-light); font-weight:600; text-align:right;">AKSI</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="border-bottom:1px solid var(--border-light); background:#f0fdf4;">
+                                        <td style="padding:12px 24px;"><input type="checkbox"></td>
+                                        <td style="padding:12px 16px; display:flex; align-items:center; gap:12px;">
+                                            <div style="width:32px; height:32px; background:#3b82f6; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:bold; font-size:14px;">B</div>
+                                            <div>
+                                                <strong style="color:var(--text-primary); font-weight:600; display:block;">Budi Santoso</strong>
+                                                <span style="color:var(--text-tertiary); font-size:11px;"><i class="fa-brands fa-instagram" style="color:#e11d48;"></i> Instagram DM</span>
+                                            </div>
+                                        </td>
+                                        <td style="padding:12px 16px; color:var(--text-secondary); max-width:250px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">"Min, mau tanya kalau biaya bikin website company profile (React.js) berapa ya?"</td>
+                                        <td style="padding:12px 16px;"><span class="status-badge badge-done" style="background:#dcfce7; color:#166534;"><i class="fa-solid fa-robot"></i> TERBALAS (PRICING AI)</span></td>
+                                        <td style="padding:12px 16px; color:var(--text-tertiary);">2 mnt lalu</td>
+                                        <td style="padding:12px 24px; text-align:right;">
+                                            <button class="btn btn-outline" style="font-size:11px; padding:4px 12px; height:auto;">Lihat Chat</button>
+                                        </td>
+                                    </tr>
+                                    <tr style="border-bottom:1px solid var(--border-light);">
+                                        <td style="padding:12px 24px;"><input type="checkbox"></td>
+                                        <td style="padding:12px 16px; display:flex; align-items:center; gap:12px;">
+                                            <div style="width:32px; height:32px; background:#10b981; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:bold; font-size:14px;">S</div>
+                                            <div>
+                                                <strong style="color:var(--text-primary); font-weight:600; display:block;">Siska Media</strong>
+                                                <span style="color:var(--text-tertiary); font-size:11px;"><i class="fa-brands fa-tiktok"></i> TikTok Comment</span>
+                                            </div>
+                                        </td>
+                                        <td style="padding:12px 16px; color:var(--text-secondary); max-width:250px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">"Kak, kalo bikin ERP custom untuk pabrik lebih bagus pakai Laravel atau Node.js?"</td>
+                                        <td style="padding:12px 16px;"><span class="status-badge badge-review" style="background:#fee2e2; color:#b91c1c;"><i class="fa-solid fa-user-tie"></i> BUTUH TIM TEKNIS</span></td>
+                                        <td style="padding:12px 16px; color:var(--text-tertiary);">15 mnt lalu</td>
+                                        <td style="padding:12px 24px; text-align:right;">
+                                            <button class="btn btn-primary" style="font-size:11px; padding:4px 12px; height:auto;">Balas Manual</button>
+                                        </td>
+                                    </tr>
+                                    <tr style="border-bottom:1px solid var(--border-light); background:#f0fdf4;">
+                                        <td style="padding:12px 24px;"><input type="checkbox"></td>
+                                        <td style="padding:12px 16px; display:flex; align-items:center; gap:12px;">
+                                            <div style="width:32px; height:32px; background:#8b5cf6; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:bold; font-size:14px;">A</div>
+                                            <div>
+                                                <strong style="color:var(--text-primary); font-weight:600; display:block;">Agus Setiawan</strong>
+                                                <span style="color:var(--text-tertiary); font-size:11px;"><i class="fa-brands fa-instagram" style="color:#e11d48;"></i> Instagram DM</span>
+                                            </div>
+                                        </td>
+                                        <td style="padding:12px 16px; color:var(--text-secondary); max-width:250px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">"Wah makasih tutorial deploy servernya min, sangat membantu project aplikasi saya!"</td>
+                                        <td style="padding:12px 16px;"><span class="status-badge badge-done" style="background:#dcfce7; color:#166534;"><i class="fa-solid fa-robot"></i> TERBALAS (PRICING AI)</span></td>
+                                        <td style="padding:12px 16px; color:var(--text-tertiary);">1 jam lalu</td>
+                                        <td style="padding:12px 24px; text-align:right;">
+                                            <button class="btn btn-outline" style="font-size:11px; padding:4px 12px; height:auto;">Lihat Chat</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 11. CONTENT HISTORY -->
+                <section id="view-content-history" class="view-section">
+                    
+                    <!-- 1. LIST VIEW -->
+                    <div id="history-list-view">
+                        <div style="margin-bottom: 24px; display:flex; justify-content:space-between; align-items:flex-end;">
+                            <div>
+                                <h2 style="font-size:20px; font-weight:600;">Riwayat Konten & Arsip</h2>
+                                <p style="font-size:13px; color:var(--text-tertiary); margin-top:4px;">Arsip seluruh video dan carousel yang telah berhasil dipublikasikan.</p>
+                            </div>
+                            <button class="btn btn-primary" style="font-size:13px; padding:8px 16px;"><i class="fa-solid fa-plus"></i> Tambah Manual</button>
+                        </div>
+                        
+                        <div class="card" style="box-shadow:0 4px 12px rgba(0,0,0,0.05); border:1px solid var(--border-light); border-radius:8px; overflow:hidden;">
+                            
+                            <!-- Filter Bar -->
+                            <div style="padding:16px 24px; border-bottom:1px solid var(--border-light); display:flex; justify-content:space-between; align-items:center; background:#fff;">
+                                <div style="display:flex; gap:12px;">
+                                    <select class="form-control" style="width:130px; font-size:12px; height:32px; padding:0 12px;"><option>Platform</option><option>Instagram</option><option>TikTok</option></select>
+                                    <select class="form-control" style="width:120px; font-size:12px; height:32px; padding:0 12px;"><option>Format</option><option>Video</option><option>Carousel</option></select>
+                                    <select class="form-control" style="width:120px; font-size:12px; height:32px; padding:0 12px;"><option>Bulan Ini</option><option>Bulan Lalu</option></select>
+                                    <button class="btn btn-outline" style="height:32px; font-size:12px; padding:0 12px; color:var(--text-secondary);"><i class="fa-solid fa-sliders"></i> Semua Filter</button>
+                                </div>
+                                <div style="display:flex; gap:8px;">
+                                    <button class="btn btn-outline" style="height:32px; width:32px; padding:0; display:flex; align-items:center; justify-content:center; color:var(--text-secondary);"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn btn-outline" style="height:32px; width:32px; padding:0; display:flex; align-items:center; justify-content:center; color:var(--status-danger);"><i class="fa-regular fa-trash-can"></i></button>
+                                </div>
+                            </div>
+
+                            <!-- Table -->
+                            <div class="table-responsive" style="background:#fff;">
+                                <table class="table" style="cursor:pointer; width:100%; border-collapse:collapse; text-align:left; font-size:13px;">
+                                    <thead style="background:#f8fafc; color:var(--text-tertiary); font-size:11px; text-transform:uppercase; letter-spacing:0.5px;">
+                                        <tr>
+                                            <th style="padding:12px 24px; border-bottom:1px solid var(--border-light); width:40px;"><input type="checkbox"></th>
+                                            <th style="padding:12px 16px; border-bottom:1px solid var(--border-light); font-weight:600;">ID</th>
+                                            <th style="padding:12px 16px; border-bottom:1px solid var(--border-light); font-weight:600;">KONTEN</th>
+                                            <th style="padding:12px 16px; border-bottom:1px solid var(--border-light); font-weight:600;">PLATFORM</th>
+                                            <th style="padding:12px 16px; border-bottom:1px solid var(--border-light); font-weight:600;">VIEWS</th>
+                                            <th style="padding:12px 16px; border-bottom:1px solid var(--border-light); font-weight:600;">ENGAGEMENT</th>
+                                            <th style="padding:12px 16px; border-bottom:1px solid var(--border-light); font-weight:600;">STATUS</th>
+                                            <th style="padding:12px 24px; border-bottom:1px solid var(--border-light); font-weight:600; text-align:right;">AKSI</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr onclick="document.getElementById('history-list-view').style.display='none'; document.getElementById('history-detail-view').style.display='block';" onmouseover="this.style.background='#f1f5f9';" onmouseout="this.style.background='transparent';" style="border-bottom:1px solid var(--border-light); transition:0.1s;">
+                                            <td style="padding:12px 24px;" onclick="event.stopPropagation();"><input type="checkbox"></td>
+                                            <td style="padding:12px 16px; color:var(--text-secondary);">#447</td>
+                                            <td style="padding:12px 16px; display:flex; align-items:center; gap:12px;">
+                                                <div style="width:32px; height:32px; background:linear-gradient(135deg, var(--brand-primary), #60a5fa); border-radius:4px; flex-shrink:0;"></div>
+                                                <div>
+                                                    <strong style="color:var(--text-primary); font-weight:600; display:block;">Kenapa Next.js? (Tutorial)</strong>
+                                                    <span style="color:var(--text-tertiary); font-size:11px;">Oleh Asta Marketing</span>
+                                                </div>
+                                            </td>
+                                            <td style="padding:12px 16px; color:var(--text-secondary);"><i class="fa-brands fa-instagram" style="color:#e11d48; margin-right:4px;"></i> Instagram</td>
+                                            <td style="padding:12px 16px; color:var(--text-primary); font-weight:500;">12.4K</td>
+                                            <td style="padding:12px 16px; color:var(--status-success); font-weight:600;">9.3% <i class="fa-solid fa-arrow-trend-up" style="font-size:10px;"></i></td>
+                                            <td style="padding:12px 16px;"><span class="status-badge badge-done" style="background:#e0e7ff; color:#4338ca;">PUBLISHED</span></td>
+                                            <td style="padding:12px 24px; text-align:right;" onclick="event.stopPropagation();">
+                                                <div style="display:flex; gap:12px; justify-content:flex-end; color:var(--text-tertiary);">
+                                                    <i class="fa-solid fa-chart-line" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                    <i class="fa-solid fa-arrow-up-right-from-square" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                    <i class="fa-solid fa-ellipsis" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr onclick="document.getElementById('history-list-view').style.display='none'; document.getElementById('history-detail-view').style.display='block';" onmouseover="this.style.background='#f1f5f9';" onmouseout="this.style.background='transparent';" style="border-bottom:1px solid var(--border-light); transition:0.1s;">
+                                            <td style="padding:12px 24px;" onclick="event.stopPropagation();"><input type="checkbox"></td>
+                                            <td style="padding:12px 16px; color:var(--text-secondary);">#877</td>
+                                            <td style="padding:12px 16px; display:flex; align-items:center; gap:12px;">
+                                                <div style="width:32px; height:32px; background:linear-gradient(135deg, #0f172a, #334155); border-radius:4px; flex-shrink:0;"></div>
+                                                <div>
+                                                    <strong style="color:var(--text-primary); font-weight:600; display:block;">React Crash Course 2026</strong>
+                                                    <span style="color:var(--text-tertiary); font-size:11px;">Oleh Asta Marketing</span>
+                                                </div>
+                                            </td>
+                                            <td style="padding:12px 16px; color:var(--text-secondary);"><i class="fa-brands fa-tiktok" style="color:#000; margin-right:4px;"></i> TikTok</td>
+                                            <td style="padding:12px 16px; color:var(--text-primary); font-weight:500;">8.2K</td>
+                                            <td style="padding:12px 16px; color:var(--text-secondary); font-weight:600;">4.5% <i class="fa-solid fa-minus" style="font-size:10px;"></i></td>
+                                            <td style="padding:12px 16px;"><span class="status-badge badge-done" style="background:#e0e7ff; color:#4338ca;">PUBLISHED</span></td>
+                                            <td style="padding:12px 24px; text-align:right;" onclick="event.stopPropagation();">
+                                                <div style="display:flex; gap:12px; justify-content:flex-end; color:var(--text-tertiary);">
+                                                    <i class="fa-solid fa-chart-line" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                    <i class="fa-solid fa-arrow-up-right-from-square" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                    <i class="fa-solid fa-ellipsis" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr onclick="document.getElementById('history-list-view').style.display='none'; document.getElementById('history-detail-view').style.display='block';" onmouseover="this.style.background='#f1f5f9';" onmouseout="this.style.background='transparent';" style="border-bottom:1px solid var(--border-light); transition:0.1s;">
+                                            <td style="padding:12px 24px;" onclick="event.stopPropagation();"><input type="checkbox"></td>
+                                            <td style="padding:12px 16px; color:var(--text-secondary);">#556</td>
+                                            <td style="padding:12px 16px; display:flex; align-items:center; gap:12px;">
+                                                <div style="width:32px; height:32px; background:linear-gradient(135deg, #10b981, #34d399); border-radius:4px; flex-shrink:0;"></div>
+                                                <div>
+                                                    <strong style="color:var(--text-primary); font-weight:600; display:block;">Panduan SEO 2026</strong>
+                                                    <span style="color:var(--text-tertiary); font-size:11px;">Oleh Asta Marketing</span>
+                                                </div>
+                                            </td>
+                                            <td style="padding:12px 16px; color:var(--text-secondary);"><i class="fa-brands fa-wordpress" style="color:#2563eb; margin-right:4px;"></i> Blog CMS</td>
+                                            <td style="padding:12px 16px; color:var(--text-primary); font-weight:500;">1.2K</td>
+                                            <td style="padding:12px 16px; color:var(--status-success); font-weight:600;">2.1% <i class="fa-solid fa-arrow-trend-up" style="font-size:10px;"></i></td>
+                                            <td style="padding:12px 16px;"><span class="status-badge badge-done" style="background:#e0e7ff; color:#4338ca;">PUBLISHED</span></td>
+                                            <td style="padding:12px 24px; text-align:right;" onclick="event.stopPropagation();">
+                                                <div style="display:flex; gap:12px; justify-content:flex-end; color:var(--text-tertiary);">
+                                                    <i class="fa-solid fa-chart-line" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                    <i class="fa-solid fa-arrow-up-right-from-square" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                    <i class="fa-solid fa-ellipsis" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr onclick="document.getElementById('history-list-view').style.display='none'; document.getElementById('history-detail-view').style.display='block';" onmouseover="this.style.background='#f1f5f9';" onmouseout="this.style.background='transparent';" style="border-bottom:1px solid var(--border-light); transition:0.1s;">
+                                            <td style="padding:12px 24px;" onclick="event.stopPropagation();"><input type="checkbox"></td>
+                                            <td style="padding:12px 16px; color:var(--text-secondary);">#432</td>
+                                            <td style="padding:12px 16px; display:flex; align-items:center; gap:12px;">
+                                                <div style="width:32px; height:32px; background:linear-gradient(135deg, #f59e0b, #fbbf24); border-radius:4px; flex-shrink:0;"></div>
+                                                <div>
+                                                    <strong style="color:var(--text-primary); font-weight:600; display:block;">A Day in the Life: Software Engineer</strong>
+                                                    <span style="color:var(--text-tertiary); font-size:11px;">Oleh Asta Marketing</span>
+                                                </div>
+                                            </td>
+                                            <td style="padding:12px 16px; color:var(--text-secondary);"><i class="fa-brands fa-instagram" style="color:#e11d48; margin-right:4px;"></i> Instagram</td>
+                                            <td style="padding:12px 16px; color:var(--text-primary); font-weight:500;">15.6K</td>
+                                            <td style="padding:12px 16px; color:var(--status-success); font-weight:600;">12.4% <i class="fa-solid fa-arrow-trend-up" style="font-size:10px;"></i></td>
+                                            <td style="padding:12px 16px;"><span class="status-badge badge-done" style="background:#e0e7ff; color:#4338ca;">PUBLISHED</span></td>
+                                            <td style="padding:12px 24px; text-align:right;" onclick="event.stopPropagation();">
+                                                <div style="display:flex; gap:12px; justify-content:flex-end; color:var(--text-tertiary);">
+                                                    <i class="fa-solid fa-chart-line" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                    <i class="fa-solid fa-arrow-up-right-from-square" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                    <i class="fa-solid fa-ellipsis" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr onclick="document.getElementById('history-list-view').style.display='none'; document.getElementById('history-detail-view').style.display='block';" onmouseover="this.style.background='#f1f5f9';" onmouseout="this.style.background='transparent';" style="border-bottom:1px solid var(--border-light); transition:0.1s;">
+                                            <td style="padding:12px 24px;" onclick="event.stopPropagation();"><input type="checkbox"></td>
+                                            <td style="padding:12px 16px; color:var(--text-secondary);">#536</td>
+                                            <td style="padding:12px 16px; display:flex; align-items:center; gap:12px;">
+                                                <div style="width:32px; height:32px; background:linear-gradient(135deg, #8b5cf6, #a78bfa); border-radius:4px; flex-shrink:0;"></div>
+                                                <div>
+                                                    <strong style="color:var(--text-primary); font-weight:600; display:block;">Tips Ngoding Malam</strong>
+                                                    <span style="color:var(--text-tertiary); font-size:11px;">Oleh Asta Marketing</span>
+                                                </div>
+                                            </td>
+                                            <td style="padding:12px 16px; color:var(--text-secondary);"><i class="fa-brands fa-tiktok" style="color:#000; margin-right:4px;"></i> TikTok</td>
+                                            <td style="padding:12px 16px; color:var(--text-primary); font-weight:500;">24.0K</td>
+                                            <td style="padding:12px 16px; color:var(--status-success); font-weight:600;">18.2% <i class="fa-solid fa-arrow-trend-up" style="font-size:10px;"></i></td>
+                                            <td style="padding:12px 16px;"><span class="status-badge badge-done" style="background:#e0e7ff; color:#4338ca;">PUBLISHED</span></td>
+                                            <td style="padding:12px 24px; text-align:right;" onclick="event.stopPropagation();">
+                                                <div style="display:flex; gap:12px; justify-content:flex-end; color:var(--text-tertiary);">
+                                                    <i class="fa-solid fa-chart-line" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                    <i class="fa-solid fa-arrow-up-right-from-square" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                    <i class="fa-solid fa-ellipsis" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr onclick="document.getElementById('history-list-view').style.display='none'; document.getElementById('history-detail-view').style.display='block';" onmouseover="this.style.background='#f1f5f9';" onmouseout="this.style.background='transparent';" style="border-bottom:1px solid var(--border-light); transition:0.1s;">
+                                            <td style="padding:12px 24px;" onclick="event.stopPropagation();"><input type="checkbox"></td>
+                                            <td style="padding:12px 16px; color:var(--text-secondary);">#703</td>
+                                            <td style="padding:12px 16px; display:flex; align-items:center; gap:12px;">
+                                                <div style="width:32px; height:32px; background:linear-gradient(135deg, #ec4899, #f472b6); border-radius:4px; flex-shrink:0;"></div>
+                                                <div>
+                                                    <strong style="color:var(--text-primary); font-weight:600; display:block;">Promo Jasa Pembuatan Aplikasi</strong>
+                                                    <span style="color:var(--text-tertiary); font-size:11px;">Oleh Asta Marketing</span>
+                                                </div>
+                                            </td>
+                                            <td style="padding:12px 16px; color:var(--text-secondary);"><i class="fa-brands fa-facebook" style="color:#1877f2; margin-right:4px;"></i> Meta Ads</td>
+                                            <td style="padding:12px 16px; color:var(--text-primary); font-weight:500;">45.1K</td>
+                                            <td style="padding:12px 16px; color:var(--status-danger); font-weight:600;">5.0% <i class="fa-solid fa-arrow-trend-down" style="font-size:10px;"></i></td>
+                                            <td style="padding:12px 16px;"><span class="status-badge badge-done" style="background:#e0e7ff; color:#4338ca;">PUBLISHED</span></td>
+                                            <td style="padding:12px 24px; text-align:right;" onclick="event.stopPropagation();">
+                                                <div style="display:flex; gap:12px; justify-content:flex-end; color:var(--text-tertiary);">
+                                                    <i class="fa-solid fa-chart-line" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                    <i class="fa-solid fa-arrow-up-right-from-square" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                    <i class="fa-solid fa-ellipsis" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr onclick="document.getElementById('history-list-view').style.display='none'; document.getElementById('history-detail-view').style.display='block';" onmouseover="this.style.background='#f1f5f9';" onmouseout="this.style.background='transparent';" style="border-bottom:1px solid var(--border-light); transition:0.1s;">
+                                            <td style="padding:12px 24px;" onclick="event.stopPropagation();"><input type="checkbox"></td>
+                                            <td style="padding:12px 16px; color:var(--text-secondary);">#922</td>
+                                            <td style="padding:12px 16px; display:flex; align-items:center; gap:12px;">
+                                                <div style="width:32px; height:32px; background:linear-gradient(135deg, #14b8a6, #2dd4bf); border-radius:4px; flex-shrink:0;"></div>
+                                                <div>
+                                                    <strong style="color:var(--text-primary); font-weight:600; display:block;">Cara Deploy ke Vercel</strong>
+                                                    <span style="color:var(--text-tertiary); font-size:11px;">Oleh Asta Marketing</span>
+                                                </div>
+                                            </td>
+                                            <td style="padding:12px 16px; color:var(--text-secondary);"><i class="fa-brands fa-instagram" style="color:#e11d48; margin-right:4px;"></i> Instagram</td>
+                                            <td style="padding:12px 16px; color:var(--text-primary); font-weight:500;">5.5K</td>
+                                            <td style="padding:12px 16px; color:var(--status-success); font-weight:600;">8.7% <i class="fa-solid fa-arrow-trend-up" style="font-size:10px;"></i></td>
+                                            <td style="padding:12px 16px;"><span class="status-badge badge-done" style="background:#e0e7ff; color:#4338ca;">PUBLISHED</span></td>
+                                            <td style="padding:12px 24px; text-align:right;" onclick="event.stopPropagation();">
+                                                <div style="display:flex; gap:12px; justify-content:flex-end; color:var(--text-tertiary);">
+                                                    <i class="fa-solid fa-chart-line" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                    <i class="fa-solid fa-arrow-up-right-from-square" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                    <i class="fa-solid fa-ellipsis" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr onclick="document.getElementById('history-list-view').style.display='none'; document.getElementById('history-detail-view').style.display='block';" onmouseover="this.style.background='#f1f5f9';" onmouseout="this.style.background='transparent';" style="border-bottom:1px solid var(--border-light); transition:0.1s;">
+                                            <td style="padding:12px 24px;" onclick="event.stopPropagation();"><input type="checkbox"></td>
+                                            <td style="padding:12px 16px; color:var(--text-secondary);">#540</td>
+                                            <td style="padding:12px 16px; display:flex; align-items:center; gap:12px;">
+                                                <div style="width:32px; height:32px; background:linear-gradient(135deg, #f43f5e, #fb7185); border-radius:4px; flex-shrink:0;"></div>
+                                                <div>
+                                                    <strong style="color:var(--text-primary); font-weight:600; display:block;">Tutorial Python Pemula</strong>
+                                                    <span style="color:var(--text-tertiary); font-size:11px;">Oleh Asta Marketing</span>
+                                                </div>
+                                            </td>
+                                            <td style="padding:12px 16px; color:var(--text-secondary);"><i class="fa-brands fa-tiktok" style="color:#000; margin-right:4px;"></i> TikTok</td>
+                                            <td style="padding:12px 16px; color:var(--text-primary); font-weight:500;">30.1K</td>
+                                            <td style="padding:12px 16px; color:var(--status-success); font-weight:600;">15.3% <i class="fa-solid fa-arrow-trend-up" style="font-size:10px;"></i></td>
+                                            <td style="padding:12px 16px;"><span class="status-badge badge-done" style="background:#e0e7ff; color:#4338ca;">PUBLISHED</span></td>
+                                            <td style="padding:12px 24px; text-align:right;" onclick="event.stopPropagation();">
+                                                <div style="display:flex; gap:12px; justify-content:flex-end; color:var(--text-tertiary);">
+                                                    <i class="fa-solid fa-chart-line" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                    <i class="fa-solid fa-arrow-up-right-from-square" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                    <i class="fa-solid fa-ellipsis" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr onclick="document.getElementById('history-list-view').style.display='none'; document.getElementById('history-detail-view').style.display='block';" onmouseover="this.style.background='#f1f5f9';" onmouseout="this.style.background='transparent';" style="border-bottom:1px solid var(--border-light); transition:0.1s;">
+                                            <td style="padding:12px 24px;" onclick="event.stopPropagation();"><input type="checkbox"></td>
+                                            <td style="padding:12px 16px; color:var(--text-secondary);">#426</td>
+                                            <td style="padding:12px 16px; display:flex; align-items:center; gap:12px;">
+                                                <div style="width:32px; height:32px; background:linear-gradient(135deg, #6366f1, #818cf8); border-radius:4px; flex-shrink:0;"></div>
+                                                <div>
+                                                    <strong style="color:var(--text-primary); font-weight:600; display:block;">Memilih Framework Frontend</strong>
+                                                    <span style="color:var(--text-tertiary); font-size:11px;">Oleh Asta Marketing</span>
+                                                </div>
+                                            </td>
+                                            <td style="padding:12px 16px; color:var(--text-secondary);"><i class="fa-brands fa-wordpress" style="color:#2563eb; margin-right:4px;"></i> Blog CMS</td>
+                                            <td style="padding:12px 16px; color:var(--text-primary); font-weight:500;">3.4K</td>
+                                            <td style="padding:12px 16px; color:var(--text-secondary); font-weight:600;">1.5% <i class="fa-solid fa-minus" style="font-size:10px;"></i></td>
+                                            <td style="padding:12px 16px;"><span class="status-badge badge-done" style="background:#e0e7ff; color:#4338ca;">PUBLISHED</span></td>
+                                            <td style="padding:12px 24px; text-align:right;" onclick="event.stopPropagation();">
+                                                <div style="display:flex; gap:12px; justify-content:flex-end; color:var(--text-tertiary);">
+                                                    <i class="fa-solid fa-chart-line" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                    <i class="fa-solid fa-arrow-up-right-from-square" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                    <i class="fa-solid fa-ellipsis" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr onclick="document.getElementById('history-list-view').style.display='none'; document.getElementById('history-detail-view').style.display='block';" onmouseover="this.style.background='#f1f5f9';" onmouseout="this.style.background='transparent';" style="border-bottom:1px solid var(--border-light); transition:0.1s;">
+                                            <td style="padding:12px 24px;" onclick="event.stopPropagation();"><input type="checkbox"></td>
+                                            <td style="padding:12px 16px; color:var(--text-secondary);">#883</td>
+                                            <td style="padding:12px 16px; display:flex; align-items:center; gap:12px;">
+                                                <div style="width:32px; height:32px; background:linear-gradient(135deg, #d946ef, #e879f9); border-radius:4px; flex-shrink:0;"></div>
+                                                <div>
+                                                    <strong style="color:var(--text-primary); font-weight:600; display:block;">Bikin Web Custom vs Template WP</strong>
+                                                    <span style="color:var(--text-tertiary); font-size:11px;">Oleh Asta Marketing</span>
+                                                </div>
+                                            </td>
+                                            <td style="padding:12px 16px; color:var(--text-secondary);"><i class="fa-brands fa-instagram" style="color:#e11d48; margin-right:4px;"></i> Instagram</td>
+                                            <td style="padding:12px 16px; color:var(--text-primary); font-weight:500;">18.2K</td>
+                                            <td style="padding:12px 16px; color:var(--status-success); font-weight:600;">11.1% <i class="fa-solid fa-arrow-trend-up" style="font-size:10px;"></i></td>
+                                            <td style="padding:12px 16px;"><span class="status-badge badge-done" style="background:#e0e7ff; color:#4338ca;">PUBLISHED</span></td>
+                                            <td style="padding:12px 24px; text-align:right;" onclick="event.stopPropagation();">
+                                                <div style="display:flex; gap:12px; justify-content:flex-end; color:var(--text-tertiary);">
+                                                    <i class="fa-solid fa-chart-line" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                    <i class="fa-solid fa-arrow-up-right-from-square" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                    <i class="fa-solid fa-ellipsis" style="cursor:pointer;" onmouseover="this.style.color='var(--brand-primary)';" onmouseout="this.style.color='var(--text-tertiary)';"></i>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <!-- Pagination -->
+                            <div style="padding:12px 24px; background:#fff; border-top:1px solid var(--border-light); display:flex; justify-content:space-between; align-items:center; font-size:12px; color:var(--text-secondary);">
+                                <div>1 to 10 of 2000</div>
+                                <div style="display:flex; align-items:center; gap:16px;">
+                                    <span><i class="fa-solid fa-angle-left" style="color:var(--text-tertiary); cursor:pointer;"></i> <span style="margin:0 8px;">Page 1 of 200</span> <i class="fa-solid fa-angle-right" style="cursor:pointer;"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. DETAIL VIEW (Hidden by default) -->
+                    <div id="history-detail-view" style="display:none;">
+                        <div style="margin-bottom: 24px; display:flex; justify-content:space-between; align-items:center;">
+                            <div>
+                                <button onclick="document.getElementById('history-detail-view').style.display='none'; document.getElementById('history-list-view').style.display='block';" class="btn" style="background:transparent; border:1px solid var(--border-dark); padding:6px 12px; font-size:12px; margin-bottom:12px; cursor:pointer;"><i class="fa-solid fa-arrow-left"></i> Kembali ke Daftar</button>
+                                <h2 style="font-size:20px;">Detail Performa Konten</h2>
+                                <p style="font-size:13px; color:var(--text-tertiary);">Analitik mendalam untuk "Kenapa Next.js? (Tutorial)"</p>
+                            </div>
+                            <a href="https://instagram.com" target="_blank" class="btn btn-primary" style="text-decoration:none;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Lihat Postingan Asli</a>
+                        </div>
+                        
+                        <div class="grid-2">
+                            <!-- Left: Preview -->
+                            <div class="card">
+                                <div class="card-header"><div class="card-title">Preview Visual</div></div>
+                                <div class="card-body p-0">
+                                    <div style="background:#f8fafc; padding:40px; text-align:center;">
+                                        <div style="width:100%; aspect-ratio:1/1; background:linear-gradient(135deg, var(--brand-primary), #60a5fa); border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center; color:white; font-size:28px; font-weight:700; box-shadow:var(--shadow-soft); max-width:400px; margin:0 auto;">
+                                            Kenapa Next.js?
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Right: Stats & Comments -->
+                            <div style="display:flex; flex-direction:column; gap:24px;">
+                                <div class="card">
+                                    <div class="card-header"><div class="card-title">Metrik Engagement (Live)</div></div>
+                                    <div class="card-body">
+                                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                                            <div style="background:#f1f5f9; padding:20px; border-radius:var(--radius-md); text-align:center;">
+                                                <i class="fa-solid fa-eye" style="color:var(--text-tertiary); margin-bottom:8px; font-size:20px;"></i>
+                                                <div style="font-size:24px; font-weight:700; color:var(--text-primary); letter-spacing:-0.5px;">12.4K</div>
+                                                <div style="font-size:12px; font-weight:500; color:var(--text-secondary); margin-top:4px;">Total Views</div>
+                                            </div>
+                                            <div style="background:#fef2f2; padding:20px; border-radius:var(--radius-md); text-align:center;">
+                                                <i class="fa-solid fa-heart" style="color:#e11d48; margin-bottom:8px; font-size:20px;"></i>
+                                                <div style="font-size:24px; font-weight:700; color:var(--text-primary); letter-spacing:-0.5px;">1,204</div>
+                                                <div style="font-size:12px; font-weight:500; color:#e11d48; margin-top:4px;">Likes</div>
+                                            </div>
+                                            <div style="background:#eff6ff; padding:20px; border-radius:var(--radius-md); text-align:center;">
+                                                <i class="fa-solid fa-comment" style="color:var(--brand-primary); margin-bottom:8px; font-size:20px;"></i>
+                                                <div style="font-size:24px; font-weight:700; color:var(--text-primary); letter-spacing:-0.5px;">89</div>
+                                                <div style="font-size:12px; font-weight:500; color:var(--brand-primary); margin-top:4px;">Komentar</div>
+                                            </div>
+                                            <div style="background:#fefce8; padding:20px; border-radius:var(--radius-md); text-align:center;">
+                                                <i class="fa-solid fa-bookmark" style="color:#ca8a04; margin-bottom:8px; font-size:20px;"></i>
+                                                <div style="font-size:24px; font-weight:700; color:var(--text-primary); letter-spacing:-0.5px;">342</div>
+                                                <div style="font-size:12px; font-weight:500; color:#ca8a04; margin-top:4px;">Saves</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header"><div class="card-title">Komentar Terbaru</div></div>
+                                    <div class="card-body">
+                                        <div style="padding-bottom:16px; border-bottom:1px solid var(--border-light); margin-bottom:16px;">
+                                            <strong style="color:var(--text-primary); font-size:13px;">@dev_anjay</strong>
+                                            <p style="font-size:13px; color:var(--text-secondary); margin-top:4px;">Wah gila sih Next.js 14 emang ngebut parah 🔥🔥</p>
+                                        </div>
+                                        <div>
+                                            <strong style="color:var(--text-primary); font-size:13px;">@react_noob</strong>
+                                            <p style="font-size:13px; color:var(--text-secondary); margin-top:4px;">Masih bingung bedanya sama Vite bang, bahas dong!</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Application Script -->
+    <script src="app.js"></script>
+</body>
+</html>
