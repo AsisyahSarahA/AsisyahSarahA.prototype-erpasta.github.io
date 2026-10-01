@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="space-y-6">
+
+    <!-- Header -->
+    <div class="flex items-center justify-between">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-800">Penagihan & Termin (Invoice AR)</h1>
+            <p class="text-sm text-gray-500 mt-1">Manajemen pemecahan tagihan berdasarkan milestone/termin proyek.</p>
+        </div>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 flex items-center gap-2">
+            <i class="fas fa-plus"></i> Buat Proyek & Termin Baru
+        </button>
+    </div>
+
+    <!-- Summary Bar -->
+    <div class="grid grid-cols-3 gap-4">
+        <div class="bg-green-50 border border-green-200 p-4 rounded-xl text-center">
+            <p class="text-xs text-green-600 font-medium">Total Lunas</p>
+            <p class="text-xl font-bold text-green-700 mt-1">Rp 24.000.000</p>
+        </div>
+        <div class="bg-yellow-50 border border-yellow-200 p-4 rounded-xl text-center">
+            <p class="text-xs text-yellow-600 font-medium">Menunggu Pembayaran</p>
+            <p class="text-xl font-bold text-yellow-700 mt-1">Rp 19.500.000</p>
+        </div>
+        <div class="bg-gray-50 border border-gray-200 p-4 rounded-xl text-center">
+            <p class="text-xs text-gray-500 font-medium">Draft (Belum Ditagih)</p>
+            <p class="text-xl font-bold text-gray-600 mt-1">Rp 16.500.000</p>
+        </div>
+    </div>
+
+    <!-- Search -->
+    <div class="relative">
+        <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+        <input type="text" placeholder="Cari nama proyek atau nomor invoice..." class="pl-9 pr-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-full bg-white">
+    </div>
+
+    <!-- Project Card 1 -->
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="p-5 border-b border-gray-100 flex items-center justify-between bg-gray-50">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 bg-blue-600 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-folder text-white text-sm"></i>
+                </div>
+                <div>
+                    <p class="font-bold text-gray-800">PROYEK: APLIKASI KASIR RS MEDIKA</p>
+                    <p class="text-xs text-gray-500">Total Nilai Kontrak: <span class="font-semibold text-gray-700">Rp 30.000.000</span></p>
+                </div>
+            </div>
+            <button class="text-sm border border-gray-300 text-gray-600 px-3 py-1.5 rounded-lg hover:bg-gray-100 flex items-center gap-2">
+                <i class="fas fa-plus text-xs"></i> Tambah Termin
+            </button>
+        </div>
+        <div class="divide-y divide-gray-50">
+            <!-- Termin 1 -->
+            <div class="px-5 py-4 flex items-center justify-between hover:bg-gray-50">
+                <div class="flex items-center gap-4">
+                    <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-700"><i class="fas fa-file-alt text-gray-400 mr-2"></i><span class="font-bold">Termin 1:</span> DP Awal (30%)</p>
+                        <p class="text-xs text-gray-400 mt-0.5">Jatuh Tempo: 01 Agu 2026 | Invoice: INV-2608-001</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6">
+                    <p class="font-semibold text-gray-700">Rp 9.000.000</p>
+                    <span class="status-lunas text-xs font-semibold px-2.5 py-1 rounded-full">✅ LUNAS</span>
+                </div>
+            </div>
+            <!-- Termin 2 -->
+            <div class="px-5 py-4 flex items-center justify-between hover:bg-gray-50">
+                <div class="flex items-center gap-4">
+                    <div class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-700"><i class="fas fa-file-alt text-gray-400 mr-2"></i><span class="font-bold">Termin 2:</span> UAT Selesai (40%)</p>
+                        <p class="text-xs text-gray-400 mt-0.5">Jatuh Tempo: 01 Okt 2026 | Invoice: INV-2610-002</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6">
+                    <p class="font-semibold text-gray-700">Rp 12.000.000</p>
+                    <div class="flex items-center gap-2">
+                        <span class="status-jatuh text-xs font-semibold px-2.5 py-1 rounded-full">🔴 JATUH TEMPO</span>
+                        <button class="text-xs bg-blue-600 text-white px-3 py-1.5 rounded-lg hover:bg-blue-700">Ingatkan Klien</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Termin 3 -->
+            <div class="px-5 py-4 flex items-center justify-between hover:bg-gray-50 opacity-60">
+                <div class="flex items-center gap-4">
+                    <div class="w-2 h-2 rounded-full bg-gray-300"></div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-700"><i class="fas fa-file-alt text-gray-400 mr-2"></i><span class="font-bold">Termin 3:</span> Pelunasan (30%)</p>
+                        <p class="text-xs text-gray-400 mt-0.5">Draft — Belum ditagih</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6">
+                    <p class="font-semibold text-gray-700">Rp 9.000.000</p>
+                    <div class="flex items-center gap-2">
+                        <span class="status-draft text-xs font-semibold px-2.5 py-1 rounded-full">⚪ DRAFT</span>
+                        <button class="text-xs border border-gray-300 text-gray-600 px-3 py-1.5 rounded-lg hover:bg-gray-100">Terbitkan Invoice</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Card 2 -->
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="p-5 border-b border-gray-100 flex items-center justify-between bg-gray-50">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 bg-purple-600 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-folder text-white text-sm"></i>
+                </div>
+                <div>
+                    <p class="font-bold text-gray-800">PROYEK: WEBSITE COMPANY PROFILE X</p>
+                    <p class="text-xs text-gray-500">Total Nilai Kontrak: <span class="font-semibold text-gray-700">Rp 15.000.000</span></p>
+                </div>
+            </div>
+            <button class="text-sm border border-gray-300 text-gray-600 px-3 py-1.5 rounded-lg hover:bg-gray-100 flex items-center gap-2">
+                <i class="fas fa-plus text-xs"></i> Tambah Termin
+            </button>
+        </div>
+        <div class="divide-y divide-gray-50">
+            <div class="px-5 py-4 flex items-center justify-between hover:bg-gray-50">
+                <div class="flex items-center gap-4">
+                    <div class="w-2 h-2 rounded-full bg-yellow-500"></div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-700"><i class="fas fa-file-alt text-gray-400 mr-2"></i><span class="font-bold">Termin 1:</span> DP Awal (50%)</p>
+                        <p class="text-xs text-gray-400 mt-0.5">Jatuh Tempo: 10 Okt 2026 | Invoice: INV-2610-003</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6">
+                    <p class="font-semibold text-gray-700">Rp 7.500.000</p>
+                    <span class="status-menunggu text-xs font-semibold px-2.5 py-1 rounded-full">🟡 MENUNGGU</span>
+                </div>
+            </div>
+            <div class="px-5 py-4 flex items-center justify-between hover:bg-gray-50 opacity-60">
+                <div class="flex items-center gap-4">
+                    <div class="w-2 h-2 rounded-full bg-gray-300"></div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-700"><i class="fas fa-file-alt text-gray-400 mr-2"></i><span class="font-bold">Termin 2:</span> Pelunasan (50%)</p>
+                        <p class="text-xs text-gray-400 mt-0.5">Draft — Belum ditagih</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6">
+                    <p class="font-semibold text-gray-700">Rp 7.500.000</p>
+                    <span class="status-draft text-xs font-semibold px-2.5 py-1 rounded-full">⚪ DRAFT</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

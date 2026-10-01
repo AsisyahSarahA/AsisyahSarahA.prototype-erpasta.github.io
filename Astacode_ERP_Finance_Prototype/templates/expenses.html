@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="bg-white rounded-lg shadow-sm border border-gray-100">
+    <div class="p-6 border-b border-gray-100">
+        <h3 class="text-lg font-bold text-gray-800">Ajukan Pengeluaran / Klaim (Split HPP vs OPEX)</h3>
+        <p class="text-sm text-gray-500">Upload struk di kiri, isi form di kanan.</p>
+    </div>
+    
+    <div class="flex flex-col md:flex-row h-full">
+        <!-- Kiri: Upload Struk -->
+        <div class="w-full md:w-1/2 p-6 bg-gray-50 border-r border-gray-200 flex flex-col items-center justify-center border-dashed border-2 m-4 rounded-lg">
+            <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-4"></i>
+            <p class="text-gray-500 font-medium">Drag & Drop foto struk di sini</p>
+            <button class="mt-4 px-4 py-2 bg-white border border-gray-300 rounded shadow-sm text-sm hover:bg-gray-50">Pilih File</button>
+        </div>
+        
+        <!-- Kanan: Form Input -->
+        <div class="w-full md:w-1/2 p-6">
+            <form class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Nama Pengeluaran</label>
+                    <input type="text" class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Contoh: Beli Domain RS Medika">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Nominal (Rp)</label>
+                    <input type="number" class="mt-1 w-full border border-gray-300 rounded-md p-2" placeholder="350000">
+                </div>
+                
+                <!-- TOGGLE HPP VS OPEX -->
+                <div class="p-4 bg-blue-50 rounded-lg border border-blue-100 mt-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="font-bold text-gray-800 text-sm">Bebankan ke Proyek Khusus?</p>
+                            <p class="text-xs text-gray-500">Jika diaktifkan, ini akan memotong laba proyek (HPP).</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="projectToggle" class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                        </label>
+                    </div>
+                    
+                    <!-- Dropdown Proyek (Sembunyi by default) -->
+                    <div id="projectDropdown" class="mt-4 hidden transition-all">
+                        <label class="block text-sm font-medium text-gray-700">Pilih Proyek</label>
+                        <select class="mt-1 w-full border border-gray-300 rounded-md p-2">
+                            <option value="">-- Pilih Proyek --</option>
+                            {% for p in projects %}
+                            <option value="{{ p.id }}">{{ p.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <button type="button" class="w-full mt-6 bg-gray-900 text-white py-2 rounded-md hover:bg-gray-800 font-medium">Submit Klaim</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // JS Logic untuk Toggle HPP vs OPEX
+    const toggle = document.getElementById('projectToggle');
+    const dropdown = document.getElementById('projectDropdown');
+    
+    toggle.addEventListener('change', function() {
+        if(this.checked) {
+            dropdown.classList.remove('hidden');
+        } else {
+            dropdown.classList.add('hidden');
+        }
+    });
+</script>
+{% endblock %}

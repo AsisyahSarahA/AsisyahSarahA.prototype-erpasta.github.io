@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astacode ERP — Finance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .nav-active { background-color: #1d4ed8; color: white !important; }
+        .status-lunas { background: #dcfce7; color: #15803d; }
+        .status-jatuh { background: #fee2e2; color: #b91c1c; }
+        .status-draft { background: #f3f4f6; color: #6b7280; }
+        .status-menunggu { background: #fef9c3; color: #92400e; }
+        .tinder-row { transition: all 0.2s; }
+        .tinder-row:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    </style>
+</head>
+<body class="bg-gray-50 flex h-screen overflow-hidden font-sans">
+
+    <!-- ======= SIDEBAR ======= -->
+    <aside class="w-64 bg-slate-900 text-white flex flex-col flex-shrink-0">
+        <div class="h-16 flex items-center px-6 border-b border-slate-700">
+            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-lg mr-3">A</div>
+            <span class="font-bold text-lg">Astacode ERP</span>
+        </div>
+
+        <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+            <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider px-3 mb-2">Modul Keuangan</p>
+
+            <a href="/" class="flex items-center px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white text-sm {% if request.path == '/' %}nav-active{% endif %}">
+                <i class="fas fa-chart-pie w-5 mr-3"></i> Dashboard
+            </a>
+
+            <!-- Pemasukan -->
+            <div>
+                <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider px-3 mt-4 mb-1">📥 Pemasukan (AR)</p>
+                <a href="/invoices" class="flex items-center px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white text-sm {% if request.path == '/invoices' %}nav-active{% endif %}">
+                    <i class="fas fa-file-invoice-dollar w-5 mr-3"></i> Invoice & Termin
+                </a>
+            </div>
+
+            <!-- Pengeluaran -->
+            <div>
+                <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider px-3 mt-4 mb-1">📤 Pengeluaran (AP)</p>
+                <a href="/expenses" class="flex items-center px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white text-sm {% if request.path == '/expenses' %}nav-active{% endif %}">
+                    <i class="fas fa-receipt w-5 mr-3"></i> Klaim & Struk (HPP/OPEX)
+                </a>
+                <a href="/payroll" class="flex items-center px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white text-sm {% if request.path == '/payroll' %}nav-active{% endif %}">
+                    <i class="fas fa-users w-5 mr-3"></i> Penggajian (Payroll)
+                </a>
+                <a href="/vendor" class="flex items-center px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white text-sm {% if request.path == '/vendor' %}nav-active{% endif %}">
+                    <i class="fas fa-handshake w-5 mr-3"></i> Tagihan Vendor/Freelancer
+                </a>
+            </div>
+
+            <!-- Kas & Bank -->
+            <div>
+                <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider px-3 mt-4 mb-1">🏦 Kas & Bank</p>
+                <a href="/accounts" class="flex items-center px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white text-sm {% if request.path == '/accounts' %}nav-active{% endif %}">
+                    <i class="fas fa-piggy-bank w-5 mr-3"></i> Daftar Rekening
+                </a>
+                <a href="/internal-transfer" class="flex items-center px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white text-sm {% if request.path == '/internal-transfer' %}nav-active{% endif %}">
+                    <i class="fas fa-exchange-alt w-5 mr-3"></i> Mutasi Internal
+                </a>
+                <a href="/reconciliation" class="flex items-center px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white text-sm {% if request.path == '/reconciliation' %}nav-active{% endif %}">
+                    <i class="fas fa-university w-5 mr-3"></i> Rekonsiliasi Bank
+                </a>
+            </div>
+
+            <!-- Buku Besar -->
+            <div>
+                <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider px-3 mt-4 mb-1">📓 Buku Besar</p>
+                <a href="/coa" class="flex items-center px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white text-sm">
+                    <i class="fas fa-list-ol w-5 mr-3"></i> Chart of Accounts
+                </a>
+                <a href="/journal" class="flex items-center px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white text-sm">
+                    <i class="fas fa-book w-5 mr-3"></i> Jurnal Umum
+                </a>
+            </div>
+
+            <!-- Laporan -->
+            <div>
+                <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider px-3 mt-4 mb-1">📈 Laporan</p>
+                <a href="/report-company" class="flex items-center px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white text-sm">
+                    <i class="fas fa-building w-5 mr-3"></i> Laba Rugi Perusahaan
+                </a>
+                <a href="/report-project" class="flex items-center px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white text-sm">
+                    <i class="fas fa-project-diagram w-5 mr-3"></i> Profitabilitas Proyek
+                </a>
+            </div>
+        </nav>
+
+        <!-- User profile footer -->
+        <div class="border-t border-slate-700 p-4 flex items-center gap-3">
+            <img src="https://ui-avatars.com/api/?name=Finance+Admin&background=1d4ed8&color=fff" class="w-9 h-9 rounded-full">
+            <div>
+                <p class="text-sm font-semibold text-white">Finance Admin</p>
+                <p class="text-xs text-slate-400">Astacode ERP</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ======= MAIN CONTENT ======= -->
+    <main class="flex-1 flex flex-col h-screen overflow-hidden">
+        <!-- Topbar -->
+        <header class="h-16 bg-white border-b flex items-center px-6 justify-between shadow-sm flex-shrink-0">
+            <div class="flex items-center gap-3">
+                <div class="relative">
+                    <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                    <input type="text" placeholder="Cari invoice, proyek, mutasi..." class="pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-72">
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <button class="relative p-2 text-gray-500 hover:bg-gray-100 rounded-lg">
+                    <i class="fas fa-bell"></i>
+                    <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                </button>
+                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 flex items-center gap-2">
+                    <i class="fas fa-plus"></i> Transaksi Baru
+                </button>
+            </div>
+        </header>
+
+        <!-- Page Content -->
+        <div class="flex-1 overflow-y-auto p-6 bg-gray-50">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+</body>
+</html>
