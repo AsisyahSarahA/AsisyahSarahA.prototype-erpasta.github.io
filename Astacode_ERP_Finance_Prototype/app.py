@@ -33,8 +33,11 @@ def payroll():
 
 @app.route('/vendor')
 def vendor():
-    return render_template('placeholder.html', title="Tagihan Vendor & Freelancer", icon="fas fa-handshake",
-                           desc="Pengelolaan pembayaran vendor dan freelancer yang dibebankan sebagai HPP proyek tertentu.")
+    return render_template('vendor.html', projects=projects)
+
+@app.route('/freelancer')
+def freelancer():
+    return render_template('freelancer.html', projects=projects)
 
 @app.route('/accounts')
 def accounts():

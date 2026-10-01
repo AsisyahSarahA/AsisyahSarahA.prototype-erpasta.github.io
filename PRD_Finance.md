@@ -19,7 +19,8 @@ Sistem ini memecahkan 3 masalah utama di lapangan:
   - Daftar Invoice (Penagihan Termin)
 - **📤 Pengeluaran (Accounts Payable & Expense)**
   - Klaim & Struk (Reimbursement operasional/proyek)
-  - Tagihan Vendor/Freelancer (Khusus biaya HPP proyek)
+  - Tagihan Vendor (Tagihan perusahaan/pihak ketiga: cloud, software, OPEX/HPP)
+  - Pembayaran Freelancer (Individu per proyek — **wajib dikaitkan ke Proyek, masuk HPP**)
   - Penggajian (Gaji tetap bulanan - OPEX)
 - **🏦 Kas & Bank**
   - Daftar Rekening & Saldo

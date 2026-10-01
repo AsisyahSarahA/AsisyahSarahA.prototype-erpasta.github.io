@@ -2,124 +2,149 @@
 {% block content %}
 <div class="space-y-6">
 
-    <!-- Page Title -->
-    <div>
-        <h1 class="text-2xl font-bold text-gray-800">Cash Flow Overview</h1>
-        <p class="text-sm text-gray-500 mt-1">Ringkasan posisi uang tunai, piutang, dan utang secara real-time.</p>
+    <!-- Page Header -->
+    <div class="flex items-center justify-between">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-800" style="letter-spacing:-0.3px;">Cash Flow Overview</h1>
+            <p class="text-sm text-gray-500 mt-1">Ringkasan posisi uang tunai, piutang, dan utang secara real-time.</p>
+        </div>
+        <div class="text-xs text-gray-400 flex items-center gap-1">
+            <i class="fas fa-clock"></i> Update terakhir: hari ini, 08:00 WIB
+        </div>
     </div>
 
     <!-- KPI Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5 relative overflow-hidden">
+            <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#2563eb,#7c3aed);"></div>
             <div class="flex items-center justify-between mb-3">
-                <p class="text-sm text-gray-500 font-medium">💳 Total Kas & Bank</p>
-                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                    <i class="fas fa-wallet text-blue-600"></i>
-                </div>
+                <span class="text-xs font-medium text-gray-500">💳 Total Kas & Bank</span>
+                <div class="w-9 h-9 bg-blue-50 rounded-lg flex items-center justify-center"><i class="fas fa-wallet text-blue-600 text-sm"></i></div>
             </div>
-            <h3 class="text-2xl font-bold text-gray-800">Rp 255.000.000</h3>
-            <p class="text-xs text-green-500 mt-2 flex items-center gap-1">
-                <i class="fas fa-arrow-up"></i> BCA, Mandiri, Kas Kecil
-            </p>
+            <div class="text-2xl font-bold text-gray-800" style="letter-spacing:-0.5px;" data-count="255000000" data-currency="true">Rp 0</div>
+            <div class="text-xs text-green-500 mt-2 flex items-center gap-1"><i class="fas fa-building-columns"></i> BCA, Mandiri, Kas Kecil</div>
         </div>
-
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <div class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5 relative overflow-hidden">
+            <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#10b981,#059669);"></div>
             <div class="flex items-center justify-between mb-3">
-                <p class="text-sm text-gray-500 font-medium">📥 Piutang Klien (Unpaid)</p>
-                <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
-                    <i class="fas fa-file-invoice-dollar text-orange-500"></i>
-                </div>
+                <span class="text-xs font-medium text-gray-500">📥 Piutang Klien (Unpaid)</span>
+                <div class="w-9 h-9 bg-green-50 rounded-lg flex items-center justify-center"><i class="fas fa-file-invoice-dollar text-green-600 text-sm"></i></div>
             </div>
-            <h3 class="text-2xl font-bold text-orange-500">Rp 80.000.000</h3>
-            <p class="text-xs text-gray-500 mt-2">3 Invoice termin menunggu dibayar klien</p>
+            <div class="text-2xl font-bold text-gray-800" style="letter-spacing:-0.5px;" data-count="80000000" data-currency="true">Rp 0</div>
+            <div class="text-xs text-gray-400 mt-2 flex items-center gap-1"><i class="fas fa-clock"></i> 3 Invoice termin menunggu dibayar</div>
         </div>
-
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <div class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5 relative overflow-hidden">
+            <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#f59e0b,#ef4444);"></div>
             <div class="flex items-center justify-between mb-3">
-                <p class="text-sm text-gray-500 font-medium">📤 Utang & Klaim (Akan Keluar)</p>
-                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
-                    <i class="fas fa-receipt text-red-500"></i>
-                </div>
+                <span class="text-xs font-medium text-gray-500">📤 Utang & Klaim (Akan Keluar)</span>
+                <div class="w-9 h-9 bg-red-50 rounded-lg flex items-center justify-center"><i class="fas fa-receipt text-red-500 text-sm"></i></div>
             </div>
-            <h3 class="text-2xl font-bold text-red-500">Rp 15.000.000</h3>
-            <p class="text-xs text-gray-500 mt-2">5 Pengeluaran menunggu approval</p>
+            <div class="text-2xl font-bold text-gray-800" style="letter-spacing:-0.5px;" data-count="15000000" data-currency="true">Rp 0</div>
+            <div class="text-xs text-red-400 mt-2 flex items-center gap-1"><i class="fas fa-exclamation-circle"></i> 5 Pengeluaran menunggu approval</div>
         </div>
     </div>
 
     <!-- Chart + To-Do -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
         <!-- Chart -->
-        <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-            <h4 class="font-bold text-gray-800 mb-4">Arus Kas Bulan Ini (Masuk vs Keluar)</h4>
-            <canvas id="cashflowChart" height="90"></canvas>
+        <div class="lg:col-span-2 bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+            <div class="flex items-center justify-between px-5 py-4 border-b border-gray-100">
+                <h4 class="font-semibold text-gray-700 text-sm">Arus Kas Bulan Ini (Masuk vs Keluar)</h4>
+                <div class="flex items-center gap-3 text-xs text-gray-400">
+                    <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-green-500 inline-block"></span> Masuk</span>
+                    <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-red-400 inline-block"></span> Keluar</span>
+                </div>
+            </div>
+            <div class="p-5">
+                <canvas id="cashflowChart" height="120"></canvas>
+            </div>
         </div>
 
-        <!-- To-Do List (Action Items) -->
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-            <h4 class="font-bold text-gray-800 mb-4">⚠️ Jatuh Tempo Minggu Ini</h4>
-            <div class="space-y-3">
-                <div class="flex items-center justify-between p-3 bg-red-50 border border-red-100 rounded-lg">
+        <!-- To-Do -->
+        <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+            <div class="flex items-center justify-between px-5 py-4 border-b border-gray-100">
+                <h4 class="font-semibold text-gray-700 text-sm">⚠️ Jatuh Tempo Minggu Ini</h4>
+                <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-0.5 rounded-full">3</span>
+            </div>
+            <div class="divide-y divide-gray-50">
+                <div class="flex items-center justify-between px-5 py-3.5 gap-3">
                     <div>
-                        <p class="text-sm font-semibold text-red-700">Invoice DP — RS Medika</p>
-                        <p class="text-xs text-gray-500 mt-0.5">Rp 10.000.000</p>
+                        <div class="text-sm font-semibold text-red-700">Invoice DP — RS Medika</div>
+                        <div class="text-xs text-gray-400 mt-0.5">Rp 10.000.000</div>
                     </div>
-                    <button class="text-xs bg-blue-600 text-white px-3 py-1 rounded-md hover:bg-blue-700">Ingatkan</button>
+                    <button class="text-xs bg-blue-600 text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-colors whitespace-nowrap flex items-center gap-1.5" data-action="remind">
+                        <i class="fas fa-paper-plane"></i> Ingatkan
+                    </button>
                 </div>
-                <div class="flex items-center justify-between p-3 bg-yellow-50 border border-yellow-100 rounded-lg">
+                <div class="flex items-center justify-between px-5 py-3.5 gap-3">
                     <div>
-                        <p class="text-sm font-semibold text-yellow-700">Klaim Bensin — Budi</p>
-                        <p class="text-xs text-gray-500 mt-0.5">Rp 150.000</p>
+                        <div class="text-sm font-semibold text-yellow-700">Klaim Bensin — Budi</div>
+                        <div class="text-xs text-gray-400 mt-0.5">Rp 150.000</div>
                     </div>
-                    <button class="text-xs bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700">Bayar</button>
+                    <button class="text-xs bg-green-600 text-white px-3 py-1.5 rounded-lg hover:bg-green-700 transition-colors whitespace-nowrap">
+                        <i class="fas fa-check"></i> Bayar
+                    </button>
                 </div>
-                <div class="flex items-center justify-between p-3 bg-orange-50 border border-orange-100 rounded-lg">
+                <div class="flex items-center justify-between px-5 py-3.5 gap-3">
                     <div>
-                        <p class="text-sm font-semibold text-orange-700">Tagihan AWS — Sep 2026</p>
-                        <p class="text-xs text-gray-500 mt-0.5">$1,500 (USD)</p>
+                        <div class="text-sm font-semibold text-blue-700">Tagihan AWS — Sep</div>
+                        <div class="text-xs text-gray-400 mt-0.5">$ 1.500 USD</div>
                     </div>
-                    <button class="text-xs bg-gray-800 text-white px-3 py-1 rounded-md hover:bg-gray-900">Review</button>
+                    <button class="text-xs border border-gray-200 text-gray-600 px-3 py-1.5 rounded-lg hover:bg-gray-50 transition-colors whitespace-nowrap">
+                        Review
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Recent Transactions -->
-    <div class="bg-white rounded-xl shadow-sm border border-gray-100">
-        <div class="p-6 border-b border-gray-100 flex items-center justify-between">
-            <h4 class="font-bold text-gray-800">Aktivitas Transaksi Terbaru</h4>
-            <a href="#" class="text-sm text-blue-600 hover:underline">Lihat semua <i class="fas fa-arrow-right text-xs"></i></a>
+    <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+        <div class="flex items-center justify-between px-5 py-4 border-b border-gray-100">
+            <h4 class="font-semibold text-gray-700 text-sm">Aktivitas Transaksi Terbaru</h4>
+            <a href="#" class="text-xs text-blue-600 hover:underline">Lihat semua <i class="fas fa-arrow-right text-xs ml-0.5"></i></a>
         </div>
         <div class="overflow-x-auto">
             <table class="w-full text-sm">
-                <thead class="bg-gray-50 text-xs text-gray-500 uppercase">
+                <thead class="bg-gray-50 text-xs text-gray-400 uppercase tracking-wider">
                     <tr>
-                        <th class="px-6 py-3 text-left">ID / Tanggal</th>
-                        <th class="px-6 py-3 text-left">Pihak Terkait</th>
-                        <th class="px-6 py-3 text-left">Keterangan</th>
-                        <th class="px-6 py-3 text-right">Nominal</th>
-                        <th class="px-6 py-3 text-left">Status</th>
+                        <th class="px-5 py-3 text-left">ID / Tanggal</th>
+                        <th class="px-5 py-3 text-left">Pihak Terkait</th>
+                        <th class="px-5 py-3 text-left">Keterangan</th>
+                        <th class="px-5 py-3 text-right">Nominal</th>
+                        <th class="px-5 py-3 text-left">Status</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-100">
-                    <tr class="hover:bg-gray-50">
-                        <td class="px-6 py-4">
-                            <p class="font-mono text-xs text-blue-600">INV-2026-004</p>
-                            <p class="text-xs text-gray-400 mt-0.5">30 Sep 2026</p>
+                <tbody class="divide-y divide-gray-50">
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="px-5 py-3.5">
+                            <div class="font-mono text-xs text-blue-600 font-medium">INV-2026-004</div>
+                            <div class="text-xs text-gray-400 mt-0.5">30 Sep 2026</div>
                         </td>
-                        <td class="px-6 py-4 font-medium">PT. XYZ Tech</td>
-                        <td class="px-6 py-4 text-gray-500">Penerimaan DP Proyek (Termin 1)</td>
-                        <td class="px-6 py-4 text-right font-semibold text-green-600">+ Rp 45.000.000</td>
-                        <td class="px-6 py-4"><span class="status-lunas text-xs font-medium px-2 py-1 rounded-full">Lunas</span></td>
+                        <td class="px-5 py-3.5 font-medium text-gray-700">PT. XYZ Tech</td>
+                        <td class="px-5 py-3.5 text-gray-500">Penerimaan DP Proyek (Termin 1)</td>
+                        <td class="px-5 py-3.5 text-right font-semibold text-green-600">+ Rp 45.000.000</td>
+                        <td class="px-5 py-3.5"><span class="bg-green-100 text-green-700 text-xs font-semibold px-2.5 py-1 rounded-full">✅ Lunas</span></td>
                     </tr>
-                    <tr class="hover:bg-gray-50">
-                        <td class="px-6 py-4">
-                            <p class="font-mono text-xs text-blue-600">BILL-AWS-09</p>
-                            <p class="text-xs text-gray-400 mt-0.5">28 Sep 2026</p>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="px-5 py-3.5">
+                            <div class="font-mono text-xs text-blue-600 font-medium">BILL-AWS-09</div>
+                            <div class="text-xs text-gray-400 mt-0.5">28 Sep 2026</div>
                         </td>
-                        <td class="px-6 py-4 font-medium">Amazon Web Services</td>
-                        <td class="px-6 py-4 text-gray-500">Tagihan Cloud / Hosting Server</td>
-                        <td class="px-6 py-4 text-right font-semibold text-red-500">- Rp 15.350.000</td>
-                        <td class="px-6 py-4"><span class="status-menunggu text-xs font-medium px-2 py-1 rounded-full">Menunggu</span></td>
+                        <td class="px-5 py-3.5 font-medium text-gray-700">Amazon Web Services</td>
+                        <td class="px-5 py-3.5 text-gray-500">Tagihan Cloud / Hosting Server</td>
+                        <td class="px-5 py-3.5 text-right font-semibold text-red-500">- Rp 15.350.000</td>
+                        <td class="px-5 py-3.5"><span class="bg-yellow-100 text-yellow-700 text-xs font-semibold px-2.5 py-1 rounded-full">🟡 Menunggu</span></td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="px-5 py-3.5">
+                            <div class="font-mono text-xs text-blue-600 font-medium">EXP-CLAIM-22</div>
+                            <div class="text-xs text-gray-400 mt-0.5">27 Sep 2026</div>
+                        </td>
+                        <td class="px-5 py-3.5 font-medium text-gray-700">Budi Santoso</td>
+                        <td class="px-5 py-3.5 text-gray-500">Reimbursement Domain RS Medika</td>
+                        <td class="px-5 py-3.5 text-right font-semibold text-red-500">- Rp 350.000</td>
+                        <td class="px-5 py-3.5"><span class="bg-gray-100 text-gray-500 text-xs font-semibold px-2.5 py-1 rounded-full">⚪ Pending</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -128,24 +153,25 @@
 </div>
 
 <script>
-    const ctx = document.getElementById('cashflowChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep'],
-            datasets: [
-                { label: 'Uang Masuk (Invoice/AR)', data: [120, 150, 180, 140, 210, 250], backgroundColor: '#10B981', borderRadius: 4 },
-                { label: 'Uang Keluar (HPP + OPEX)', data: [80, 100, 120, 110, 140, 160], backgroundColor: '#EF4444', borderRadius: 4 }
-            ]
-        },
-        options: {
-            responsive: true,
-            plugins: { legend: { position: 'top', labels: { font: { size: 12 } } } },
-            scales: {
-                y: { grid: { color: '#f1f5f9' }, border: { display: false } },
-                x: { grid: { display: false } }
-            }
+const ctx = document.getElementById('cashflowChart').getContext('2d');
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep'],
+        datasets: [
+            { label: 'Uang Masuk', data: [120, 150, 180, 140, 210, 250], backgroundColor: '#10b981', borderRadius: 5, borderSkipped: false },
+            { label: 'Uang Keluar', data: [80, 100, 120, 110, 140, 160], backgroundColor: '#f87171', borderRadius: 5, borderSkipped: false }
+        ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+            y: { grid: { color: '#f1f5f9' }, border: { display: false }, ticks: { font: { size: 11 }, color: '#94a3b8' } },
+            x: { grid: { display: false }, border: { display: false }, ticks: { font: { size: 11 }, color: '#94a3b8' } }
         }
-    });
+    }
+});
 </script>
 {% endblock %}
