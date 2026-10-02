@@ -179,7 +179,7 @@
   background: rgba(255, 255, 255, 0.08);
 }
 .nav-group.open .nav-sub {
-  max-height: 250px;
+  max-height: 800px;
   margin-top: 3px;
   margin-bottom: 4px;
 }

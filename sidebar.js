@@ -107,17 +107,54 @@
             <span>Finance & AR</span>
           </a>
 
-          <!-- Marketing Ops -->
-          <a href="index.html#marketing" class="nav-btn ${activePage === 'marketing' ? 'active' : ''}" data-nav="marketing">
-            ${svg('megaphone')}
-            <span>Marketing Ops</span>
-          </a>
-
-          <!-- AI Content Engine -->
-          <a href="index.html#content" class="nav-btn ${activePage === 'content' ? 'active' : ''}" data-nav="content">
-            ${svg('spark')}
-            <span>AI Content Engine</span>
-          </a>
+          <!-- Marketing Module -->
+          <div class="nav-group ${activePage === 'marketing' ? 'open' : ''}" id="marketingNavGroup">
+            <button type="button" class="nav-btn nav-parent-btn ${activePage === 'marketing' ? 'active' : ''}" id="marketingParentToggle" onclick="window.toggleMarketingAccordion(event)">
+              <div class="nav-left">
+                ${svg('megaphone')}
+                <span>Marketing Module</span>
+              </div>
+              ${svg('chevron', 'nav-chevron')}
+            </button>
+            <div class="nav-sub" id="marketingSubNav">
+              <a href="marketing.html#marketing-ops" class="nav-sub-btn ${activePage === 'marketing' && (activeSubpage === 'marketing-ops' || !activeSubpage) ? 'active' : ''}" data-marketing-sub="marketing-ops" onclick="window.handleMarketingNav('marketing-ops', event)">
+                <span class="nav-sub-dot"></span>
+                <span>Marketing Ops</span>
+              </a>
+              <a href="marketing.html#ai-engine" class="nav-sub-btn ${activePage === 'marketing' && activeSubpage === 'ai-engine' ? 'active' : ''}" data-marketing-sub="ai-engine" onclick="window.handleMarketingNav('ai-engine', event)">
+                <span class="nav-sub-dot"></span>
+                <span>AI Content Engine</span>
+              </a>
+              <a href="marketing.html#approval-queue" class="nav-sub-btn ${activePage === 'marketing' && activeSubpage === 'approval-queue' ? 'active' : ''}" data-marketing-sub="approval-queue" onclick="window.handleMarketingNav('approval-queue', event)">
+                <span class="nav-sub-dot"></span>
+                <span>Antrean Persetujuan</span>
+              </a>
+              <a href="marketing.html#calendar" class="nav-sub-btn ${activePage === 'marketing' && activeSubpage === 'calendar' ? 'active' : ''}" data-marketing-sub="calendar" onclick="window.handleMarketingNav('calendar', event)">
+                <span class="nav-sub-dot"></span>
+                <span>Content Calendar</span>
+              </a>
+              <a href="marketing.html#distribution" class="nav-sub-btn ${activePage === 'marketing' && activeSubpage === 'distribution' ? 'active' : ''}" data-marketing-sub="distribution" onclick="window.handleMarketingNav('distribution', event)">
+                <span class="nav-sub-dot"></span>
+                <span>Distribution Manager</span>
+              </a>
+              <a href="marketing.html#asset-library" class="nav-sub-btn ${activePage === 'marketing' && activeSubpage === 'asset-library' ? 'active' : ''}" data-marketing-sub="asset-library" onclick="window.handleMarketingNav('asset-library', event)">
+                <span class="nav-sub-dot"></span>
+                <span>Brand Asset Library</span>
+              </a>
+              <a href="marketing.html#social-listening" class="nav-sub-btn ${activePage === 'marketing' && activeSubpage === 'social-listening' ? 'active' : ''}" data-marketing-sub="social-listening" onclick="window.handleMarketingNav('social-listening', event)">
+                <span class="nav-sub-dot"></span>
+                <span>Social Listening</span>
+              </a>
+              <a href="marketing.html#inbox" class="nav-sub-btn ${activePage === 'marketing' && activeSubpage === 'inbox' ? 'active' : ''}" data-marketing-sub="inbox" onclick="window.handleMarketingNav('inbox', event)">
+                <span class="nav-sub-dot"></span>
+                <span>Omnichannel Inbox</span>
+              </a>
+              <a href="marketing.html#content-history" class="nav-sub-btn ${activePage === 'marketing' && activeSubpage === 'content-history' ? 'active' : ''}" data-marketing-sub="content-history" onclick="window.handleMarketingNav('content-history', event)">
+                <span class="nav-sub-dot"></span>
+                <span>Riwayat Konten</span>
+              </a>
+            </div>
+          </div>
 
           <!-- Kanban AI Global -->
           <a href="index.html#aikanban" class="nav-btn ${activePage === 'aikanban' ? 'active' : ''}" data-nav="aikanban">
@@ -203,6 +240,32 @@
       if (sb) sb.classList.remove('open');
     }
     // If in index.html, user clicked link href="crm.html#<subpage>", let browser smoothly navigate!
+  };
+
+  // Toggle Marketing Accordion Submenu
+  window.toggleMarketingAccordion = function(e) {
+    if (e) e.preventDefault();
+    const group = document.getElementById('marketingNavGroup');
+    if (!group) return;
+    group.classList.toggle('open');
+  };
+
+  // Handle Marketing Sub Navigation
+  window.handleMarketingNav = function(subpage, e) {
+    const isMarketingDoc = window.location.pathname.toLowerCase().includes('marketing.html');
+    if (isMarketingDoc) {
+      if (e) e.preventDefault();
+      if (typeof window.switchMarketingPage === 'function') {
+        window.switchMarketingPage(subpage);
+      }
+      // Update active sub-btn
+      document.querySelectorAll('#marketingSubNav .nav-sub-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.marketingSub === subpage);
+      });
+      // Close mobile sidebar if open
+      const sb = document.getElementById('sidebar');
+      if (sb) sb.classList.remove('open');
+    }
   };
 
   // Setup event listeners for in-page navigation (like index.html single page router)
