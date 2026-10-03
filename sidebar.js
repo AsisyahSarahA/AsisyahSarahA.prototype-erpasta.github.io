@@ -1,19 +1,26 @@
 /**
- * Dynamic Shared Sidebar Component - ASTACODE ERP
- * Integrates index.html & crm.html with real-time active state & CRM accordion submenu
+ * ==========================================================================
+ * ASTACODE ERP - MASTER UNIFIED SIDEBAR CONTROLLER (sidebar.js)
+ * High-performance navigation engine integrating:
+ * - Root Index (Executive Dashboard, Kanban AI, Reporting, RBAC)
+ * - CRM Module (crm/crm.html)
+ * - Project Management & AFB (project/Forge PM.html)
+ * - Finance V3 (finance/index.html)
+ * - Marketing & AI Content Engine (marketing/marketing.html)
+ * ==========================================================================
  */
 
 (function() {
+  'use strict';
+
+  // SVG Icon definitions
   const SIDEBAR_ICONS = {
     brand: '<path d="M12 3l2.2 6.8H21l-5.5 4 2.1 6.7L12 16.4 6.4 20.5 8.5 13 3 9.8h6.8L12 3z"/>',
     dashboard: '<path d="M4 13h6V4H4v9zm10 7h6v-9h-6v9zM4 20h6v-3H4v3zm10-10h6V4h-6v6z"/>',
     crm: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm12 10v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>',
-    pipeline: '<path d="M4 5h6v5H4V5zm10 0h6v5h-6V5zM4 14h6v5H4v-5zm10 0h6v5h-6v-5z"/>',
-    briefcase: '<path d="M4 7h16v13H4zM8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M4 12h16M10 12v2h4v-2"/>',
-    bug: '<path d="M20 13c0 5-3.5 8.6-6.6 9.4-1 .3-2 .3-2.8 0-3.1-.8-6.6-4.4-6.6-9.4C4 8.5 7.6 5 12 5s8 3.5 8 8z M12 5V2 M8 5L6 3 M16 5l2-2 M4 11h2 M18 11h2 M5 16l-2 2 M19 16l2 2 M9 10h6 M9 14h6"/>',
-    wallet: '<path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z M16 14h.01 M20 7V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v2"/>',
-    megaphone: '<path d="M3 11v2a2 2 0 0 0 2 2h2l4 6h2l-2.5-6H19a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2H10L5 6v5z"/>',
-    spark: '<path d="M12 2l3 6 6 3-6 3-3 6-3-6-6-3 6-3z"/>',
+    project: '<path d="M4 7h16v13H4zM8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M4 12h16M10 12v2h4v-2"/>',
+    finance: '<path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z M16 14h.01 M20 7V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v2"/>',
+    marketing: '<path d="M3 11v2a2 2 0 0 0 2 2h2l4 6h2l-2.5-6H19a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2H10L5 6v5z"/>',
     bot: '<path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2zM9 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm6 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>',
     chart: '<path d="M18 20V10M12 20V4M6 20v-6"/>',
     plug: '<path d="M8 12l4-4m-6 8 4-4m6-8v4m0 0h4m-4 0a5 5 0 0 1-5 5H9a5 5 0 0 0 0 10h4"/>',
@@ -27,38 +34,76 @@
     return `<svg class="${className}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
   }
 
+  // Detect current directory context
+  function getPathPrefix() {
+    const p = window.location.pathname.toLowerCase().replace(/\\/g, '/');
+    if (p.includes('/crm/') || p.includes('/finance/') || p.includes('/marketing/') || p.includes('/project/')) {
+      return '../';
+    }
+    return '';
+  }
+
+  // Determine current active module and subpage from URL/DOM
+  function detectCurrentContext() {
+    const p = window.location.pathname.toLowerCase().replace(/\\/g, '/');
+    const hash = (window.location.hash || '').replace('#', '');
+
+    let activeModule = 'dashboard';
+    let activeSubpage = '';
+
+    if (p.includes('crm.html') || p.includes('/crm/')) {
+      activeModule = 'crm';
+      activeSubpage = hash || 'pipeline';
+    } else if (p.includes('forge pm.html') || p.includes('/project/')) {
+      activeModule = 'project';
+      activeSubpage = hash || 'dashboard';
+    } else if (p.includes('/finance/')) {
+      activeModule = 'finance';
+      activeSubpage = hash || 'view-dashboard';
+    } else if (p.includes('marketing.html') || p.includes('/marketing/')) {
+      activeModule = 'marketing';
+      activeSubpage = hash || 'marketing-ops';
+    } else {
+      // In Root index.html
+      activeModule = (hash && ['aikanban', 'analytics', 'integrations', 'rbac', 'settings'].includes(hash)) ? hash : 'dashboard';
+      activeSubpage = hash || 'dashboard';
+    }
+
+    return { activeModule, activeSubpage };
+  }
+
+  // Master Render Function
   window.renderDynamicSidebar = function(config = {}) {
-    const isCrmDoc = window.location.pathname.toLowerCase().includes('crm.html');
-    
-    // Determine active items
-    const activePage = config.activePage || (isCrmDoc ? 'crm' : 'dashboard');
-    const activeSubpage = config.activeSubpage || (isCrmDoc ? 'pipeline' : '');
+    const context = detectCurrentContext();
+    const activeModule = config.activePage || context.activeModule;
+    const activeSubpage = config.activeSubpage || context.activeSubpage;
+    const prefix = getPathPrefix();
 
     const sidebarHtml = `
       <aside class="sidebar" id="sidebar">
         <!-- Brand Header -->
-        <a href="index.html#dashboard" class="brand" data-nav="dashboard">
+        <a href="${prefix}index.html#dashboard" class="brand" data-nav="dashboard" data-module="dashboard">
           <div class="brand-mark">
             ${svg('brand')}
           </div>
-          <div>
+          <div class="brand-info">
             <h1>ASTACODE ERP</h1>
             <p>Enterprise Operations Platform</p>
           </div>
         </a>
 
-        <!-- Workspace Nav -->
+        <!-- Section: Workspace -->
         <div class="nav-label">Workspace</div>
         <nav class="nav" id="sidebar-nav-workspace">
-          <!-- Dashboard -->
-          <a href="index.html#dashboard" class="nav-btn ${activePage === 'dashboard' ? 'active' : ''}" data-nav="dashboard">
+          <!-- 0. Executive Dashboard -->
+          <a href="${prefix}index.html#dashboard" class="nav-btn ${activeModule === 'dashboard' ? 'active' : ''}" data-nav="dashboard" data-module="dashboard">
             ${svg('dashboard')}
-            <span>Dashboard</span>
+            <span>Executive Dashboard</span>
           </a>
 
-          <!-- CRM Module with Collapsible Submenu -->
-          <div class="nav-group ${activePage === 'crm' ? 'open' : ''}" id="crmNavGroup">
-            <button type="button" class="nav-btn nav-parent-btn ${activePage === 'crm' ? 'active' : ''}" id="crmParentToggle" onclick="window.toggleCrmAccordion(event)">
+          <!-- 1. CRM Module (Accordion) -->
+          <div class="nav-group ${activeModule === 'crm' ? 'open' : ''}" id="crmNavGroup" data-module-group="crm">
+            <button type="button" class="nav-btn nav-parent-btn ${activeModule === 'crm' ? 'active' : ''}" id="crmParentToggle" onclick="window.toggleModuleAccordion('crmNavGroup', event)">
               <div class="nav-left">
                 ${svg('crm')}
                 <span>CRM Module</span>
@@ -66,119 +111,184 @@
               ${svg('chevron', 'nav-chevron')}
             </button>
             <div class="nav-sub" id="crmSubNav">
-              <a href="crm.html#pipeline" class="nav-sub-btn ${activePage === 'crm' && (activeSubpage === 'pipeline' || !activeSubpage) ? 'active' : ''}" data-crm-sub="pipeline" onclick="window.handleCrmNav('pipeline', event)">
+              <a href="${prefix}crm/crm.html#pipeline" class="nav-sub-btn ${activeModule === 'crm' && (activeSubpage === 'pipeline' || !activeSubpage) ? 'active' : ''}" data-module="crm" data-sub="pipeline" onclick="window.navigateToModuleSubpage('crm', 'pipeline', '${prefix}crm/crm.html#pipeline', event)">
                 <span class="nav-sub-dot"></span>
                 <span>Lead & Pipeline</span>
               </a>
-              <a href="crm.html#quotation" class="nav-sub-btn ${activePage === 'crm' && activeSubpage === 'quotation' ? 'active' : ''}" data-crm-sub="quotation" onclick="window.handleCrmNav('quotation', event)">
+              <a href="${prefix}crm/crm.html#quotation" class="nav-sub-btn ${activeModule === 'crm' && activeSubpage === 'quotation' ? 'active' : ''}" data-module="crm" data-sub="quotation" onclick="window.navigateToModuleSubpage('crm', 'quotation', '${prefix}crm/crm.html#quotation', event)">
                 <span class="nav-sub-dot"></span>
                 <span>Quotation & MoU</span>
               </a>
-              <a href="crm.html#customer" class="nav-sub-btn ${activePage === 'crm' && activeSubpage === 'customer' ? 'active' : ''}" data-crm-sub="customer" onclick="window.handleCrmNav('customer', event)">
+              <a href="${prefix}crm/crm.html#customer" class="nav-sub-btn ${activeModule === 'crm' && activeSubpage === 'customer' ? 'active' : ''}" data-module="crm" data-sub="customer" onclick="window.navigateToModuleSubpage('crm', 'customer', '${prefix}crm/crm.html#customer', event)">
                 <span class="nav-sub-dot"></span>
-                <span>Master Customer</span>
+                <span>Master Customer (360°)</span>
               </a>
-              <a href="crm.html#master" class="nav-sub-btn ${activePage === 'crm' && activeSubpage === 'master' ? 'active' : ''}" data-crm-sub="master" onclick="window.handleCrmNav('master', event)">
+              <a href="${prefix}crm/crm.html#master" class="nav-sub-btn ${activeModule === 'crm' && activeSubpage === 'master' ? 'active' : ''}" data-module="crm" data-sub="master" onclick="window.navigateToModuleSubpage('crm', 'master', '${prefix}crm/crm.html#master', event)">
                 <span class="nav-sub-dot"></span>
                 <span>Master Data CRM</span>
               </a>
-              <a href="crm.html#analytics" class="nav-sub-btn ${activePage === 'crm' && activeSubpage === 'analytics' ? 'active' : ''}" data-crm-sub="analytics" onclick="window.handleCrmNav('analytics', event)">
+              <a href="${prefix}crm/crm.html#analytics" class="nav-sub-btn ${activeModule === 'crm' && activeSubpage === 'analytics' ? 'active' : ''}" data-module="crm" data-sub="analytics" onclick="window.navigateToModuleSubpage('crm', 'analytics', '${prefix}crm/crm.html#analytics', event)">
                 <span class="nav-sub-dot"></span>
                 <span>Revenue Forecast</span>
               </a>
             </div>
           </div>
 
-          <!-- Project Management -->
-          <a href="index.html#projects" class="nav-btn ${activePage === 'projects' ? 'active' : ''}" data-nav="projects">
-            ${svg('briefcase')}
-            <span>Project Management</span>
-          </a>
-
-          <!-- Automation Fix Bug -->
-          <a href="index.html#automation" class="nav-btn ${activePage === 'automation' ? 'active' : ''}" data-nav="automation">
-            ${svg('bug')}
-            <span>Automation Fix Bug</span>
-          </a>
-
-          <!-- Finance & AR -->
-          <a href="index.html#finance" class="nav-btn ${activePage === 'finance' ? 'active' : ''}" data-nav="finance">
-            ${svg('wallet')}
-            <span>Finance & AR</span>
-          </a>
-
-          <!-- Marketing Module -->
-          <div class="nav-group ${activePage === 'marketing' ? 'open' : ''}" id="marketingNavGroup">
-            <button type="button" class="nav-btn nav-parent-btn ${activePage === 'marketing' ? 'active' : ''}" id="marketingParentToggle" onclick="window.toggleMarketingAccordion(event)">
+          <!-- 2. Project Management (Forge PM) (Accordion) -->
+          <div class="nav-group ${activeModule === 'project' ? 'open' : ''}" id="projectNavGroup" data-module-group="project">
+            <button type="button" class="nav-btn nav-parent-btn ${activeModule === 'project' ? 'active' : ''}" id="projectParentToggle" onclick="window.toggleModuleAccordion('projectNavGroup', event)">
               <div class="nav-left">
-                ${svg('megaphone')}
-                <span>Marketing Module</span>
+                ${svg('project')}
+                <span>Project Management</span>
+              </div>
+              ${svg('chevron', 'nav-chevron')}
+            </button>
+            <div class="nav-sub" id="projectSubNav">
+              <a href="${prefix}project/Forge PM.html#dashboard" class="nav-sub-btn ${activeModule === 'project' && (activeSubpage === 'dashboard' || !activeSubpage) ? 'active' : ''}" data-module="project" data-sub="dashboard" onclick="window.navigateToModuleSubpage('project', 'dashboard', '${prefix}project/Forge PM.html#dashboard', event)">
+                <span class="nav-sub-dot"></span>
+                <span>PM Dashboard</span>
+              </a>
+              <a href="${prefix}project/Forge PM.html#project" class="nav-sub-btn ${activeModule === 'project' && activeSubpage === 'project' ? 'active' : ''}" data-module="project" data-sub="project" onclick="window.navigateToModuleSubpage('project', 'project', '${prefix}project/Forge PM.html#project', event)">
+                <span class="nav-sub-dot"></span>
+                <span>Projects Portfolio</span>
+              </a>
+              <a href="${prefix}project/Forge PM.html#tickets" class="nav-sub-btn ${activeModule === 'project' && activeSubpage === 'tickets' ? 'active' : ''}" data-module="project" data-sub="tickets" onclick="window.navigateToModuleSubpage('project', 'tickets', '${prefix}project/Forge PM.html#tickets', event)">
+                <span class="nav-sub-dot"></span>
+                <span>Tickets & Backlog</span>
+              </a>
+              <a href="${prefix}project/Forge PM.html#mytasks" class="nav-sub-btn ${activeModule === 'project' && activeSubpage === 'mytasks' ? 'active' : ''}" data-module="project" data-sub="mytasks" onclick="window.navigateToModuleSubpage('project', 'mytasks', '${prefix}project/Forge PM.html#mytasks', event)">
+                <span class="nav-sub-dot"></span>
+                <span>My Tasks</span>
+              </a>
+              <a href="${prefix}project/Forge PM.html#automation" class="nav-sub-btn ${activeModule === 'project' && activeSubpage === 'automation' ? 'active' : ''}" data-module="project" data-sub="automation" onclick="window.navigateToModuleSubpage('project', 'automation', '${prefix}project/Forge PM.html#automation', event)">
+                <span class="nav-sub-dot"></span>
+                <span>Automation Fix Bug</span>
+                <span class="nav-badge-accent">AI</span>
+              </a>
+              <a href="${prefix}project/Forge PM.html#events" class="nav-sub-btn ${activeModule === 'project' && activeSubpage === 'events' ? 'active' : ''}" data-module="project" data-sub="events" onclick="window.navigateToModuleSubpage('project', 'events', '${prefix}project/Forge PM.html#events', event)">
+                <span class="nav-sub-dot"></span>
+                <span>Events & Schedule</span>
+              </a>
+              <a href="${prefix}project/Forge PM.html#notes" class="nav-sub-btn ${activeModule === 'project' && activeSubpage === 'notes' ? 'active' : ''}" data-module="project" data-sub="notes" onclick="window.navigateToModuleSubpage('project', 'notes', '${prefix}project/Forge PM.html#notes', event)">
+                <span class="nav-sub-dot"></span>
+                <span>Knowledge Notes</span>
+              </a>
+              <a href="${prefix}project/Forge PM.html#team" class="nav-sub-btn ${activeModule === 'project' && activeSubpage === 'team' ? 'active' : ''}" data-module="project" data-sub="team" onclick="window.navigateToModuleSubpage('project', 'team', '${prefix}project/Forge PM.html#team', event)">
+                <span class="nav-sub-dot"></span>
+                <span>Team Workload</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 3. Finance V3 Module (Accordion) -->
+          <div class="nav-group ${activeModule === 'finance' ? 'open' : ''}" id="financeNavGroup" data-module-group="finance">
+            <button type="button" class="nav-btn nav-parent-btn ${activeModule === 'finance' ? 'active' : ''}" id="financeParentToggle" onclick="window.toggleModuleAccordion('financeNavGroup', event)">
+              <div class="nav-left">
+                ${svg('finance')}
+                <span>Finance & AR/AP</span>
+              </div>
+              ${svg('chevron', 'nav-chevron')}
+            </button>
+            <div class="nav-sub" id="financeSubNav">
+              <a href="${prefix}finance/index.html#view-dashboard" class="nav-sub-btn ${activeModule === 'finance' && (activeSubpage === 'view-dashboard' || activeSubpage === 'dashboard' || !activeSubpage) ? 'active' : ''}" data-module="finance" data-sub="view-dashboard" onclick="window.navigateToModuleSubpage('finance', 'view-dashboard', '${prefix}finance/index.html#view-dashboard', event)">
+                <span class="nav-sub-dot"></span>
+                <span>Cash Flow Overview</span>
+              </a>
+              <a href="${prefix}finance/index.html#view-penagihan" class="nav-sub-btn ${activeModule === 'finance' && (activeSubpage === 'view-penagihan' || activeSubpage === 'penagihan') ? 'active' : ''}" data-module="finance" data-sub="view-penagihan" onclick="window.navigateToModuleSubpage('finance', 'view-penagihan', '${prefix}finance/index.html#view-penagihan', event)">
+                <span class="nav-sub-dot"></span>
+                <span>Pemasukan (AR & Termin)</span>
+              </a>
+              <a href="${prefix}finance/index.html#view-klaim" class="nav-sub-btn ${activeModule === 'finance' && (activeSubpage === 'view-klaim' || activeSubpage === 'klaim') ? 'active' : ''}" data-module="finance" data-sub="view-klaim" onclick="window.navigateToModuleSubpage('finance', 'view-klaim', '${prefix}finance/index.html#view-klaim', event)">
+                <span class="nav-sub-dot"></span>
+                <span>Pengeluaran (AP & Klaim)</span>
+              </a>
+              <a href="${prefix}finance/index.html#view-recon" class="nav-sub-btn ${activeModule === 'finance' && (activeSubpage === 'view-recon' || activeSubpage === 'recon') ? 'active' : ''}" data-module="finance" data-sub="view-recon" onclick="window.navigateToModuleSubpage('finance', 'view-recon', '${prefix}finance/index.html#view-recon', event)">
+                <span class="nav-sub-dot"></span>
+                <span>Kas & Rekonsiliasi Bank</span>
+              </a>
+              <a href="${prefix}finance/index.html#view-generic" class="nav-sub-btn ${activeModule === 'finance' && (activeSubpage === 'view-generic' || activeSubpage === 'generic') ? 'active' : ''}" data-module="finance" data-sub="view-generic" onclick="window.navigateToModuleSubpage('finance', 'view-generic', '${prefix}finance/index.html#view-generic', event)">
+                <span class="nav-sub-dot"></span>
+                <span>Buku Besar & COA</span>
+              </a>
+              <a href="${prefix}finance/index.html#view-profit" class="nav-sub-btn ${activeModule === 'finance' && (activeSubpage === 'view-profit' || activeSubpage === 'profit') ? 'active' : ''}" data-module="finance" data-sub="view-profit" onclick="window.navigateToModuleSubpage('finance', 'view-profit', '${prefix}finance/index.html#view-profit', event)">
+                <span class="nav-sub-dot"></span>
+                <span>Profitabilitas Proyek</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 4. Marketing Module (Accordion) -->
+          <div class="nav-group ${activeModule === 'marketing' ? 'open' : ''}" id="marketingNavGroup" data-module-group="marketing">
+            <button type="button" class="nav-btn nav-parent-btn ${activeModule === 'marketing' ? 'active' : ''}" id="marketingParentToggle" onclick="window.toggleModuleAccordion('marketingNavGroup', event)">
+              <div class="nav-left">
+                ${svg('marketing')}
+                <span>Marketing & AI</span>
               </div>
               ${svg('chevron', 'nav-chevron')}
             </button>
             <div class="nav-sub" id="marketingSubNav">
-              <a href="marketing.html#marketing-ops" class="nav-sub-btn ${activePage === 'marketing' && (activeSubpage === 'marketing-ops' || !activeSubpage) ? 'active' : ''}" data-marketing-sub="marketing-ops" onclick="window.handleMarketingNav('marketing-ops', event)">
+              <a href="${prefix}marketing/marketing.html#marketing-ops" class="nav-sub-btn ${activeModule === 'marketing' && (activeSubpage === 'marketing-ops' || activeSubpage === 'view-marketing-ops' || !activeSubpage) ? 'active' : ''}" data-module="marketing" data-sub="marketing-ops" onclick="window.navigateToModuleSubpage('marketing', 'marketing-ops', '${prefix}marketing/marketing.html#marketing-ops', event)">
                 <span class="nav-sub-dot"></span>
                 <span>Marketing Ops</span>
               </a>
-              <a href="marketing.html#ai-engine" class="nav-sub-btn ${activePage === 'marketing' && activeSubpage === 'ai-engine' ? 'active' : ''}" data-marketing-sub="ai-engine" onclick="window.handleMarketingNav('ai-engine', event)">
+              <a href="${prefix}marketing/marketing.html#ai-engine" class="nav-sub-btn ${activeModule === 'marketing' && (activeSubpage === 'ai-engine' || activeSubpage === 'view-ai-engine') ? 'active' : ''}" data-module="marketing" data-sub="ai-engine" onclick="window.navigateToModuleSubpage('marketing', 'ai-engine', '${prefix}marketing/marketing.html#ai-engine', event)">
                 <span class="nav-sub-dot"></span>
                 <span>AI Content Engine</span>
               </a>
-              <a href="marketing.html#approval-queue" class="nav-sub-btn ${activePage === 'marketing' && activeSubpage === 'approval-queue' ? 'active' : ''}" data-marketing-sub="approval-queue" onclick="window.handleMarketingNav('approval-queue', event)">
+              <a href="${prefix}marketing/marketing.html#approval-queue" class="nav-sub-btn ${activeModule === 'marketing' && (activeSubpage === 'approval-queue' || activeSubpage === 'view-approval-queue') ? 'active' : ''}" data-module="marketing" data-sub="approval-queue" onclick="window.navigateToModuleSubpage('marketing', 'approval-queue', '${prefix}marketing/marketing.html#approval-queue', event)">
                 <span class="nav-sub-dot"></span>
                 <span>Antrean Persetujuan</span>
               </a>
-              <a href="marketing.html#calendar" class="nav-sub-btn ${activePage === 'marketing' && activeSubpage === 'calendar' ? 'active' : ''}" data-marketing-sub="calendar" onclick="window.handleMarketingNav('calendar', event)">
+              <a href="${prefix}marketing/marketing.html#calendar" class="nav-sub-btn ${activeModule === 'marketing' && (activeSubpage === 'calendar' || activeSubpage === 'view-calendar') ? 'active' : ''}" data-module="marketing" data-sub="calendar" onclick="window.navigateToModuleSubpage('marketing', 'calendar', '${prefix}marketing/marketing.html#calendar', event)">
                 <span class="nav-sub-dot"></span>
                 <span>Content Calendar</span>
               </a>
-              <a href="marketing.html#distribution" class="nav-sub-btn ${activePage === 'marketing' && activeSubpage === 'distribution' ? 'active' : ''}" data-marketing-sub="distribution" onclick="window.handleMarketingNav('distribution', event)">
+              <a href="${prefix}marketing/marketing.html#distribution" class="nav-sub-btn ${activeModule === 'marketing' && (activeSubpage === 'distribution' || activeSubpage === 'view-distribution') ? 'active' : ''}" data-module="marketing" data-sub="distribution" onclick="window.navigateToModuleSubpage('marketing', 'distribution', '${prefix}marketing/marketing.html#distribution', event)">
                 <span class="nav-sub-dot"></span>
                 <span>Distribution Manager</span>
               </a>
-              <a href="marketing.html#asset-library" class="nav-sub-btn ${activePage === 'marketing' && activeSubpage === 'asset-library' ? 'active' : ''}" data-marketing-sub="asset-library" onclick="window.handleMarketingNav('asset-library', event)">
+              <a href="${prefix}marketing/marketing.html#asset-library" class="nav-sub-btn ${activeModule === 'marketing' && (activeSubpage === 'asset-library' || activeSubpage === 'view-asset-library') ? 'active' : ''}" data-module="marketing" data-sub="asset-library" onclick="window.navigateToModuleSubpage('marketing', 'asset-library', '${prefix}marketing/marketing.html#asset-library', event)">
                 <span class="nav-sub-dot"></span>
                 <span>Brand Asset Library</span>
               </a>
-              <a href="marketing.html#social-listening" class="nav-sub-btn ${activePage === 'marketing' && activeSubpage === 'social-listening' ? 'active' : ''}" data-marketing-sub="social-listening" onclick="window.handleMarketingNav('social-listening', event)">
+              <a href="${prefix}marketing/marketing.html#social-listening" class="nav-sub-btn ${activeModule === 'marketing' && (activeSubpage === 'social-listening' || activeSubpage === 'view-social-listening') ? 'active' : ''}" data-module="marketing" data-sub="social-listening" onclick="window.navigateToModuleSubpage('marketing', 'social-listening', '${prefix}marketing/marketing.html#social-listening', event)">
                 <span class="nav-sub-dot"></span>
                 <span>Social Listening</span>
               </a>
-              <a href="marketing.html#inbox" class="nav-sub-btn ${activePage === 'marketing' && activeSubpage === 'inbox' ? 'active' : ''}" data-marketing-sub="inbox" onclick="window.handleMarketingNav('inbox', event)">
+              <a href="${prefix}marketing/marketing.html#inbox" class="nav-sub-btn ${activeModule === 'marketing' && (activeSubpage === 'inbox' || activeSubpage === 'view-inbox') ? 'active' : ''}" data-module="marketing" data-sub="inbox" onclick="window.navigateToModuleSubpage('marketing', 'inbox', '${prefix}marketing/marketing.html#inbox', event)">
                 <span class="nav-sub-dot"></span>
                 <span>Omnichannel Inbox</span>
               </a>
-              <a href="marketing.html#content-history" class="nav-sub-btn ${activePage === 'marketing' && activeSubpage === 'content-history' ? 'active' : ''}" data-marketing-sub="content-history" onclick="window.handleMarketingNav('content-history', event)">
+              <a href="${prefix}marketing/marketing.html#content-history" class="nav-sub-btn ${activeModule === 'marketing' && (activeSubpage === 'content-history' || activeSubpage === 'view-content-history') ? 'active' : ''}" data-module="marketing" data-sub="content-history" onclick="window.navigateToModuleSubpage('marketing', 'content-history', '${prefix}marketing/marketing.html#content-history', event)">
                 <span class="nav-sub-dot"></span>
                 <span>Riwayat Konten</span>
               </a>
             </div>
           </div>
 
-          <!-- Kanban AI Global -->
-          <a href="index.html#aikanban" class="nav-btn ${activePage === 'aikanban' ? 'active' : ''}" data-nav="aikanban">
+          <!-- 5. Kanban AI Global -->
+          <a href="${prefix}index.html#aikanban" class="nav-btn ${activeModule === 'aikanban' ? 'active' : ''}" data-nav="aikanban" data-module="aikanban">
             ${svg('bot')}
             <span>Kanban AI (Global)</span>
           </a>
         </nav>
 
-        <!-- Control & Config Nav -->
+        <!-- Section: Control & Config -->
         <div class="nav-label">Control & Config</div>
         <nav class="nav" id="sidebar-nav-config">
-          <a href="index.html#analytics" class="nav-btn ${activePage === 'analytics' ? 'active' : ''}" data-nav="analytics">
+          <a href="${prefix}index.html#analytics" class="nav-btn ${activeModule === 'analytics' ? 'active' : ''}" data-nav="analytics" data-module="analytics">
             ${svg('chart')}
-            <span>Reporting</span>
+            <span>Executive Reporting</span>
           </a>
-          <a href="index.html#integrations" class="nav-btn ${activePage === 'integrations' ? 'active' : ''}" data-nav="integrations">
+          <a href="${prefix}index.html#integrations" class="nav-btn ${activeModule === 'integrations' ? 'active' : ''}" data-nav="integrations" data-module="integrations">
             ${svg('plug')}
-            <span>Integrations</span>
+            <span>Integrations Hub</span>
           </a>
-          <a href="index.html#rbac" class="nav-btn ${activePage === 'rbac' ? 'active' : ''}" data-nav="rbac">
+          <a href="${prefix}index.html#rbac" class="nav-btn ${activeModule === 'rbac' ? 'active' : ''}" data-nav="rbac" data-module="rbac">
             ${svg('shield')}
-            <span>Access & Audit</span>
+            <span>Access & Audit (RBAC)</span>
           </a>
-          <a href="index.html#settings" class="nav-btn ${activePage === 'settings' ? 'active' : ''}" data-nav="settings">
+          <a href="${prefix}index.html#settings" class="nav-btn ${activeModule === 'settings' ? 'active' : ''}" data-nav="settings" data-module="settings">
             ${svg('settings')}
             <span>Settings</span>
           </a>
@@ -188,7 +298,7 @@
         <div class="sidebar-bottom">
           <div class="mini-user">
             <div class="avatar">AS</div>
-            <div>
+            <div class="user-details">
               <strong>Asisyah Sarah A.</strong>
               <span>Project Manager</span>
             </div>
@@ -200,102 +310,131 @@
     // Target mount container
     let container = document.getElementById('sidebar-container');
     if (!container) {
-      const existingSidebar = document.getElementById('sidebar');
+      const existingSidebar = document.querySelector('aside.sidebar, aside');
       if (existingSidebar) {
         existingSidebar.outerHTML = sidebarHtml;
-        setupListeners();
+        setupMobileListeners();
         return;
       }
-      const app = document.querySelector('.app') || document.body;
+      const app = document.querySelector('.app, .app-container') || document.body;
       container = document.createElement('div');
       container.id = 'sidebar-container';
       app.insertBefore(container, app.firstChild);
     }
     container.innerHTML = sidebarHtml;
-    setupListeners();
+    setupMobileListeners();
   };
 
-  // Toggle CRM Accordion Submenu
-  window.toggleCrmAccordion = function(e) {
-    if (e) e.preventDefault();
-    const group = document.getElementById('crmNavGroup');
+  // Toggle Accordion Submenu
+  window.toggleModuleAccordion = function(groupId, e) {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    const group = document.getElementById(groupId);
     if (!group) return;
-    group.classList.toggle('open');
+    const isCurrentlyOpen = group.classList.contains('open');
+    
+    // Optional: close other accordions for sleek accordion feel
+    document.querySelectorAll('.nav-group').forEach(g => {
+      if (g !== group) g.classList.remove('open');
+    });
+
+    if (!isCurrentlyOpen) {
+      group.classList.add('open');
+    } else {
+      group.classList.remove('open');
+    }
   };
 
-  // Handle CRM Sub Navigation
-  window.handleCrmNav = function(subpage, e) {
-    const isCrmDoc = window.location.pathname.toLowerCase().includes('crm.html');
-    if (isCrmDoc) {
+  // Seamless Multi-Module Subpage Router
+  window.navigateToModuleSubpage = function(targetModule, subpage, targetHref, e) {
+    const p = window.location.pathname.toLowerCase().replace(/\\/g, '/');
+    let isCurrentDocument = false;
+
+    if (targetModule === 'crm' && (p.includes('crm.html') || p.includes('/crm/'))) isCurrentDocument = true;
+    else if (targetModule === 'project' && (p.includes('forge pm.html') || p.includes('/project/'))) isCurrentDocument = true;
+    else if (targetModule === 'finance' && p.includes('/finance/')) isCurrentDocument = true;
+    else if (targetModule === 'marketing' && (p.includes('marketing.html') || p.includes('/marketing/'))) isCurrentDocument = true;
+    else if (targetModule === 'dashboard' && !p.includes('/crm/') && !p.includes('/finance/') && !p.includes('/marketing/') && !p.includes('/project/')) isCurrentDocument = true;
+
+    if (isCurrentDocument) {
       if (e) e.preventDefault();
-      if (typeof window.switchCrmPage === 'function') {
+
+      // Trigger In-Page Dispatchers
+      if (targetModule === 'crm' && typeof window.switchCrmPage === 'function') {
         window.switchCrmPage(subpage);
+      } else if (targetModule === 'marketing' && typeof window.switchMarketingPage === 'function') {
+        window.switchMarketingPage(subpage.replace('view-', ''));
+      } else if (targetModule === 'finance') {
+        // Finance SPA switcher
+        const targetViewId = subpage.startsWith('view-') ? subpage : ('view-' + subpage);
+        const viewEl = document.getElementById(targetViewId);
+        if (viewEl) {
+          document.querySelectorAll('.view-section').forEach(v => v.style.display = 'none');
+          viewEl.style.display = 'block';
+        }
+      } else if (targetModule === 'project') {
+        // PM Forge subpage switcher
+        const pageEl = document.getElementById('page-' + subpage);
+        if (pageEl) {
+          document.querySelectorAll('.page').forEach(pg => pg.classList.remove('active'));
+          pageEl.classList.add('active');
+          const bc = document.getElementById('bcCurrent');
+          if (bc) bc.textContent = subpage.toUpperCase();
+        }
+      } else if (typeof window.showPage === 'function') {
+        window.showPage(subpage);
       }
-      // Update active sub-btn
-      document.querySelectorAll('#crmSubNav .nav-sub-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.crmSub === subpage);
-      });
-      // Close mobile sidebar if open
+
+      // Update Active Classes in Sidebar
+      const group = document.getElementById(targetModule + 'NavGroup');
+      if (group) {
+        group.querySelectorAll('.nav-sub-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.sub === subpage || btn.dataset.sub === subpage.replace('view-', ''));
+        });
+      }
+
+      // Update URL Hash cleanly
+      window.location.hash = subpage;
+
+      // Close mobile drawer if opened
       const sb = document.getElementById('sidebar');
       if (sb) sb.classList.remove('open');
     }
-    // If in index.html, user clicked link href="crm.html#<subpage>", let browser smoothly navigate!
+    // If not in the same document, normal browser navigation occurs to targetHref
   };
 
-  // Toggle Marketing Accordion Submenu
-  window.toggleMarketingAccordion = function(e) {
-    if (e) e.preventDefault();
-    const group = document.getElementById('marketingNavGroup');
-    if (!group) return;
-    group.classList.toggle('open');
-  };
-
-  // Handle Marketing Sub Navigation
-  window.handleMarketingNav = function(subpage, e) {
-    const isMarketingDoc = window.location.pathname.toLowerCase().includes('marketing.html');
-    if (isMarketingDoc) {
-      if (e) e.preventDefault();
-      if (typeof window.switchMarketingPage === 'function') {
-        window.switchMarketingPage(subpage);
-      }
-      // Update active sub-btn
-      document.querySelectorAll('#marketingSubNav .nav-sub-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.marketingSub === subpage);
-      });
-      // Close mobile sidebar if open
-      const sb = document.getElementById('sidebar');
-      if (sb) sb.classList.remove('open');
-    }
-  };
-
-  // Setup event listeners for in-page navigation (like index.html single page router)
-  function setupListeners() {
-    const menuBtn = document.getElementById('mobileMenu');
-    if (menuBtn) {
-      menuBtn.onclick = function() {
+  // Mobile Menu & In-Page Listeners Setup
+  function setupMobileListeners() {
+    const mobileBtn = document.getElementById('mobileMenu') || document.querySelector('.mobile-toggle');
+    if (mobileBtn) {
+      mobileBtn.onclick = function(e) {
+        if (e) e.preventDefault();
         const sb = document.getElementById('sidebar');
         if (sb) sb.classList.toggle('open');
       };
     }
 
-    // In-page navigation handler for index.html
-    const isIndexDoc = !window.location.pathname.toLowerCase().includes('crm.html');
-    if (isIndexDoc) {
+    // In-page router click listener for root index.html
+    const p = window.location.pathname.toLowerCase().replace(/\\/g, '/');
+    const isRootIndex = !p.includes('/crm/') && !p.includes('/finance/') && !p.includes('/marketing/') && !p.includes('/project/');
+    
+    if (isRootIndex) {
       document.querySelectorAll('#sidebar [data-nav]').forEach(el => {
         el.addEventListener('click', function(e) {
-          const page = this.getAttribute('data-nav');
-          if (typeof window.showPage === 'function') {
+          const navPage = this.getAttribute('data-nav');
+          if (typeof window.showPage === 'function' && navPage) {
             e.preventDefault();
-            window.showPage(page);
+            window.showPage(navPage);
+            window.location.hash = navPage;
 
-            // Update active states
-            document.querySelectorAll('#sidebar .nav-btn').forEach(b => {
-              if (!b.classList.contains('nav-parent-btn')) {
-                b.classList.toggle('active', b.getAttribute('data-nav') === page);
-              }
+            // Update top-level nav buttons
+            document.querySelectorAll('#sidebar .nav-btn:not(.nav-parent-btn)').forEach(btn => {
+              btn.classList.toggle('active', btn.getAttribute('data-nav') === navPage);
             });
 
-            // Close mobile drawer
+            // Close mobile sidebar
             const sb = document.getElementById('sidebar');
             if (sb) sb.classList.remove('open');
           }
@@ -304,13 +443,23 @@
     }
   }
 
-  // Auto initialize on DOM ready
-  document.addEventListener('DOMContentLoaded', () => {
-    const container = document.getElementById('sidebar-container') || document.getElementById('sidebar');
+  // Auto initialize on DOMContentLoaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('sidebar-container') || document.querySelector('aside.sidebar, aside');
+      if (container) {
+        const activePage = container.getAttribute('data-active-page');
+        const activeSubpage = container.getAttribute('data-active-subpage');
+        window.renderDynamicSidebar({ activePage, activeSubpage });
+      }
+    });
+  } else {
+    const container = document.getElementById('sidebar-container') || document.querySelector('aside.sidebar, aside');
     if (container) {
       const activePage = container.getAttribute('data-active-page');
       const activeSubpage = container.getAttribute('data-active-subpage');
       window.renderDynamicSidebar({ activePage, activeSubpage });
     }
-  });
+  }
+
 })();

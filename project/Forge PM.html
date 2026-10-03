@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Forge — Project Dashboard</title>
+<link rel="stylesheet" href="../sidebar.css">
 <style>
 :root{
   --bg:#F3F5F9; --surface:#FFFFFF; --ink:#101828; --ink-soft:#64748B;
@@ -17,7 +18,7 @@
 :root[data-theme="dark"]{ --bg:#12151C; --surface:#191D26; --ink:#EDEFF4; --ink-soft:#9AA2B4; --line:#2A2F3B; }
 *{box-sizing:border-box;}
 html{scroll-padding-top:env(safe-area-inset-top,0px);}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Segoe UI",Inter,Roboto,sans-serif;font-size:14px;line-height:1.5;display:grid;grid-template-columns:220px 1fr;min-height:100%;height:100vh;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Segoe UI",Inter,Roboto,sans-serif;font-size:14px;line-height:1.5;display:grid;grid-template-columns:270px 1fr;min-height:100%;height:100vh;}
 aside{background:var(--navy-deep);color:#CBD6E4;padding:20px 12px;display:flex;flex-direction:column;gap:4px;overflow-y:auto;}
 .brand-block{display:flex;align-items:center;gap:10px;padding:2px 10px 20px;}
 .brand-icon{width:34px;height:34px;border-radius:9px;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex:none;}
@@ -283,33 +284,8 @@ tr.tbl-row:hover{background:var(--bg);}
 </head>
 <body>
 
-<aside>
-  <div class="brand-block">
-    <div class="brand-icon">F</div>
-    <div><div class="brand-name">Forge PM</div><div class="brand-sub">Project Management</div></div>
-  </div>
-
-  <div class="nav-section" style="margin-top:6px">Workspace</div>
-  <button class="nav-item active" data-page="dashboard"><span class="nav-ico">▦</span>Dashboard</button>
-  <button class="nav-item" data-page="events"><span class="nav-ico">◷</span>Events<span class="nav-badge">7</span></button>
-  <button class="nav-item" data-page="project"><span class="nav-ico">▣</span>Projects<span class="nav-badge">4</span></button>
-  <button class="nav-item" data-page="tickets"><span class="nav-ico">◎</span>Tickets<span class="nav-badge">5</span></button>
-  <button class="nav-item" data-page="clients"><span class="nav-ico">◐</span>Clients</button>
-  <button class="nav-item" data-page="mytasks"><span class="nav-ico">✓</span>My Tasks<span class="nav-badge">6</span></button>
-  <button class="nav-item" data-page="automation"><span class="nav-ico">⚙</span>Automation Fix Bug<span class="nav-badge accent">9</span></button>
-  <button class="nav-item" data-page="notes"><span class="nav-ico">▤</span>Notes</button>
-  <button class="nav-item" data-page="team"><span class="nav-ico">◉</span>Team</button>
-
-  <div class="nav-section">Control & Config</div>
-  <button class="nav-item" data-page="reports"><span class="nav-ico">▲</span>Reporting</button>
-  <button class="nav-item" data-page="integrations"><span class="nav-ico">⇄</span>Integrations</button>
-  <button class="nav-item" data-page="settings"><span class="nav-ico">⚬</span>Settings</button>
-
-  <div class="sidebar-user">
-    <div class="mini-avatar" style="width:32px;height:32px;font-size:12px">AS</div>
-    <div><div style="color:#fff;font-weight:600;font-size:12.5px">Azi Saputra</div><div style="font-size:10.5px;color:#7C8AA8">Project Manager</div></div>
-  </div>
-</aside>
+<!-- Dynamic Master Sidebar Container -->
+<div id="sidebar-container" data-active-page="project" data-active-subpage="dashboard"></div>
 
 <main>
   <header class="topbar">
@@ -977,9 +953,10 @@ document.querySelectorAll('.tab[data-tab]').forEach(tab=>{
   });
 });
 // Task modal
-function openTask(){ document.getElementById('taskModal').classList.add('active'); }
-function closeTask(){ document.getElementById('taskModal').classList.remove('active'); }
-document.getElementById('taskModal').addEventListener('click',e=>{ if(e.target.id==='taskModal') closeTask(); });
+window.switchPmPage = function(page) {
+  navTo(page);
+};
 </script>
+<script src="../sidebar.js"></script>
 </body>
 </html>

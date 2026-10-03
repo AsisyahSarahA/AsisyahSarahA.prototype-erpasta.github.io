@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../sidebar.css">
     <style>
         /* Specific Styles for new views */
         .split-screen { display: flex; gap: 24px; height: 100%; }
@@ -34,59 +35,8 @@
 </head>
 <body>
     <div class="app-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="brand">
-                <div class="logo">A</div>
-                <h2>Astacode</h2>
-            </div>
-            
-            <nav class="nav-menu">
-                <p class="nav-label">FINANCE V3</p>
-                <a href="#" class="nav-item active" data-target="view-dashboard"><i class="fa-solid fa-chart-pie"></i> <span>Dashboard</span></a>
-
-                <div class="nav-group">
-                    <a href="#" class="nav-item has-submenu"><i class="fa-solid fa-download"></i> <span>Pemasukan (AR)</span><i class="fa-solid fa-chevron-down arrow"></i></a>
-                    <div class="submenu">
-                        <a href="#" class="submenu-item" data-target="view-penagihan">Daftar Invoice (Termin)</a>
-                    </div>
-                </div>
-
-                <div class="nav-group">
-                    <a href="#" class="nav-item has-submenu"><i class="fa-solid fa-upload"></i> <span>Pengeluaran (AP)</span><i class="fa-solid fa-chevron-down arrow"></i></a>
-                    <div class="submenu">
-                        <a href="#" class="submenu-item" data-target="view-klaim">Klaim & Struk (Expense)</a>
-                        <a href="#" class="submenu-item" data-target="view-generic" data-title="Tagihan Vendor/Freelancer">Tagihan Vendor/Freelancer</a>
-                        <a href="#" class="submenu-item" data-target="view-generic" data-title="Penggajian (OPEX)">Penggajian (Payroll)</a>
-                    </div>
-                </div>
-
-                <div class="nav-group">
-                    <a href="#" class="nav-item has-submenu"><i class="fa-solid fa-building-columns"></i> <span>Kas & Bank</span><i class="fa-solid fa-chevron-down arrow"></i></a>
-                    <div class="submenu">
-                        <a href="#" class="submenu-item" data-target="view-generic" data-title="Daftar Rekening & Saldo">Daftar Rekening</a>
-                        <a href="#" class="submenu-item" data-target="view-generic" data-title="Mutasi Internal Bank">Mutasi Internal</a>
-                        <a href="#" class="submenu-item" data-target="view-recon">Rekonsiliasi Bank</a>
-                    </div>
-                </div>
-
-                <div class="nav-group">
-                    <a href="#" class="nav-item has-submenu"><i class="fa-solid fa-book-journal-whills"></i> <span>Buku Besar</span><i class="fa-solid fa-chevron-down arrow"></i></a>
-                    <div class="submenu">
-                        <a href="#" class="submenu-item" data-target="view-generic" data-title="Chart of Accounts (COA)">Chart of Accounts</a>
-                        <a href="#" class="submenu-item" data-target="view-generic" data-title="Jurnal Umum">Jurnal Umum</a>
-                    </div>
-                </div>
-
-                <div class="nav-group">
-                    <a href="#" class="nav-item has-submenu"><i class="fa-solid fa-chart-line"></i> <span>Laporan</span><i class="fa-solid fa-chevron-down arrow"></i></a>
-                    <div class="submenu">
-                        <a href="#" class="submenu-item" data-target="view-generic" data-title="Laba Rugi Perusahaan">Laba Rugi Perusahaan</a>
-                        <a href="#" class="submenu-item" data-target="view-profit">Profitabilitas Proyek</a>
-                    </div>
-                </div>
-            </nav>
-        </aside>
+        <!-- Dynamic Master Sidebar Container -->
+        <div id="sidebar-container" data-active-page="finance" data-active-subpage="view-dashboard"></div>
 
         <!-- Main Content -->
         <main class="main-content">
@@ -495,5 +445,6 @@
             });
         });
     </script>
+    <script src="../sidebar.js"></script>
 </body>
 </html>
